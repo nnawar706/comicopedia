@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function loginForm()
     {
-        return view('admin.login');
+        return view('admin.pages.login');
     }
 
     public function login(AuthRequest $request)
@@ -27,6 +27,6 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        return response()->json('yessss');
+        return view('admin.pages.dashboard');
     }
 }
