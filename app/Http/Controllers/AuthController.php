@@ -24,4 +24,9 @@ class AuthController extends Controller
 
         return $this->service->login($credentials);
     }
+
+    public function dashboard()
+    {
+        return response()->json('yessss');
+    }
 }
