@@ -29,4 +29,11 @@ class AuthController extends Controller
     {
         return view('admin.pages.dashboard');
     }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('login-form');
+    }
 }
