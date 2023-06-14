@@ -27,15 +27,19 @@ class AuthRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'status'  => false,
-            'error'  => $validator->errors()->first(),  
-        ], 422));
+        throw new HttpResponseException(
+            redirect()->back()->withErrors([
+                'error' => $validator->errors()->first()
+            ])
+        );
+            // response()->json([
+            //     'error'  => $validator->errors()->first(),  
+            // ], 422));
     }
 }

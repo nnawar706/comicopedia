@@ -30,4 +30,16 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('admin/login', [AuthController::class, login]);
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::controller(AuthController::class)->group(function () {
+        
+        Route::get('login', 'loginForm')->name('login-form');
+        Route::post('login', 'login')->name('admin-login');
+    
+    });
+
+});
+
+
+
