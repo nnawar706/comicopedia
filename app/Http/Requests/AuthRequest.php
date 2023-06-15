@@ -34,12 +34,7 @@ class AuthRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            redirect()->back()->withErrors([
-                'error' => $validator->errors()->first()
-            ])
+            redirect()->back()->with('message', $validator->errors()->first())
         );
-            // response()->json([
-            //     'error'  => $validator->errors()->first(),  
-            // ], 422));
     }
 }

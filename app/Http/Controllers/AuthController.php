@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Services\AuthService;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -30,10 +31,11 @@ class AuthController extends Controller
         return view('admin.pages.dashboard');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->logout();
-
-        return redirect()->route('login-form');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login-form')->with('message','You have logged out.');
     }
 }

@@ -1,9 +1,14 @@
 <x-guest-layout>
-{{--    @if (session('error'))--}}
-{{--        <div class="alert alert-danger">--}}
-{{--            {{ session('error') }}--}}
-{{--        </div>--}}
-{{--    @endif--}}
+    @if (session('message'))
+        <div class="toast show fixed-bottom m-5 ms-auto text-bg-danger" style="--bs-bg-opacity: .8;" animation="true" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('message') }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />

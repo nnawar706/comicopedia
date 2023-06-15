@@ -17,11 +17,10 @@ class AuthService{
             );
 
             return redirect()->route('admin-dashboard')->with('data',$data);
-            // return response()->json(auth()->guard('admin')->user());
         }
 
         else {
-            return redirect()->route('login-form')->withErrors(['error' => 'Invalid credentials']);
+            return redirect()->route('login-form')->with('message','These credentials do not match our records.');
         }
     }
 }
