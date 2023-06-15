@@ -41,5 +41,26 @@
 
         </div>
 
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('assets/jquery-easing/jquery.easing.min.js') }}"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src=""></script>
+
+        <!-- Page level plugins -->
+        <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
+        <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
     </body>
 </html>
