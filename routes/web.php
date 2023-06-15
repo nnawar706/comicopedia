@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['middleware' => 'auth.admin'], function () {
 
             Route::get('dashboard', 'dashboard')->name('admin-dashboard');
+            Route::get('profile', 'profile')->name('admin-profile');
+            Route::put('change-password', 'changePassword')->name('admin-change-pwd');
             Route::get('logout', 'logout')->name('admin-logout');
         });
 

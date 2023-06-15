@@ -22,7 +22,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Components
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -65,7 +65,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Reports
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -109,10 +109,5 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <a class="btn btn-success btn-sm" href="{{ route('admin-logout') }}">Log Out</a>
             </div>
         </ul>

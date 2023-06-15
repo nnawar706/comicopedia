@@ -31,6 +31,14 @@ class AuthController extends Controller
         return view('admin.pages.dashboard');
     }
 
+    public function profile()
+    {
+        return view('admin.pages.profile');
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {}
+
     public function logout(Request $request)
     {
         Auth::logout();

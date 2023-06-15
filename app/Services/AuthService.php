@@ -10,13 +10,8 @@ class AuthService{
     {
         if(auth()->guard('admin')->attempt($credentials))
         {
-//            $user = auth()->guard('admin')->user();
 
-            $data = array(
-//                'user' => $user
-            );
-
-            return redirect()->route('admin-dashboard')->with('data',$data);
+            return redirect()->route('admin-dashboard');
         }
 
         else {
