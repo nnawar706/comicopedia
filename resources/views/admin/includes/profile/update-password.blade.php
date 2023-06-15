@@ -5,24 +5,25 @@
                         <h6 class="m-0 font-weight-bold text-primary">Change Password</h6>
                     </div>
                     <div class="card-body">
+                        <form method="post" action="{{ route('admin-change-pwd') }}">
+                        @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Current Password</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1">
+                            <input type="password" class="form-control" id="exampleFormControlInput1" name="current_password" required autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">New Password</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1">
+                            <input type="password" class="form-control" id="exampleFormControlInput1" name="password" required autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Confirm New Password</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1">
+                            <input type="password" class="form-control" id="exampleFormControlInput1" name="password_confirmation" required autocomplete="off">
                         </div>
-                        <a href="#" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
+                        <button type="submit" class="btn"><a href="#" class="btn btn-primary btn-icon-split">
                             <span class="text">Change Password</span>
-                        </a>
+                        </a></button>
+                        </form>
                     </div>
                 </div>
             </div>

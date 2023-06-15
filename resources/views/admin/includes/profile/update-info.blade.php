@@ -18,9 +18,6 @@
                             <input type="email" class="form-control" id="exampleFormControlInput1" value="{{ auth()->guard('admin')->user()->contact }}">
                         </div>
                         <a href="#" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
                             <span class="text">Update Information</span>
                         </a>
                     </div>
