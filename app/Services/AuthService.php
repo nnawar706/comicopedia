@@ -21,7 +21,7 @@ class AuthService{
         }
 
         else {
-            return response()->json($credentials);
+            return redirect()->route('login-form')->withErrors(['error' => 'Invalid credentials']);
         }
     }
 }

@@ -1,4 +1,9 @@
 <x-guest-layout>
+{{--    @if (session('error'))--}}
+{{--        <div class="alert alert-danger">--}}
+{{--            {{ session('error') }}--}}
+{{--        </div>--}}
+{{--    @endif--}}
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />

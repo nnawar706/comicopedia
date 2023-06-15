@@ -17,10 +17,16 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->guard('admin')->user()->is_active===1) 
+        if ($user = auth()->guard('admin')->user())
         {
-            return $next($request);
+            if($user->is_active===1)
+            {
+                return $next($request);
+            }
+
+            return redirect()->route('welcome');
         }
-        abort(401);
+
+        return redirect()->route('login-form');
     }
 }
