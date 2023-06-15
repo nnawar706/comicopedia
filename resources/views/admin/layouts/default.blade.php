@@ -21,17 +21,25 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                @include('admin.includes.sidebar')
-            </ul>
+            @include('admin.includes.sidebar')
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    @include('admin.includes.topbar')
+
+                    <!-- Page Content -->
+                    @yield('content')
+
+                </div>
+
+                <footer class="container">
+                    @include('admin.includes.footer')
+                </footer>
+            </div>
+
         </div>
 
-        <div>
-            @yield('content')
-        </div>
-
-        <footer class="container">
-            @include('admin.includes.footer')
-        </footer>
     </body>
 </html>

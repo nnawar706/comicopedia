@@ -30,14 +30,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('unauthorize', function () {
-    return view('unauthorize');
-})->name('unauthorize');
-
 Route::group(['prefix' => 'admin'], function () {
 
     Route::controller(AuthController::class)->group(function () {
-        
+
         Route::get('login', 'loginForm')->name('login-form');
         Route::post('login', 'login')->name('admin-login');
 
@@ -46,7 +42,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('dashboard', 'dashboard')->name('admin-dashboard');
             Route::get('logout', 'logout')->name('admin-logout');
         });
-    
+
     });
 });
 

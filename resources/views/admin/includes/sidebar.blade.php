@@ -1,9 +1,10 @@
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin-dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">ComicMania</div>
             </a>
 
             <!-- Divider -->
@@ -114,3 +115,4 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <a class="btn btn-success btn-sm" href="{{ route('admin-logout') }}">Log Out</a>
             </div>
+        </ul>
