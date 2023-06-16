@@ -27,7 +27,7 @@
                 </div>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="{{ route('settings') }}">
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>Settings</span>
                     </a>

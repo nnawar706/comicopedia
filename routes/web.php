@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
@@ -46,6 +47,12 @@ Route::group(['prefix' => 'admin'], function () {
             Route::put('change-info', 'changeInfo')->name('admin-change-info');
             Route::post('change-photo', 'changePhoto')->name('admin-change-photo');
             Route::get('logout', 'logout')->name('admin-logout');
+
+        });
+
+        Route::controller(GeneralSettingController::class)->group(function () {
+
+            Route::get('settings', 'show')->name('settings');
 
         });
 

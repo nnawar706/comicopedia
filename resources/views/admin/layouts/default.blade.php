@@ -79,6 +79,10 @@
                     bsAlert.show();
                 }, 5000);
             };
+
+            $(document).on('click',function(){
+                $('.collapse').collapse('hide');
+            });
         </script>
     </body>
 </html>
