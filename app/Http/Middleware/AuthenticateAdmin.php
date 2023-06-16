@@ -27,6 +27,6 @@ class AuthenticateAdmin
             return redirect()->route('welcome');
         }
 
-        return redirect()->route('login-form');
+        return redirect()->route('login-form')->with('message','You need to login first.');
     }
 }

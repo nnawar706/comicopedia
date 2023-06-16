@@ -42,6 +42,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('dashboard', 'dashboard')->name('admin-dashboard');
             Route::get('profile', 'profile')->name('admin-profile');
             Route::put('change-password', 'changePassword')->name('admin-change-pwd');
+            Route::put('change-info', 'changeInfo')->name('admin-change-info');
+            Route::post('change-photo', 'changePhoto')->name('admin-change-photo');
             Route::get('logout', 'logout')->name('admin-logout');
         });
 

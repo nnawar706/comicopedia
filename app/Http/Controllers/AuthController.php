@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
+use App\Http\Requests\changeInfoRequest;
 use App\Http\Requests\changePasswordRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,13 @@ class AuthController extends Controller
     public function profile()
     {
         return view('admin.pages.profile');
+    }
+
+    public function changeInfo(ChangeInfoRequest $request)
+    {
+        $this->service->updateInfo($request);
+
+        return redirect()->back()->with('message', 'Profile information is updated successfully.');
     }
 
     public function changePassword(ChangePasswordRequest $request)

@@ -16,6 +16,7 @@
 
         <!-- stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/image.css') }}" rel="stylesheet">
     </head>
 
     <body id="page-top">
@@ -61,6 +62,7 @@
 
         <!-- Custom scripts -->
         <script src="{{ asset('assets/js/admin-main.min.js') }}"></script>
+        <script src="{{ asset('assets/js/image-preview.js') }}"></script>
 
         <!-- Page level plugins -->
         <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>

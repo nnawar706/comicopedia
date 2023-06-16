@@ -28,6 +28,16 @@ class AuthService{
         }
     }
 
+    public function updateInfo(Request $request)
+    {
+        $this->admin->newQuery()->find(auth()->guard('admin')->user()->id)
+        ->update([
+            'email' => $request->email,
+            'name' => $request->name,
+            'contact' => $request->contact,
+        ]);
+    }
+
     public function matchPassword(Request $request)
     {
         if(!Hash::check($request->current_password, auth()->guard('admin')->user()->password)) {
