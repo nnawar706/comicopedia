@@ -27,3 +27,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="updateImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="exampleModalLabel">Update Profile Photo</h6>
+                                </div>
+                                <div class="modal-body image-body text-center">
+                                    <form action="{{ route('admin-change-photo') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="file-drop-area">
+                                            <span class="choose-file-button">Choose Files</span>
+		                                    <span class="file-message">or drag and drop files here</span>
+		                                    <input type="file" name="image" class="file-input" accept=".jfif,.jpg,.jpeg,.png,.gif" required>
+                                        </div>
+                                        <div id="imagePreview"></div>
+                                        <hr>
+                                        <button type="submit" class="btn btn-primary">Update Photo</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

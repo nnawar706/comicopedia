@@ -4,9 +4,10 @@ namespace App\Services;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
-class AuthService{
+class AuthService extends GeneralService{
 
     protected $admin;
 
@@ -28,6 +29,15 @@ class AuthService{
         }
     }
 
+    public function getPermissionData()
+    {
+        $admin = $this->admin->newQuery()->find(auth()->guard('admin')->user()->id);
+
+        $role = $admin->getRoleNames()->first();
+
+        return Role::with('permissions')->where('name' , $admin->getRoleNames()->first())->first();
+    }
+
     public function updateInfo(Request $request)
     {
         $this->admin->newQuery()->find(auth()->guard('admin')->user()->id)
@@ -35,6 +45,22 @@ class AuthService{
             'email' => $request->email,
             'name' => $request->name,
             'contact' => $request->contact,
+        ]);
+    }
+
+    public function updatePhoto(Request $request)
+    {
+        $admin = $this->admin->newQuery()->find(auth()->guard('admin')->user()->id);
+
+        if($admin->profile_photo_path != null)
+        {
+            $this->deleteFile($admin->profile_photo_path);
+        }
+
+        $filename = $this->uploadImage($request, 'uploads/admins/');
+
+        $admin->update([
+            'profile_photo_path' => 'uploads/admins/' . $filename,
         ]);
     }
 
