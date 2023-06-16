@@ -16,7 +16,7 @@
 
         <!-- stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/image.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet">
     </head>
 
     <body id="page-top">

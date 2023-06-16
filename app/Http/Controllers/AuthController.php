@@ -45,7 +45,7 @@ class AuthController extends Controller
     {
         $data = $this->service->getPermissionData();
 
-        return view('admin.pages.permissions');
+        return view('admin.pages.permissions')->with('data', $data);
     }
 
     public function changeInfo(ChangeInfoRequest $request)
