@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="charts.html">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>Website Settings</span>
+                        <span>Settings</span>
                     </a>
                 </li>
 
@@ -74,6 +74,22 @@
                     </a>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="route('user-list')">Customer List</a>
+                            <a class="collapse-item" href="cards.html">Activity Log</a>
+                        </div>
+                    </div>
+                </li>
+
+            @elseif(auth()->guard('admin')->user()->getRoleNames()->first() == 'Admin')
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Customers</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="buttons.html">Customer List</a>
                             <a class="collapse-item" href="cards.html">Activity Log</a>
                         </div>
@@ -90,41 +106,30 @@
                 Reports
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+            @if(auth()->guard('admin')->user()->getRoleNames()->first() != 'Manager')
+            
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                        aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Pages</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Login Screens:</h6>
+                            <a class="collapse-item" href="login.html">Login</a>
+                            <a class="collapse-item" href="register.html">Register</a>
+                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Other Pages:</h6>
+                            <a class="collapse-item" href="404.html">404 Page</a>
+                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
+                </li>
+            
+            @endif
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -142,7 +147,8 @@
                 </a>
                 <div id="collapseSubs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Subscribers</a>
+                        <a class="collapse-item" href="{{ route('subscriber-list') }}">Manage Subscribers</a>
+                        <a class="collapse-item" href="{{ route('send-newsletter') }}">Weekly Newsletters</a>
                     </div>
                 </div>
             </li>
