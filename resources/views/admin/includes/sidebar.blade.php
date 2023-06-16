@@ -2,9 +2,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin-dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img src="{{ asset('uploads/general/logo.png') }}" height="30" width="30">
                 </div>
-                <div class="sidebar-brand-text mx-3">ComicMania</div>
+                <div class="sidebar-brand-text mx-3">Mangamania</div>
             </a>
 
             <!-- Divider -->

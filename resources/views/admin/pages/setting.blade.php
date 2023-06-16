@@ -27,7 +27,17 @@
             </p>
             <div class="collapse show" id="collapseExample1">
                 <div class="card card-body">
-                    This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    <label for="exampleFormControlInput1" class="form-label">Website Logo:</label>
+                    <input type="file" class="form-control" name="logo">
+                    <button type="button" class="btn" title="Update Logo Image">
+                        <img src="{{ asset('uploads/general/logo.png') }}" class="rounded mx-auto d-block" alt="site-logo" height="100" width="100">
+                    </button>
+                    <hr>
+                    <label for="exampleFormControlInput1" class="form-label">Website Favicon:</label>
+                    <input type="file" class="form-control" name="favicon">
+                    <button type="button" class="btn">
+                        <img src="{{ asset('uploads/general/logo.png') }}" class="rounded mx-auto d-block" alt="site-favicon" height="100" width="100">
+                    </button>
                 </div>
             </div>
             <div class="collapse" id="collapseExample2">
