@@ -16,7 +16,9 @@ class GeneralSettingController extends Controller
 
     public function show()
     {
-        return view('admin.pages.setting');
+        $data = $this->service->getInfo();
+
+        return view('admin.pages.setting')->with('data', $data);
     }
 
     public function updateInfo(SiteInformationUpdateRequest $request)
