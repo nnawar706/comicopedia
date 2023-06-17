@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BannerSettingController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GeneralSettingController;
@@ -56,7 +58,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         });
 
-        Route::controller(BannerController::class)->group(function () {
+        Route::controller(BannerSettingController::class)->group(function () {
 
             Route::get('banners', 'getAll')->name('banner-list');
             Route::post('banners', 'store')->name('store-banner');
