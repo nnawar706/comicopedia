@@ -31,6 +31,9 @@ class GeneralSettingService
         $this->info->name = $request->name;
         $this->info->email = $request->email;
         $this->info->contact = $request->contact;
+        $this->info->about = $request->about;
+
+        $this->info->save();
 
         if($request->file('logo'))
         {
