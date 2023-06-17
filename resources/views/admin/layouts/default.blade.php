@@ -74,15 +74,11 @@
             window.onload = (event) => {
                 let myAlert = document.querySelector('.toast');
                 let bsAlert = new bootstrap.Toast(myAlert);
-        
+
                 setTimeout(function () {
                     bsAlert.show();
                 }, 5000);
             };
-
-            $(document).on('click',function(){
-                $('.collapse').collapse('hide');
-            });
         </script>
     </body>
 </html>

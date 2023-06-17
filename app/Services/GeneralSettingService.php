@@ -28,6 +28,10 @@ class GeneralSettingService
         //     'about' => $request->about
         // ]);
 
+        $this->info->name = $request->name;
+        $this->info->email = $request->email;
+        $this->info->contact = $request->contact;
+
         if($request->file('logo'))
         {
             deleteFile($this->info->logo_path);
