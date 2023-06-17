@@ -22,5 +22,8 @@ class GeneralSettingService
             'contact' => $request->contact,
             'about' => $request->about
         ]);
+
+        if($request->file('logo'))
+        {}
     }
 }

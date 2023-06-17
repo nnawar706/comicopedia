@@ -8,7 +8,7 @@
             <h5 class="h4 mb-1 text-gray-800">General Setting</h5>
             <br>
             <p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" 
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="true" 
                 aria-controls="collapseExample1">
                     Logo & Favicon
                 </a>
@@ -28,13 +28,13 @@
             <div class="collapse show" id="collapseExample1">
                 <div class="card card-body">
                     <label for="exampleFormControlInput1" class="form-label">Website Logo:</label>
-                    <input type="file" class="form-control" name="logo">
-                    <button type="button" class="btn" title="Update Logo Image">
+                    
+                    <button type="button" class="btn" title="Update Logo Image" data-bs-toggle="modal" data-bs-target="#updateLogo" data-whatever="@mdo">
                         <img src="{{ asset('uploads/general/logo.png') }}" class="rounded mx-auto d-block" alt="site-logo" height="100" width="100">
                     </button>
                     <hr>
                     <label for="exampleFormControlInput1" class="form-label">Website Favicon:</label>
-                    <input type="file" class="form-control" name="favicon">
+                    
                     <button type="button" class="btn">
                         <img src="{{ asset('uploads/general/logo.png') }}" class="rounded mx-auto d-block" alt="site-favicon" height="100" width="100">
                     </button>
@@ -58,5 +58,28 @@
         </div>
     </div>
 </div>
+
+                    <div class="modal fade" id="updateLogo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="exampleModalLabel">Update Website Logo</h6>
+                                </div>
+                                <div class="modal-body image-body text-center">
+                                    <form action="{{ route('update-info') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="file-drop-area">
+                                            <span class="choose-file-button">Choose File</span>
+		                                    <span class="file-message">or drag and drop file here</span>
+		                                    <input type="file" name="logo" class="file-input" accept=".jpg,.jpeg,.png" required>
+                                        </div>
+                                        <div id="imagePreview"></div>
+                                        <hr>
+                                        <button type="submit" class="btn btn-primary">Update Logo</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 @stop
