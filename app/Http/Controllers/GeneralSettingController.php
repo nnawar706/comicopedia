@@ -3,33 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiteInformationUpdateRequest;
-use App\Models\GeneralSetting;
-use Illuminate\Http\Request;
+use App\Services\GeneralSettingService;
 
 class GeneralSettingController extends Controller
 {
+    private $service;
+
+    public function __construct(GeneralSettingService $service)
+    {
+        $this->service = $service;
+    }
+
     public function show()
     {
         return view('admin.pages.setting');
     }
 
-    public function edit()
-    {
-        //
-    }
-
     public function updateInfo(SiteInformationUpdateRequest $request)
-    {}
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\GeneralSetting  $generalSetting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, GeneralSetting $generalSetting)
     {
-        //
+        $this->service->updateInfo($request);
+
+        return redirect()->back()->with('message', 'General information is updated successfully.');
     }
+
 }
