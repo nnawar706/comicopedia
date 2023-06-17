@@ -12,7 +12,11 @@ class BannerSetting extends Model
     protected $table = 'banner_settings';
 
     protected $fillable = [
-        'type_id',
+        'banner_type_id',
+        'title',
+        'subtitle',
+        'button_text',
+        'button_url',
         'photo_path'
     ];
 
@@ -23,6 +27,6 @@ class BannerSetting extends Model
 
     public function type()
     {
-        return $this->belongsTo(BannerType::class, 'type_id');
+        return $this->belongsTo(BannerType::class, 'banner_type_id');
     }
 }

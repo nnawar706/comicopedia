@@ -21,6 +21,6 @@ class BannerType extends Model
 
     public function banners()
     {
-        return $this->hasMany(BannerType::class, 'type_id');
+        return $this->hasMany(BannerType::class, 'banner_type_id');
     }
 }
