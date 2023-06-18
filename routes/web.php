@@ -82,6 +82,11 @@ Route::group(['prefix' => 'admin'], function () {
 
         });
 
+        Route::controller(CategoryController::class)->group(function () {
+
+            Route::get('categories', 'getAll')->name('show-categories');
+        })
+
     });
 
 });

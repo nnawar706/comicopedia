@@ -21,7 +21,7 @@
             <hr class="sidebar-divider">
 
             @if(auth()->guard('admin')->user()->getRoleNames()->first() == 'Super admin')
-            
+
                 <div class="sidebar-heading">
                     Configurations
                 </div>
@@ -39,7 +39,7 @@
                         <span>Banners</span>
                     </a>
                 </li>
-                
+
             @endif
 
             <!-- Divider -->
@@ -98,6 +98,36 @@
 
             @endif
 
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="true" aria-controls="collapseFour">
+                        <i class="fas fa-fw fa-book"></i>
+                        <span>Inventory</span>
+                    </a>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('show-categories') }}">Categories</a>
+                            <a class="collapse-item" href="buttons.html">Products</a>
+                            <a class="collapse-item" href="cards.html">Expenses</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                        aria-expanded="true" aria-controls="collapseFive">
+                        <i class="fas fa-fw fa-list"></i>
+                        <span>Orders</span>
+                    </a>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Promo Codes</a>
+                            <a class="collapse-item" href="buttons.html">Orders</a>
+                            <a class="collapse-item" href="cards.html">Pending Orders</a>
+                        </div>
+                    </div>
+                </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -107,7 +137,7 @@
             </div>
 
             @if(auth()->guard('admin')->user()->getRoleNames()->first() != 'Manager')
-            
+
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
@@ -127,9 +157,9 @@
                         </div>
                     </div>
                 </li>
-            
+
             @endif
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
