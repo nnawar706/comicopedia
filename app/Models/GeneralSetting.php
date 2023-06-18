@@ -12,12 +12,13 @@ class GeneralSetting extends Model
     protected $table = 'general_settings';
 
     protected $fillable = [
-        'notification_on_new_order',
-        'mail_on_new_signin',
-        'promo_on_signin'
+        'notify_admins_on_new_order',
+        'email_admins_on_new_user_sign_in',
+        'promo_on_new_user_sign_in'
     ];
 
     protected $hidden = [
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 }
