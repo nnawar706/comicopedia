@@ -62,7 +62,19 @@
                         <input class="form-check-input" type="checkbox" name="notify_admins_on_new_order" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
                         <label class="form-check-label">Notify admins when a new order is posted</label>
                 </div>
-
+                <div class="form-check form-switch" style="margin-left: 20px">
+                    @if($data['config']['weekly_newsletter'] == 1)
+                        @php
+                            $isChecked = true;
+                        @endphp
+                    @else
+                        @php
+                            $isChecked = false;
+                        @endphp
+                    @endif
+                    <input class="form-check-input" type="checkbox" name="weekly_newsletter" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Send newsletters weekly to subscribers</label>
+                </div>
                 <hr>
                 <button type="submit" class="btn">
                     <a href="#" class="btn btn-primary btn-icon-split"><span class="text">Update Configuration</span></a>

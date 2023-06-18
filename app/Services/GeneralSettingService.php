@@ -58,7 +58,8 @@ class GeneralSettingService
         $this->setting->email_admins_on_new_user_sign_in = $request->input('email_admins_on_new_user_sign_in') ?? 0;
         $this->setting->promo_on_new_user_sign_in = $request->input('promo_on_new_user_sign_in') ?? 0;
         $this->setting->welcome_mail_on_new_user_sign_in = $request->input('welcome_mail_on_new_user_sign_in') ?? 0;
-
+        $this->setting->weekly_newsletter = $request->input('weekly_newsletter');
+        
         $this->setting->save();
     }
 

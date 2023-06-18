@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('general_settings', function (Blueprint $table) {
-            $table->tinyInteger('welcome_mail_on_new_user_sign_in')->nullable()->after('promo_on_new_user_sign_in');
+            $table->tinyInteger('welcome_mail_on_new_user_sign_in')->nullable()->after('promo_on_new_user_sign_in')->comment('0:off, 1:on');
+            $table->tinyInteger('weekly_newsletter')->nullable()->after('welcome_mail_on_new_user_sign_in')->comment('0:off, 1:on');
         });
     }
 
