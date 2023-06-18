@@ -9,22 +9,29 @@
                                 <br>
                                 <form method="post" action="{{ route('update-info') }}">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Website Name</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $data['name'] }}">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-primary btn-circle" type="button" id="button-addon1">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </button>
+                                        <input type="text" class="form-control" name="facebook_url" value="{{ $data['facebook_url'] }}">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput2" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput2" name="email" value="{{ $data['email'] }}">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-primary btn-circle" type="button" id="button-addon1" style="background-color: #962fbf">
+                                            <i class="fab fa-instagram"></i>
+                                        </button>
+                                        <input type="text" class="form-control" name="instagram_url" value="{{ $data['instagram_url'] }}">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput3" class="form-label">Conatct</label>
-                                        <input type="contact" class="form-control" id="exampleFormControlInput3" name="contact" value="{{ $data['contact'] }}">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1">
+                                            <i class="fab fa-youtube"></i>
+                                        </button>
+                                        <input type="text" class="form-control" name="youtube_url" value="{{ $data['youtube_url'] }}">
                                     </div>
-                                    <hr>
-                                    <label for="floatingTextarea2">About</label>
-                                    <div class="form-floating">
-                                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 120px">{{ $data['about'] }}</textarea>
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1">
+                                            <i class="fab fa-pinterest"></i>
+                                        </button>
+                                        <input type="text" class="form-control" name="pinterest_url" value="{{ $data['pinterest_url'] }}">
                                     </div>
                                     <hr>
                                     <button type="submit" class="btn">

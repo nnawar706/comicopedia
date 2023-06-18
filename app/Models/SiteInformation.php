@@ -19,11 +19,12 @@ class SiteInformation extends Model
         'favicon_path',
         'about',
         'facebook_url',
-        'instagram_url'
+        'instagram_url',
+        'youtube_url',
+        'pinterest_url',
     ];
 
     protected $hidden = [
-        'created_at',
-        'updated_at'
+        'created_at'
     ];
 }
