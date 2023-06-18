@@ -18,4 +18,14 @@ class CategoryService
     {
         return $this->category->newQuery()->orderBy('order')->get();
     }
+
+    public function createCategory(Request $request)
+    {
+        $cat = $this->category->newQuery()->create([
+            'name' => $request->name,
+        ]);
+
+        $cat->order = $this->category->count();
+        $cat->save();
+    }
 }

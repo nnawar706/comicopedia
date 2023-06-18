@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryStoreRequest;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,10 @@ class CategoryController extends Controller
         return view('admin.pages.categories')->with('data', $data);
     }
 
-    public function create()
-    {}
+    public function create(CategoryStoreRequest $request)
+    {
+        $this->service->createCategory($request);
+
+        return redirect()->back()->with('message', 'New category is stored successfully.');
+    }
 }
