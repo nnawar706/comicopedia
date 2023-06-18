@@ -11,19 +11,6 @@
                 @csrf
                 @method('PUT')
                 <div class="form-check form-switch" style="margin-left: 20px">
-                    @if($data['config']['notify_admins_on_new_order'] == 1)
-                        @php
-                            $isChecked = true;
-                        @endphp
-                    @else
-                        @php
-                            $isChecked = false;
-                        @endphp
-                    @endif
-                        <input class="form-check-input" type="checkbox" name="notify_admins_on_new_order" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
-                        <label class="form-check-label">Notify admins when a new order is posted</label>
-                </div>
-                <div class="form-check form-switch" style="margin-left: 20px">
                     @if($data['config']['email_admins_on_new_user_sign_in'] == 1)
                         @php
                             $isChecked = true;
@@ -37,6 +24,19 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">Email admins when a new user signs in</label>
                 </div>
                 <div class="form-check form-switch" style="margin-left: 20px">
+                    @if($data['config']['welcome_mail_on_new_user_sign_in'] == 1)
+                        @php
+                            $isChecked = true;
+                        @endphp
+                    @else
+                        @php
+                            $isChecked = false;
+                        @endphp
+                    @endif
+                    <input class="form-check-input" type="checkbox" name="welcome_mail_on_new_user_sign_in" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Send welcome emails to users on first sign in</label>
+                </div>
+                <div class="form-check form-switch" style="margin-left: 20px">
                     @if($data['config']['promo_on_new_user_sign_in'] == 1)
                         @php
                             $isChecked = true;
@@ -47,8 +47,22 @@
                         @endphp
                     @endif
                     <input class="form-check-input" type="checkbox" name="promo_on_new_user_sign_in" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Offer promo when a new user signs in</label>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Offer promo code when a new user signs in</label>
                 </div>
+                <div class="form-check form-switch" style="margin-left: 20px">
+                    @if($data['config']['notify_admins_on_new_order'] == 1)
+                        @php
+                            $isChecked = true;
+                        @endphp
+                    @else
+                        @php
+                            $isChecked = false;
+                        @endphp
+                    @endif
+                        <input class="form-check-input" type="checkbox" name="notify_admins_on_new_order" style="cursor: pointer" value="1" {{ $isChecked ? 'checked' : '' }}>
+                        <label class="form-check-label">Notify admins when a new order is posted</label>
+                </div>
+
                 <hr>
                 <button type="submit" class="btn">
                     <a href="#" class="btn btn-primary btn-icon-split"><span class="text">Update Configuration</span></a>

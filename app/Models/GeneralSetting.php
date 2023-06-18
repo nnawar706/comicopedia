@@ -14,7 +14,8 @@ class GeneralSetting extends Model
     protected $fillable = [
         'notify_admins_on_new_order',
         'email_admins_on_new_user_sign_in',
-        'promo_on_new_user_sign_in'
+        'promo_on_new_user_sign_in',
+        'welcome_mail_on_new_user_sign_in'
     ];
 
     protected $hidden = [
