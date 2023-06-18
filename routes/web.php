@@ -5,6 +5,7 @@ use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GeneralSettingController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
@@ -85,7 +86,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::controller(CategoryController::class)->group(function () {
 
             Route::get('categories', 'getAll')->name('show-categories');
-        })
+            Route::post('categories', 'create')->name('create-category');
+        });
 
     });
 
