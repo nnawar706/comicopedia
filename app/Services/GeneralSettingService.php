@@ -21,17 +21,15 @@ class GeneralSettingService
 
     public function updateInfo(Request $request)
     {
-        // $this->info->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'contact' => $request->contact,
-        //     'about' => $request->about
-        // ]);
+        $this->info->name = $request->name ?? $this->info->name;
+        $this->info->email = $request->email ?? $this->info->email;
+        $this->info->contact = $request->contact ?? $this->info->contact;
+        $this->info->about = $request->about ?? $this->info->about;
 
-        $this->info->name = $request->name;
-        $this->info->email = $request->email;
-        $this->info->contact = $request->contact;
-        $this->info->about = $request->about;
+        $this->info->facebook_url = $request->facebook_url ?? $this->info->facebook_url;
+        $this->info->instagram_url = $request->instagram_url ?? $this->info->instagram_url;
+        $this->info->youtube_url = $request->youtube_url ?? $this->info->youtube_url;
+        $this->info->pinterest_url = $request->pinterest_url ?? $this->info->pinterest_url;
 
         $this->info->save();
 

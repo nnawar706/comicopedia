@@ -32,8 +32,10 @@ class SiteInformationUpdateRequest extends FormRequest
             'logo' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             'favicon' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             'about' => 'sometimes|string',
-            'facebook_url' => 'sometimes|url',
-            'instagram_url' => 'sometimes|url'
+            'facebook_url' => 'sometimes|nullable|url',
+            'instagram_url' => 'sometimes|nullable|url',
+            'youtube_url' => 'sometimes|nullable|url',
+            'pinterest_url' => 'sometimes|nullable|url',
         ];
     }
 

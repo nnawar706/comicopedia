@@ -10,25 +10,25 @@
                                 <form method="post" action="{{ route('update-info') }}">
                                     @csrf
                                     <div class="input-group mb-3">
-                                        <button class="btn btn-primary btn-circle" type="button" id="button-addon1">
+                                        <button class="btn btn-primary btn-circle" type="button" id="button-addon1" disabled>
                                             <i class="fab fa-facebook-f"></i>
                                         </button>
                                         <input type="text" class="form-control" name="facebook_url" value="{{ $data['facebook_url'] }}">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <button class="btn btn-primary btn-circle" type="button" id="button-addon1" style="background-color: #962fbf">
-                                            <i class="fab fa-instagram"></i>
+                                        <button class="btn btn-circle" type="button" id="button-addon1" style="background-color: #962fbf" disabled>
+                                            <i class="fab fa-instagram" style="color: #fff"></i>
                                         </button>
                                         <input type="text" class="form-control" name="instagram_url" value="{{ $data['instagram_url'] }}">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1">
+                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1" disabled>
                                             <i class="fab fa-youtube"></i>
                                         </button>
                                         <input type="text" class="form-control" name="youtube_url" value="{{ $data['youtube_url'] }}">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1">
+                                        <button class="btn btn-danger btn-circle" type="button" id="button-addon1" disabled>
                                             <i class="fab fa-pinterest"></i>
                                         </button>
                                         <input type="text" class="form-control" name="pinterest_url" value="{{ $data['pinterest_url'] }}">
