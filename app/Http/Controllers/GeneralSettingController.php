@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GeneralConfigUpdateRequest;
 use App\Http\Requests\SiteInformationUpdateRequest;
 use App\Services\GeneralSettingService;
 
@@ -16,7 +17,14 @@ class GeneralSettingController extends Controller
 
     public function show()
     {
-        $data = $this->service->getInfo();
+        $website_data = $this->service->getInfo();
+
+        $website_configs = $this->service->getConfig();
+
+        $data = array(
+            'website' => $website_data,
+            'config' => $website_configs
+        );
 
         return view('admin.pages.setting')->with('data', $data);
     }
@@ -28,4 +36,10 @@ class GeneralSettingController extends Controller
         return redirect()->back()->with('message', 'General information is updated successfully.');
     }
 
+    public function updateConfig(GeneralConfigUpdateRequest $request)
+    {
+        $this->service->updateConfig($request);
+
+        return redirect()->back()->with('message', 'Website configuration is updated successfully.');
+    }
 }

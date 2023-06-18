@@ -2,16 +2,19 @@
 
 namespace App\Services;
 
+use App\Models\GeneralSetting;
 use App\Models\SiteInformation;
 use Illuminate\Http\Request;
 
 class GeneralSettingService
 {
     private $info;
+    private $setting;
 
-    public function __construct(SiteInformation $info)
+    public function __construct(SiteInformation $info, GeneralSetting $setting)
     {
         $this->info = $info->find(1);
+        $this->setting = $setting->find(1);
     }
 
     public function getInfo()
@@ -19,6 +22,10 @@ class GeneralSettingService
         return $this->info;
     }
 
+    public function getConfig()
+    {
+        return $this->setting;
+    }
     public function updateInfo(Request $request)
     {
         $this->info->name = $request->name ?? $this->info->name;
@@ -44,4 +51,14 @@ class GeneralSettingService
             saveFile($request->file('favicon'), '/uploads/general/', $this->info, 'favicon_path');
         }
     }
+
+    public function updateConfig(Request $request)
+    {
+        $this->setting->notify_admins_on_new_order = $request->input('notify_admins_on_new_order') ?? 0;
+        $this->setting->email_admins_on_new_user_sign_in = $request->input('email_admins_on_new_user_sign_in') ?? 0;
+        $this->setting->promo_on_new_user_sign_in = $request->input('promo_on_new_user_sign_in') ?? 0;
+
+        $this->setting->save();
+    }
+
 }

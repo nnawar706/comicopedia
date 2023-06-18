@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <h5 class="h4 mb-1 text-gray-800">General Setting</h5>
-                <p style="color:darkgray; font-size:12px">Last edited on {{ $data['updated_at'] }}</p>
+                <p style="color:darkgray; font-size:12px">Last edited on {{ $data['website']['updated_at'] }}</p>
                 <br>
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     @include('admin.includes.setting.logo-favicon')
@@ -24,6 +24,8 @@
                     @include('admin.includes.setting.site-info')
 
                     @include('admin.includes.setting.social-media')
+
+                    @include('admin.includes.setting.config')
                 </div>
             </div>
         </div>

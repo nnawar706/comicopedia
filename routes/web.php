@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::get('settings', 'show')->name('settings');
             Route::post('site-information', 'updateInfo')->name('update-info');
+            Route::put('general-config', 'updateConfig')->name('update-config');
 
         });
 

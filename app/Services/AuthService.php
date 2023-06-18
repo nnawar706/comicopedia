@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
-class AuthService extends GeneralService{
+class AuthService{
 
     protected $admin;
 
@@ -54,14 +54,9 @@ class AuthService extends GeneralService{
 
         if($admin->profile_photo_path != null)
         {
-            $this->deleteFile($admin->profile_photo_path);
+            deleteFile($admin->profile_photo_path);
         }
-
-        $filename = $this->uploadImage($request, 'uploads/admins/');
-
-        $admin->update([
-            'profile_photo_path' => 'uploads/admins/' . $filename,
-        ]);
+        saveFile($request->file('image'), '/uploads/admins/', $admin, 'profile_photo_path');
     }
 
     public function matchPassword(Request $request)

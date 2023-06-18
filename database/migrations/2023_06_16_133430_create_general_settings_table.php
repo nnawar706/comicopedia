@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('general_settings', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('notification_on_new_order')->default(0)->comment('0:off, 1:on');
-            $table->tinyInteger('mail_on_new_signin')->default(0)->comment('0:off, 1:on');
-            $table->tinyInteger('promo_on_signin')->default(0)->comment('0:off, 1:on');
+            $table->tinyInteger('email_admins_on_new_user_sign_in')->default(0)->comment('0:off, 1:on');
+            $table->tinyInteger('promo_on_new_user_sign_in')->default(0)->comment('0:off, 1:on');
             $table->timestamps();
         });
     }

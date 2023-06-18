@@ -11,7 +11,7 @@
 
                                     <button type="button" class="btn" title="Update Logo Image" data-bs-toggle="modal"
                                         data-bs-target="#updateLogo" data-whatever="@mdo">
-                                        <img src="{{ asset($data['logo_path']) }}" class="rounded mx-auto d-block" alt="site-logo"
+                                        <img src="{{ asset($data['website']['logo_path']) }}" class="rounded mx-auto d-block" alt="site-logo"
                                                 height="100" width="100">
                                     </button>
                                     <hr>
@@ -19,7 +19,7 @@
 
                                     <button type="button" class="btn" title="Update Favicon Image" data-bs-toggle="modal"
                                             data-bs-target="#updateFavicon" data-whatever="@mdo">
-                                        <img src="{{ asset($data['favicon_path']) }}" class="rounded mx-auto d-block" alt="site-favicon"
+                                        <img src="{{ asset($data['website']['favicon_path']) }}" class="rounded mx-auto d-block" alt="site-favicon"
                                                 height="100" width="100">
                                     </button>
                                 </div>
