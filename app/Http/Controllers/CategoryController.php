@@ -28,4 +28,11 @@ class CategoryController extends Controller
 
         return redirect()->back()->with('message', 'New category is stored successfully.');
     }
+
+    public function shuffle()
+    {
+        $message = $this->service->reorderCategories(array_keys(request()->except('_method','_token')));
+
+        return redirect()->back()->with('message', $message);
+    }
 }
