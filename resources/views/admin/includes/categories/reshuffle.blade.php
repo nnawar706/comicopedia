@@ -6,6 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" action="{{ route('shuffle-categories') }}">
+                @method('PUT')
                 <div class="modal-body shuffle-body">
                     @csrf
                     <ul class="sortable-list">
@@ -13,6 +14,7 @@
                             <li class="item" draggable="true">
                                 <div class="details">
                                     <span>{{ $item['name'] }}</span>
+                                    <input name="{{ $item['name'] }}" hidden>
                                 </div>
                                 <i class="fa fa-bars"></i>
                             </li>
