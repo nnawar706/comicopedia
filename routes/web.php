@@ -90,6 +90,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::put('categories/re-shuffle', 'shuffle')->name('shuffle-categories');
         });
 
+        Route::controller(CategoryController::class)->group(function () {});
+
     });
 
 });
