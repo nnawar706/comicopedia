@@ -21,11 +21,13 @@
             <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add Category
             </button>
-            <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 Re-shuffle Rows
             </button>
 
             @include('admin.includes.categories.create')
+
+            @include('admin.includes.categories.reshuffle')
 
             <table class="table table-hover">
                 <thead>

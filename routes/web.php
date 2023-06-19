@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::get('categories', 'getAll')->name('show-categories');
             Route::post('categories', 'create')->name('create-category');
+            Route::put('categories/re-shuffle', 'shuffle')->name('shuffle-categories');
         });
 
     });

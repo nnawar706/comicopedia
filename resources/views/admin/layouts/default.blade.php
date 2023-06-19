@@ -10,6 +10,7 @@
 
         <!-- custom fonts -->
         <link href="{{ asset('assets/css/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +18,7 @@
         <!-- stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/shuffle.scss') }}">
     </head>
 
     <body id="page-top">
@@ -63,6 +65,7 @@
         <!-- Custom scripts -->
         <script src="{{ asset('assets/js/admin-main.min.js') }}"></script>
         <script src="{{ asset('assets/js/image-preview.js') }}"></script>
+        <script src="{{ asset('assets/js/shuffle.js') }}"></script>
 
         <!-- Page level plugins -->
         <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
