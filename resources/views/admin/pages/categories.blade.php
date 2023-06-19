@@ -16,13 +16,13 @@
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <br>
-            <h5 class="h5 mb-1 text-gray-800">Categories</h5>
+            <h5 class="h5 mb-1 text-gray-800">Genres</h5>
             <br>
             <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add Category
+                Add Genre
             </button>
             <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                Re-shuffle Rows
+                Re-shuffle
             </button>
 
             @include('admin.includes.categories.create')

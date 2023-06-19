@@ -8,6 +8,7 @@ use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +91,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::put('categories/re-shuffle', 'shuffle')->name('shuffle-categories');
         });
 
-        Route::controller(CategoryController::class)->group(function () {});
+        Route::controller(ItemController::class)->group(function () {
+
+            Route::get('series', 'getAll')->name('show-items');
+            Route::get('series/create', 'createView')->name('create-item-view');
+            Route::post('series', 'create')->name('create-item');
+            Route::post('series/{id}', 'update')->name('update-item');
+            Route::delete('series/{id}', 'delete')->name('delete-item');
+        });
 
     });
 

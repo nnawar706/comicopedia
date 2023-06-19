@@ -106,8 +106,8 @@
                     </a>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('show-categories') }}">Categories</a>
-                            <a class="collapse-item" href="buttons.html">Products</a>
+                            <a class="collapse-item" href="{{ route('show-categories') }}">Genres</a>
+                            <a class="collapse-item" href="{{ route('show-items') }}">Series</a>
                             <a class="collapse-item" href="cards.html">Expenses</a>
                         </div>
                     </div>
