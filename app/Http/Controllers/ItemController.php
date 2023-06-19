@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
+use App\Http\Requests\ItemCreateRequest;
 use Illuminate\Http\Request;
 use App\Services\ItemService;
 
@@ -22,5 +24,10 @@ class ItemController extends Controller
     public function createView()
     {
         return view('admin.pages.create-item');
+    }
+
+    public function create(ImageRequest $request1, ItemCreateRequest $request2)
+    {
+        // $this->service->create($request1, $request2);
     }
 }

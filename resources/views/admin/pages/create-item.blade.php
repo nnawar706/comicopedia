@@ -9,11 +9,12 @@
             <h5 class="h5 mb-1 text-gray-800">Add New Series</h5>
             <br>
             <hr>
-            <form>
+            <form method="post" action="{{ route('create-item') }}">
+                @csrf
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputGrid" name="author">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="title">
                             <label for="floatingInputGrid">Title</label>
                         </div>
                     </div>
@@ -21,20 +22,20 @@
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputGrid" name="author">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="author">
                             <label for="floatingInputGrid">Author Name</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputGrid" name="author">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="magazine">
                             <label for="floatingInputGrid">Magazine</label>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-floating">
-                            <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                            <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example">
                                 <option selected>Select Genre</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -52,19 +53,19 @@
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputGrid" name="author" aria-describedby="HelpBlock">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="meta_keywords" aria-describedby="HelpBlock">
                             <label for="floatingInputGrid">Keywords</label>
                             <div id="passwordHelpBlock" class="form-text">
-                                Insert comma seperated keywords to better describe the series.
+                                Insert maximum 5 comma seperated keywords to better describe the series.
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="file-drop-area">
-                        <span class="choose-file-button">Choose Imgae File</span>
+                        <span class="choose-file-button">Choose Imgae File (.png,.jpg,.jpeg)</span>
                         <span class="file-message">or drag and drop file here</span>
-                        <input type="file" name="logo" class="file-input" accept=".jpg,.jpeg,.png" required>
+                        <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png" required>
                     </div>
                     <div id="imagePreview"></div>
                 </div>
