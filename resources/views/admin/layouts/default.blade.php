@@ -18,7 +18,7 @@
         <!-- stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/shuffle.scss') }}">
+        <link href="{{ asset('assets/css/shuffle.css') }}" rel="stylesheet">
     </head>
 
     <body id="page-top">
