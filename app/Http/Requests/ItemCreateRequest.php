@@ -27,7 +27,8 @@ class ItemCreateRequest extends FormRequest
     {
         return [
             'genre_id' => 'required|exists:genres,id',
-            'title' => 'required|string|unique:items,name',
+            'ISBN_no' => 'required|unique:items,ISBN_no',
+            'title' => 'required|string|unique:items,title',
             'detail' => 'required|string|max:500',
             'author' => 'required|string|max:250',
             'magazine' => 'required|string|max:250',

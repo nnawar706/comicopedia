@@ -1,5 +1,15 @@
 @extends('admin.layouts.default')
 
+@if (session('message'))
+    <div class="toast show fixed-bottom ms-auto text-bg-danger" style="--bs-bg-opacity: .8;" animation="true" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('message') }}
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
 
 <div class="container-fluid">
@@ -9,12 +19,12 @@
             <h5 class="h5 mb-1 text-gray-800">Add New Series</h5>
             <br>
             <hr>
-            <form method="post" action="{{ route('create-item') }}">
+            <form method="post" action="{{ route('create-item') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="title">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="title" required>
                             <label for="floatingInputGrid">Title</label>
                         </div>
                     </div>
@@ -22,13 +32,13 @@
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="author">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="author" required>
                             <label for="floatingInputGrid">Author Name</label>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="magazine">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="magazine" required>
                             <label for="floatingInputGrid">Magazine</label>
                         </div>
                     </div>
@@ -36,7 +46,7 @@
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example">
+                            <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example" required>
                                 <option selected>Select Genre</option>
                                 @foreach($data as $item)
                                     <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
@@ -47,20 +57,21 @@
                     </div>
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="ISBN_no">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="ISBN_no" required>
                             <label for="floatingInputGrid">ISBN-13</label>
                         </div>
                     </div>
+                </div>
                 <div class="mb-3">
                     <div class="form-floating">
-                        <textarea class="form-control" name="detail" id="floatingTextarea2" style="height: 120px"></textarea>
+                        <textarea class="form-control" name="detail" id="floatingTextarea2" style="height: 120px" required></textarea>
                         <label for="floatingTextarea2">Details</label>
                     </div>
                 </div>
                 <div class="row g-2 mb-3">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="meta_keywords" aria-describedby="HelpBlock">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="meta_keywords" aria-describedby="HelpBlock" required>
                             <label for="floatingInputGrid">Keywords</label>
                             <div id="passwordHelpBlock" class="form-text">
                                 Insert maximum 5 comma seperated keywords to better describe the series.

@@ -18,6 +18,7 @@ class ItemService
      {
          $item = $this->item->newQuery()->create([
              'genre_id' => $request2->genre_id,
+             'ISBN_no' => $request2->ISBN_no,
              'title' => $request2->title,
              'detail' => $request2->detail,
              'author' => $request2->author,
