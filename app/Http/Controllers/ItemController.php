@@ -22,10 +22,12 @@ class ItemController extends Controller
 
     public function getAll()
     {
-        $data = $this->service->getAll();
-        return response()->json([
-            'data' => $data
-        ]);
+//        $data = $this->service->getAll();
+//        return response()->json([
+//            'data' => $data
+//        ]);
+
+        return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
     }
 
     public function createView()
