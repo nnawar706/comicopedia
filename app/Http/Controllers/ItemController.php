@@ -22,8 +22,6 @@ class ItemController extends Controller
 
     public function getAll()
     {
-        $data = $this->service->getAll();
-
         return view('admin.pages.items');
     }
 

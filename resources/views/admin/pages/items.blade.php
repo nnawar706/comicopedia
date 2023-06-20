@@ -24,7 +24,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-lg-10 offset-lg-1">
             <br>
             <h5 class="h5 mb-1 text-gray-800">Series</h5>
             <br>
@@ -33,8 +33,12 @@
                     Add Series
                 </button>
             </a>
-
             @include('admin.includes.items.create')
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            @livewire('item-table')
         </div>
     </div>
 </div>
