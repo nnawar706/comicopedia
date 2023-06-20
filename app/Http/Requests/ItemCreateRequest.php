@@ -27,9 +27,8 @@ class ItemCreateRequest extends FormRequest
     {
         return [
             'genre_id'      => 'required|exists:genres,id',
-            'ISBN_no'       => 'required|unique:items,ISBN_no',
             'title'         => 'required|string|unique:items,title',
-            'detail'        => 'required|string|max:500',
+            'detail'        => 'required|string|max:1000',
             'author'        => 'required|string|max:250',
             'magazine'      => 'required|string|max:250',
             'meta_keywords' => ['required','string', 'regex:/^[\w\s]+(,\s*[\w\s]+)*$/']
@@ -39,8 +38,7 @@ class ItemCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'meta_keywords.regex' => 'Keywords must be seperated by commas.',
-            'ISBN_no.unique'      => 'The ISBN number is already taken.'
+            'meta_keywords.regex' => 'Keywords must be seperated by commas.'
         ];
     }
 

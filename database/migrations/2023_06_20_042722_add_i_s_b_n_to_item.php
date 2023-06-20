@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
+            $table->string('item_unique_id')->unique()->after('id');
             $table->string('ISBN_no')->unique()->after('genre_id');
             $table->integer('like_count')->default(0)->after('volumes');
             $table->integer('dislike_count')->default(0)->after('like_count');

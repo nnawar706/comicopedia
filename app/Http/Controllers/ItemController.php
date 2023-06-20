@@ -22,12 +22,9 @@ class ItemController extends Controller
 
     public function getAll()
     {
-//        $data = $this->service->getAll();
-//        return response()->json([
-//            'data' => $data
-//        ]);
+        $data = $this->service->getAll();
 
-        return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
+        return view('admin.pages.items');
     }
 
     public function createView()
@@ -39,9 +36,9 @@ class ItemController extends Controller
 
     public function create(ImageRequest $request1, ItemCreateRequest $request2)
     {
-         $this->service->storeItem($request1, $request2);
+        $this->service->storeItem($request1, $request2);
 
-         return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
+        return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
     }
 
     public function update(ItemUpdateRequest $request, $id)

@@ -41,20 +41,20 @@ class ItemService
             ->make(true);
     }
 
-     public function storeItem(Request $request1, Request $request2)
-     {
-         $item = $this->item->newQuery()->create([
-             'genre_id'      => $request2->genre_id,
-             'ISBN_no'       => $request2->ISBN_no,
-             'title'         => $request2->title,
-             'detail'        => $request2->detail,
-             'author'        => $request2->author,
-             'magazine'      => $request2->magazine,
-             'meta_keywords' => $request2->meta_keywords,
-         ]);
+    public function storeItem(Request $request1, Request $request2)
+    {
+        $item = $this->item->newQuery()->create([
+            'item_unique_id' => 'SER-' . date('Hsi') . '-' . rand(10000,99999),
+            'genre_id'       => $request2->genre_id,
+            'title'          => $request2->title,
+            'detail'         => $request2->detail,
+            'author'         => $request2->author,
+            'magazine'       => $request2->magazine,
+            'meta_keywords'  => $request2->meta_keywords,
+        ]);
 
-         saveFile($request1->file('image'), '/uploads/series/', $item, 'image_path');
-     }
+        saveFile($request1->file('image'), '/uploads/series/', $item, 'image_path');
+    }
 
     public function updateItem(Request $request, $id)
     {

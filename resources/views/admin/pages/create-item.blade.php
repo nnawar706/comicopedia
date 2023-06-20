@@ -55,12 +55,6 @@
                             <label for="floatingSelectGrid">Genre</label>
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" name="ISBN_no" required>
-                            <label for="floatingInputGrid">ISBN-13</label>
-                        </div>
-                    </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-floating">
