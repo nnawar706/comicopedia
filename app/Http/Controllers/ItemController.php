@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ItemCreateRequest;
+use App\Http\Requests\ItemUpdateRequest;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Services\ItemService;
@@ -21,7 +22,10 @@ class ItemController extends Controller
 
     public function getAll()
     {
-        return view('admin.pages.items');
+        $data = $this->service->getAll();
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     public function createView()
@@ -33,8 +37,26 @@ class ItemController extends Controller
 
     public function create(ImageRequest $request1, ItemCreateRequest $request2)
     {
-         $this->service->create($request1, $request2);
+         $this->service->storeItem($request1, $request2);
 
          return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
+    }
+
+    public function update(ItemUpdateRequest $request, $id)
+    {
+        $this->service->updateItem($request, $id);
+
+        return view('admin.pages.items')->with('message', 'A series has been updated successfully.');
+    }
+
+    public function delete($id)
+    {
+        if($this->service->deleteItem($id))
+        {
+            return redirect()->back()->with('message', 'A series has been deleted successfully.');
+        }
+        else {
+            return redirect()->back()->with('message', 'restrict');
+        }
     }
 }
