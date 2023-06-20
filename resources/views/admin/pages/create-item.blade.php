@@ -33,17 +33,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <div class="form-floating">
+                <div class="row g-2 mb-3">
+                    <div class="col-md">
+                        <div class="form-floating">
                             <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example">
                                 <option selected>Select Genre</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach($data as $item)
+                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                @endforeach
                             </select>
                             <label for="floatingSelectGrid">Genre</label>
                         </div>
-                </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" name="ISBN_no">
+                            <label for="floatingInputGrid">ISBN-13</label>
+                        </div>
+                    </div>
                 <div class="mb-3">
                     <div class="form-floating">
                         <textarea class="form-control" name="detail" id="floatingTextarea2" style="height: 120px"></textarea>
@@ -63,7 +70,7 @@
                 </div>
                 <div class="mb-3">
                     <div class="file-drop-area">
-                        <span class="choose-file-button">Choose Imgae File (.png,.jpg,.jpeg)</span>
+                        <span class="choose-file-button">Choose Image File (.png,.jpg,.jpeg)</span>
                         <span class="file-message">or drag and drop file here</span>
                         <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png" required>
                     </div>

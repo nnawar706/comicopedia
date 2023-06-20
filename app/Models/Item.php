@@ -12,8 +12,8 @@ class Item extends Model
     protected $table = 'items';
 
     protected $fillable = [
-        'genre_id','title','detail','author','magazine','image_path','meta_keywords',
-        'volumes'
+        'genre_id','ISBN_no','title','detail','author','magazine','image_path','meta_keywords',
+        'volumes','like_count','dislike_count'
     ];
 
     protected $hidden = [

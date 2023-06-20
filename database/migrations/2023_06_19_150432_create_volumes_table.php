@@ -24,7 +24,7 @@ return new class extends Migration
             $table->float('price');
             $table->float('discount')->nullable()->comment('percentage');
             $table->float('cost');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0:unavailable, 1:available');
             $table->integer('view_count')->default(0);
             $table->integer('review_count')->default(0);

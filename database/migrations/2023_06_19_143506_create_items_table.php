@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('detail');
             $table->string('author');
             $table->string('magazine');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->string('meta_keywords',250);
             $table->tinyInteger('volumes')->default(0);
             $table->timestamps();
