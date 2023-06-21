@@ -29,8 +29,8 @@ class ItemController extends Controller
     {
         $data = $this->service->getItem($id);
 
-//        return view('admin.pages.item-read')->with('data', $data);
-        return response()->json(['data' => $data]);
+        return view('admin.pages.item-read')->with('data', $data);
+//        return response()->json(['data' => $data]);
     }
 
     public function createView()
