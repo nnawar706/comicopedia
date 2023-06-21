@@ -18,6 +18,12 @@ class ItemService
         $this->categoryService = $categoryService;
     }
 
+
+    public function getItem($id)
+    {
+        return $this->item->newQuery()->with('volumes','genre')->findOrFail($id);
+    }
+
     public function storeItem(Request $request1, Request $request2)
     {
         DB::beginTransaction();
@@ -82,6 +88,4 @@ class ItemService
             return false;
         }
     }
-
-
 }

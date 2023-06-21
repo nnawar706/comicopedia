@@ -25,6 +25,14 @@ class ItemController extends Controller
         return view('admin.pages.items');
     }
 
+    public function read($id)
+    {
+        $data = $this->service->getItem($id);
+
+//        return view('admin.pages.item-read')->with('data', $data);
+        return response()->json(['data' => $data]);
+    }
+
     public function createView()
     {
         $data = $this->categoryService->getCategories();

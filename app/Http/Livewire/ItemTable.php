@@ -2,25 +2,27 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
 use App\Models\Item;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
-use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
+use PowerComponents\LivewirePowerGrid\{Button,
+    Column,
+    Footer,
+    Header,
+    PowerGrid,
+    PowerGridComponent,
+    PowerGridEloquent};
 
 class ItemTable extends PowerGridComponent
 {
     use ActionButton, WithPagination;
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
+    public bool $multiSort = true;
+
     public function setUp():array
     {
         $this->showCheckBox();
@@ -33,14 +35,6 @@ class ItemTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
-
     /**
     * PowerGrid datasource.
     *
@@ -48,16 +42,10 @@ class ItemTable extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Item::query();
+        return Item::query()->leftJoin('genres', 'items.genre_id', '=', 'genres.id')
+            ->select('items.*', 'genres.name as genre');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
 
     /**
      * Relationship search.
@@ -91,7 +79,7 @@ class ItemTable extends PowerGridComponent
                 return strtolower(e($model->item_unique_id));
             })
 
-            ->addColumn('genre_id')
+            ->addColumn('genre')
             ->addColumn('title')
             ->addColumn('author')
             ->addColumn('magazine')
@@ -116,13 +104,15 @@ class ItemTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Series No', 'item_unique_id')
+            Column::make('#SERIAL', 'item_unique_id')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('GENRE ID', 'genre_id')
-                ->makeInputRange(),
+            Column::make('GENRE TYPE', 'genre')
+                ->sortable()
+                ->searchable()
+                ->makeInputSelect(Category::all(),'name',null,['class']),
 
             Column::make('TITLE', 'title')
                 ->sortable()
@@ -140,7 +130,7 @@ class ItemTable extends PowerGridComponent
                 ->makeInputText(),
 
             Column::make('VOLUMES', 'volumes')
-                ->sortable(),
+                ->makeInputRange(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()

@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::get('series', 'getAll')->name('show-items');
             Route::get('series/create', 'createView')->name('create-item-view');
-            Route::get('series/read/{id}', 'readView')->name('read-item-view');
+            Route::get('series/read/{id}', 'read')->name('read-item-view');
             Route::post('series', 'create')->name('create-item');
             Route::post('series/{id}', 'update')->name('update-item');
             Route::delete('series/{id}', 'delete')->name('delete-item');
