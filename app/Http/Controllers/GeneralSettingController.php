@@ -42,4 +42,8 @@ class GeneralSettingController extends Controller
 
         return redirect()->back()->with('message', 'Website configuration is updated successfully.');
     }
+
+    public function download()
+    {
+    }
 }
