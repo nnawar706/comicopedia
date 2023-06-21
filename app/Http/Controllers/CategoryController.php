@@ -15,6 +15,13 @@ class CategoryController extends Controller
         $this->service = $service;
     }
 
+    public function index()
+    {
+        $data = $this->service->index();
+
+        return response()->json($data);
+    }
+
     public function getAll()
     {
         $data = $this->service->getCategories();

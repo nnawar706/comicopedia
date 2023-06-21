@@ -16,6 +16,11 @@ class CategoryService
         $this->category = $category;
     }
 
+    public function index()
+    {
+        return $this->category->all();
+    }
+
     public function getCategories()
     {
         return $this->category->newQuery()->orderBy('order')->get();
