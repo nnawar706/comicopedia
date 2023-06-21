@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Services\AuthService;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\ImageRequest;
@@ -12,11 +14,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    protected $service;
+    protected $service1, $service2;
 
-    public function __construct(AuthService $service)
+    public function __construct(AuthService $service1, CategoryService $service2)
     {
-        $this->service = $service;
+        $this->service1 = $service1;
+        $this->service2 = $service2;
     }
 
     public function loginForm()
@@ -28,12 +31,18 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['email','password']);
 
-        return $this->service->login($credentials);
+        return $this->service1->login($credentials);
     }
 
     public function dashboard()
     {
-        return view('admin.pages.dashboard');
+        $categories = $this->service2->index();
+
+        $data = array(
+            'genres' => $categories
+        );
+
+        return view('admin.pages.dashboard')->with('data', $data);
     }
 
     public function profile()
@@ -43,33 +52,33 @@ class AuthController extends Controller
 
     public function getPermissions()
     {
-        $data = $this->service->getPermissionData();
+        $data = $this->service1->getPermissionData();
 
         return view('admin.pages.permissions')->with('data', $data);
     }
 
     public function changeInfo(ChangeInfoRequest $request)
     {
-        $this->service->updateInfo($request);
+        $this->service1->updateInfo($request);
 
         return redirect()->back()->with('message', 'Profile information is updated successfully.');
     }
 
     public function changePhoto(ImageRequest $request)
     {
-        $this->service->updatePhoto($request);
+        $this->service1->updatePhoto($request);
 
         return redirect()->back()->with('message', 'Profile photo is updated successfully.');
     }
 
     public function changePassword(ChangePasswordRequest $request)
     {
-        if(!$this->service->matchPassword($request))
+        if(!$this->service1->matchPassword($request))
         {
             return redirect()->back()->with('message', 'The current password does not match.');
         }
 
-        $this->service->updatePassword($request);
+        $this->service1->updatePassword($request);
 
         Auth::logout();
 
