@@ -83,6 +83,7 @@ class ItemTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
+            ->addColumn('id')
             ->addColumn('item_unique_id')
 
            /** Example of custom column using a closure **/
@@ -146,8 +147,7 @@ class ItemTable extends PowerGridComponent
                 ->sortable()
                 ->makeInputDatePicker(),
 
-        ]
-;
+        ];
     }
 
     /*
@@ -165,19 +165,23 @@ class ItemTable extends PowerGridComponent
      */
 
 
-    // public function actions(): array
-    // {
-    //     return [
-    //         Button::make('edit', 'Edit')
-    //             ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm'),
-    //             // ->route('item.edit', ['item' => 'id']),
+     public function actions(): array
+     {
+         return [
+             Button::make('read', '<i class="fas fa-info-circle"></i>')
+                 ->class('btn btn-info btn-circle btn-sm')
+              ->route('read-item-view', ['id' => 'id']),
 
-    //         Button::make('destroy', 'Delete')
-    //             ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-    //             // ->route('item.destroy', ['item' => 'id'])
-    //             ->method('delete')
-    //         ];
-    // }
+             Button::make('edit', '<i class="fas fa-pen"></i>')
+                 ->class('btn btn-warning btn-circle btn-sm'),
+                 // ->route('item.edit', ['item' => 'id']),
+
+             Button::make('destroy', '<i class="fas fa-trash"></i>')
+                 ->class('btn btn-danger btn-circle btn-sm')
+                 // ->route('item.destroy', ['item' => 'id'])
+                 ->method('delete')
+             ];
+     }
 
 
     /*

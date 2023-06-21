@@ -43,7 +43,7 @@ class ItemController extends Controller
             $msg = 'Something went wrong. Please try again.';
         }
 
-        return view('admin.pages.items')->with('message', $msg);
+        return redirect()->route('create-item-view')->with('message', $msg);
     }
 
     public function update(ItemUpdateRequest $request, $id)
