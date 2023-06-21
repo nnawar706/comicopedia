@@ -20,7 +20,7 @@ class Item extends Model
         'updated_at'
     ];
 
-    public function volumes()
+    public function volume_list()
     {
         return $this->hasMany(Volume::class, 'item_id');
     }

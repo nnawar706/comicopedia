@@ -108,6 +108,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="{{ route('show-categories') }}">Genres</a>
                             <a class="collapse-item" href="{{ route('show-items') }}">Series</a>
+                            <a class="collapse-item" href="{{ route('show-volumes') }}">Volumes</a>
                             <a class="collapse-item" href="cards.html">Expenses</a>
                         </div>
                     </div>

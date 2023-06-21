@@ -99,6 +99,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('series', 'create')->name('create-item');
             Route::post('series/{id}', 'update')->name('update-item');
             Route::delete('series/{id}', 'delete')->name('delete-item');
+
+            Route::get('volumes', 'getAll')->name('show-volumes');
         });
 
     });
