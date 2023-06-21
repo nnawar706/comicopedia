@@ -5,55 +5,48 @@ namespace App\Services;
 use App\Models\Item;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Exceptions\Exception;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class ItemService
 {
     private $item;
+    private $categoryService;
 
-    public function __construct(Item $item)
+    public function __construct(Item $item, CategoryService $categoryService)
     {
         $this->item = $item;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function getAll()
-    {
-//        return \datatables()
-//            ->eloquent(Item::query())
-//            ->addColumn('checkbox', function ($item) {
-//                return '<input type="checkbox" name="item_id[]" value="'.$item->id.'">';
-//            })
-//            ->rawColumns(['checkbox'])
-//            ->toJson();
-
-        $data = Item::latest()->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+        $this->categoryService = $categoryService;
     }
 
     public function storeItem(Request $request1, Request $request2)
     {
-        $item = $this->item->newQuery()->create([
-            'item_unique_id' => 'SER-' . date('Hsi') . '-' . rand(10000,99999),
-            'genre_id'       => $request2->genre_id,
-            'title'          => $request2->title,
-            'detail'         => $request2->detail,
-            'author'         => $request2->author,
-            'magazine'       => $request2->magazine,
-            'meta_keywords'  => $request2->meta_keywords,
-        ]);
+        DB::beginTransaction();
+        try {
+            $item = $this->item->newQuery()->create([
+                'item_unique_id' => 'SER-' . date('Hsi') . '-' . rand(10000,99999),
+                'genre_id'       => $request2->genre_id,
+                'title'          => $request2->title,
+                'detail'         => $request2->detail,
+                'author'         => $request2->author,
+                'magazine'       => $request2->magazine,
+                'meta_keywords'  => $request2->meta_keywords,
+            ]);
 
-        saveFile($request1->file('image'), '/uploads/series/', $item, 'image_path');
+            saveFile($request1->file('image'), '/uploads/series/', $item, 'image_path');
+
+            $this->categoryService->incrementItemCount($request2->genre_id);
+
+            DB::commit();
+
+            return true;
+        }
+        catch (QueryException $ex)
+        {
+            DB::rollback();
+
+            return false;
+        }
+
     }
 
     public function updateItem(Request $request, $id)

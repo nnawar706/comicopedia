@@ -34,9 +34,16 @@ class ItemController extends Controller
 
     public function create(ImageRequest $request1, ItemCreateRequest $request2)
     {
-        $this->service->storeItem($request1, $request2);
+        if($this->service->storeItem($request1, $request2))
+        {
+            $msg = 'New series has been stored successfully.';
+        }
+        else
+        {
+            $msg = 'Something went wrong. Please try again.';
+        }
 
-        return view('admin.pages.items')->with('message', 'New series has been stored successfully.');
+        return view('admin.pages.items')->with('message', $msg);
     }
 
     public function update(ItemUpdateRequest $request, $id)

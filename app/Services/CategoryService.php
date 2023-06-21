@@ -54,4 +54,11 @@ class CategoryService
             return "Something went wrong";
         }
     }
+
+    public function incrementItemCount($id): void
+    {
+        $category = $this->category->newQuery()->find($id);
+        $category->num_items += 1;
+        $category->save();
+    }
 }

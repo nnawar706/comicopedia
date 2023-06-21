@@ -6,8 +6,8 @@ use App\Services\AuthService;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\ImageRequest;
-use App\Http\Requests\changeInfoRequest;
-use App\Http\Requests\changePasswordRequest;
+use App\Http\Requests\ChangeInfoRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -68,7 +68,7 @@ class AuthController extends Controller
         {
             return redirect()->back()->with('message', 'The current password does not match.');
         }
-        
+
         $this->service->updatePassword($request);
 
         Auth::logout();
