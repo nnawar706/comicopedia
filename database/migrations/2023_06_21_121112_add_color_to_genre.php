@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('genre', function (Blueprint $table) {
+        Schema::table('genres', function (Blueprint $table) {
             $table->string('bg_color_code')->after('order')->default('#989');
             $table->string('bg_hover_color_code')->after('bg_color_code')->default('#765');
         });
