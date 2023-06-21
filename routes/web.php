@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\VolumeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
@@ -56,7 +57,6 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(GeneralSettingController::class)->group(function () {
 
-            Route::get('download-image', 'download')->name('download-image');
             Route::get('settings', 'show')->name('settings');
             Route::post('site-information', 'updateInfo')->name('update-info');
             Route::put('general-config', 'updateConfig')->name('update-config');
@@ -101,6 +101,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('series', 'create')->name('create-item');
             Route::post('series/{id}', 'update')->name('update-item');
             Route::delete('series/{id}', 'delete')->name('delete-item');
+
+        });
+
+        Route::controller(VolumeController::class)->group(function () {
 
             Route::get('volumes', 'getAll')->name('show-volumes');
         });

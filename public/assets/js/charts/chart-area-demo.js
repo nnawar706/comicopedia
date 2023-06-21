@@ -116,3 +116,25 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+
+function downloadAreaChart()
+{
+    const link = document.createElement('a');
+    const canvas = document.getElementById("myAreaChart");
+    link.download = 'revenue_chart.png';
+    link.href = canvas.toDataURL('image/png', 1);
+    link.click();
+}
+
+function exportAreaChartPDF()
+{
+    const canvas = document.getElementById("myAreaChart");
+
+    const canvasImg = canvas.toDataURL('image/jpeg', 1.0);
+
+    let pdf = new jsPDF('landscape');
+    pdf.setFontSize(20);
+    pdf.addImage(canvasImg, 'JPEG', 15, 15, 280, 150);
+    pdf.save("revenue_chart.pdf");
+}

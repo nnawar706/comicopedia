@@ -19,14 +19,12 @@ use PowerComponents\LivewirePowerGrid\{Button,
 
 class ItemTable extends PowerGridComponent
 {
-    use ActionButton, WithPagination;
+    use ActionButton;
 
     public bool $multiSort = true;
 
     public function setUp():array
     {
-        $this->showCheckBox();
-
         return [
             Header::make()->showSearchInput(),
             Footer::make()
@@ -155,23 +153,23 @@ class ItemTable extends PowerGridComponent
      */
 
 
-     public function actions(): array
-     {
-         return [
-             Button::make('read', '<i class="fas fa-info-circle"></i>')
-                 ->class('btn btn-info btn-circle btn-sm')
-              ->route('read-item-view', ['id' => 'id']),
+    public function actions(): array
+    {
+        return [
+            Button::make('read', '<i class="fas fa-info-circle"></i>')
+                ->class('btn btn-info btn-circle btn-sm')
+            ->route('read-item-view', ['id' => 'id']),
 
-             Button::make('edit', '<i class="fas fa-pen"></i>')
-                 ->class('btn btn-warning btn-circle btn-sm'),
-                 // ->route('item.edit', ['item' => 'id']),
+            Button::make('edit', '<i class="fas fa-pen"></i>')
+                ->class('btn btn-warning btn-circle btn-sm'),
+                // ->route('item.edit', ['item' => 'id']),
 
-             Button::make('destroy', '<i class="fas fa-trash"></i>')
-                 ->class('btn btn-danger btn-circle btn-sm')
-                 // ->route('item.destroy', ['item' => 'id'])
-                 ->method('delete')
-             ];
-     }
+            Button::make('destroy', '<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger btn-circle btn-sm')
+                // ->route('item.destroy', ['item' => 'id'])
+                ->method('delete')
+            ];
+    }
 
 
     /*

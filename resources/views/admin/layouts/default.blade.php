@@ -61,6 +61,10 @@
         <!-- Core plugin JavaScript-->
         <script src="{{ asset('assets/jquery-easing/jquery.easing.min.js') }}"></script>
 
+        <!-- jsPDF -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
         <!-- Custom scripts -->
         <script src="{{ asset('assets/js/admin-main.min.js') }}"></script>
         <script src="{{ asset('assets/js/image-preview.js') }}"></script>

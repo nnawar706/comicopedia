@@ -12,6 +12,14 @@
 
 @section('content')
     <div class="container-fluid">
+        <!-- Page Heading -->
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('show-items') }}">Series</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $data['title'] }}</li>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
