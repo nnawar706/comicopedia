@@ -49,12 +49,12 @@ class VolumeCreateRequest extends FormRequest
         if($this->input('catalogue_id') == 5)
         {
             $rules['discount'] = 'required';
-            $rules['discount_valid_till'] = 'required|date_format:Ymd';
+            $rules['discount_valid_till'] = 'required';
         }
 
         if($this->input('catalogue_id') == 2)
         {
-            $rules['release_date'] = 'required|date_format:Ymd|after:'.date('Ymd');
+            $rules['release_date'] = 'required|after:'.date('Ymd');
         }
 
         return $rules;

@@ -76,6 +76,7 @@
         <!-- Page level custom scripts -->
         <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
         <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
+        <script src="{{ asset('assets/js/charts/chart-bar-demo.js') }}"></script>
         <script>
             window.onload = (event) => {
                 let myAlert = document.querySelector('.toast');

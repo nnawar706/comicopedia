@@ -18,7 +18,7 @@ class VolumeService
         $this->service = $service;
     }
 
-    public function store(Request $request): bool
+    public function store(Request $request)
     {
         DB::beginTransaction();
 
@@ -52,5 +52,30 @@ class VolumeService
 
             return false;
         }
+    }
+
+    public function getVolume($id)
+    {
+        return $this->volume->newQuery()->with('item','catalogue')->findOrFail($id);
+    }
+
+    public function volumeList($item_id)
+    {
+        return $this->volume->newQuery()->select('title','quantity')->where('item_id',$item_id)->get();
+    }
+
+    public function updateStatus($id)
+    {
+        $volume = $this->volume->newQuery()->find($id);
+
+        if($volume->status == 1)
+        {
+            $volume->status = 0;
+        }
+        else {
+            $volume->status = 1;
+        }
+
+        $volume->save();
     }
 }

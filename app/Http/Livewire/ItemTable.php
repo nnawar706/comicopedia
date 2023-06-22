@@ -82,7 +82,7 @@ class ItemTable extends PowerGridComponent
             ->addColumn('author')
             ->addColumn('magazine')
             ->addColumn('volumes')
-            ->addColumn('created_at_formatted', fn (Item $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Item $model) => Carbon::parse($model->created_at)->format('d-m-Y'));
     }
 
     /*

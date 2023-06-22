@@ -32,7 +32,6 @@ class VolumeController extends Controller
         );
 
         return view('admin.pages.create-volume')->with('data', $data);
-//        return response()->json(['data' => $data]);
     }
 
     public function create(VolumeCreateRequest $request)
@@ -47,5 +46,25 @@ class VolumeController extends Controller
         }
 
         return redirect()->back()->with('message', $msg);
+    }
+
+    public function read($id)
+    {
+        $data = $this->service1->getVolume($id);
+        return view('admin.pages.read-volume')->with('data', $data);
+    }
+
+    public function volumeList($id)
+    {
+        $data = $this->service1->volumeList($id);
+
+        return response()->json($data);
+    }
+
+    public function changeStatus($id)
+    {
+        $this->service1->updateStatus($id);
+
+        return redirect()->back();
     }
 }

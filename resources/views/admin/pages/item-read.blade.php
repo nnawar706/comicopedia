@@ -70,8 +70,8 @@
                                         <div class="col">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
-                                                     style="width: {{ ($data['like_count']/($data['like_count']+$data['dislike_count']))*100 }}%" aria-valuenow="{{ ($data['like_count']/($data['like_count']+$data['dislike_count']))*100 }}" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
+                                                    style="width: {{ ($data['like_count']/($data['like_count']+$data['dislike_count']))*100 }}%" aria-valuenow="{{ ($data['like_count']/($data['like_count']+$data['dislike_count']))*100 }}" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     @else
@@ -81,8 +81,8 @@
                                         <div class="col">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
-                                                     style="width: 0%" aria-valuenow="0" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
+                                                    style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     @endif
@@ -110,6 +110,75 @@
                             <div class="col-auto">
                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">{{ $data['item_unique_id'] }} | {{ $data['title'] }}</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Actions</div>
+                                <a class="dropdown-item" href="#">Export Data</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ asset($data['image_path']) }}" height="400" width="200" alt="series-image">
+                            </div>
+                            <div class="col-md-8">
+                                <p><b>Author:</b> {{ $data['author'] }}<br>
+                                <b>Magazine:</b> {{ $data['magazine'] }}<br>
+                                <b>Genre:</b> {{ $data['genre']['name'] }}<br>
+                                <b>Details:</b> {{ $data['detail'] }}<br></p>
+                                <hr>
+                                <b>Tags:</b> {{ $data['meta_keywords'] }}
+                                <br>
+                                <span style="margin-right:20px;"><i class="fas fa-thumbs-up" style="color:#4e73df"></i> {{ $data['like_count'] }} </span> |
+                                <span style="margin-left:20px;"> <i class="fas fa-thumbs-down" style="color:#4e73df"></i> {{ $data['dislike_count'] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Volumes Overview</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                aria-labelledby="dropdownMenuLink">
+                                <button class="dropdown-item" onclick="downloadAreaChart()">Download</button>
+                                <button class="dropdown-item" onclick="exportAreaChartPDF()">Export PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="myBarChart" data-item-id="{{ $data['id'] }}"></canvas>
                         </div>
                     </div>
                 </div>
