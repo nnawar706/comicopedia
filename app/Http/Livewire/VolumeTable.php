@@ -17,13 +17,6 @@ final class VolumeTable extends PowerGridComponent
 
     public bool $multiSort = true;
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         return [
@@ -34,19 +27,6 @@ final class VolumeTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
-
-    /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Volume>
-    */
     public function datasource(): Builder
     {
         return Volume::query()->leftJoin('items', 'volumes.item_id','=','items.id')
@@ -54,35 +34,11 @@ final class VolumeTable extends PowerGridComponent
         ->select('volumes.*','items.title as item','catalogues.name as catalogue');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
     public function relationSearch(): array
     {
         return [];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    | ❗ IMPORTANT: When using closures, you must escape any value coming from
-    |    the database using the `e()` Laravel Helper function.
-    |
-    */
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
@@ -96,40 +52,25 @@ final class VolumeTable extends PowerGridComponent
                 return strtolower(e($model->product_unique_id));
             })
 
-            ->addColumn('details')
-            ->addColumn('release_date_formatted', fn (Volume $model) => Carbon::parse($model->release_date)->format('d/m/Y H:i:s'))
+            ->addColumn('release_date_formatted', fn (Volume $model) => Carbon::parse($model->release_date)->format('d-m-Y'))
             ->addColumn('quantity')
             ->addColumn('price')
             ->addColumn('discount')
             ->addColumn('cost')
-            ->addColumn('status');
+            ->addColumn('status', function (Volume $model) {
+                if($model->status == 1)
+                {
+                    return 'ACTIVE';
+                }
+                else {
+                    return 'INACTIVE';
+                }
+            });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-     /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
-            // Column::make('ID', 'id')
-            //     ->makeInputRange(),
-
-            // Column::make('ITEM ID', 'item_id')
-            //     ->makeInputRange(),
-
-            // Column::make('CATALOGUE ID', 'catalogue_id')
-            //     ->makeInputRange(),
 
             Column::make('#SERIAL', 'product_unique_id')
                 ->sortable()
@@ -162,7 +103,7 @@ final class VolumeTable extends PowerGridComponent
                 ->makeInputRange(),
 
             Column::make('STATUS', 'status')
-                ->toggleable(),
+                ->sortable(),
 
             Column::make('RELEASE DATE',
                 'release_date_formatted',
@@ -171,24 +112,8 @@ final class VolumeTable extends PowerGridComponent
             ->searchable()
             ->sortable()
             ->makeInputDatePicker(),
-        ]
-;
+        ];
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Method
-    |--------------------------------------------------------------------------
-    | Enable the method below only if the Routes below are defined in your app.
-    |
-    */
-
-     /**
-     * PowerGrid Volume Action Buttons.
-     *
-     * @return array<int, Button>
-     */
-
 
     public function actions(): array
     {
@@ -209,30 +134,15 @@ final class VolumeTable extends PowerGridComponent
     }
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Rules
-    |--------------------------------------------------------------------------
-    | Enable the method below to configure Rules for your Table and Action Buttons.
-    |
-    */
+//    public function actionRules(): array
+//    {
+//       return [
+//
+//           //Hide button edit for ID 1
+//            Rule::button('edit')
+//                ->when(fn($volume) => $volume->id === 1)
+//                ->hide()
+//        ];
+//    }
 
-     /**
-     * PowerGrid Volume Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
-
-    /*
-    public function actionRules(): array
-    {
-       return [
-
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($volume) => $volume->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

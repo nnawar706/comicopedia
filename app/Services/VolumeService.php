@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Volume;
-use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +28,7 @@ class VolumeService
                 'catalogue_id'          => $request->catalogue_id,
                 'product_unique_id'     => 'VOL-' . date('Hsi') . '-' . rand(10000,99999),
                 'title'                 => $request->title,
+                'isbn'                  => $request->isbn,
                 'details'               => $request->details,
                 'release_date'          => $request->release_date ?? date('Ymd'),
                 'quantity'              => $request->quantity,
