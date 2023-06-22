@@ -76,6 +76,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" name="isbn" required>
+                                <label for="floatingInputGrid">ISBN No</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <div class="form-floating">
                             <textarea class="form-control" name="details" id="floatingTextarea2" style="height: 120px" required></textarea>

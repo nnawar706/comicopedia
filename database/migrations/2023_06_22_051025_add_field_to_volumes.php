@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('volumes', function (Blueprint $table) {
             $table->string('title')->after('product_unique_id');
+            $table->string('isbn')->unique()->after('title');
         });
     }
 

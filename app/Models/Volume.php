@@ -12,7 +12,7 @@ class Volume extends Model
     protected $table = 'volumes';
 
     protected $fillable = [
-        'item_id','catalogue_id','product_unique_id','details','release_date','quantity',
+        'item_id','catalogue_id','product_unique_id','title','isbn','details','release_date','quantity',
         'price','discount','cost','image_path','status','view_count','review_count',
         'sell_count'
     ];

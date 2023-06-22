@@ -91,4 +91,11 @@ class ItemService
             return false;
         }
     }
+
+    public function incrementVolumes($id): void
+    {
+        $item = $this->item->newQuery()->find($id);
+        $item->volumes += 1;
+        $item->save();
+    }
 }

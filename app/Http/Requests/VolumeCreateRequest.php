@@ -36,8 +36,9 @@ class VolumeCreateRequest extends FormRequest
                     return $query->where('item_id', $item_id);
                 })
             ],
+            'isbn' => 'required|string|unique:volumes,isbn',
             'details' => 'required|string|max:1000',
-            'release_date' => 'sometimes|date_format:Ymd',
+            'release_date' => 'sometimes',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
             'discount' => 'sometimes|numeric|lte:100',
@@ -53,7 +54,7 @@ class VolumeCreateRequest extends FormRequest
 
         if($this->input('catalogue_id') == 2)
         {
-            $rules['release_date'] = 'required';
+            $rules['release_date'] = 'required|date_format:Ymd|after:'.date('Ymd');
         }
 
         return $rules;
