@@ -43,3 +43,23 @@ fetch('/admin/category-list')
         console.log('Error: ', error);
     })
 
+function downloadPieChart()
+{
+    const link = document.createElement('a');
+    const canvas = document.getElementById("myPieChart");
+    link.download = 'genre_chart.png';
+    link.href = canvas.toDataURL('image/png', 1);
+    link.click();
+}
+
+function exportPieChartPDF()
+{
+    const canvas = document.getElementById("myPieChart");
+
+    const canvasImg = canvas.toDataURL('image/jpeg', 1.0);
+
+    let pdf = new jsPDF('landscape');
+    pdf.setFontSize(20);
+    pdf.addImage(canvasImg, 'JPEG', 15, 15, 280, 150);
+    pdf.save("genre_chart.pdf");
+}
