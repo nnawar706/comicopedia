@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VolumeCreateRequest;
 use App\Services\CatalogueService;
 use App\Services\ItemService;
 use App\Services\VolumeService;
@@ -30,10 +31,12 @@ class VolumeController extends Controller
             'catalogues' => $this->service3->getCatalogues(),
         );
 
-//        return view('admin.pages.create-volume')->with('data', $data);
-        return response()->json(['data' => $data]);
+        return view('admin.pages.create-volume')->with('data', $data);
+//        return response()->json(['data' => $data]);
     }
 
-    public function create()
-    {}
+    public function create(VolumeCreateRequest $request)
+    {
+        $this->service1->store($request);
+    }
 }

@@ -23,14 +23,26 @@
 @section('content')
 
     <div class="container-fluid">
+        <!-- Page Heading -->
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('show-items') }}">Volumes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">New Volume</li>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <br>
-                <h5 class="h5 mb-1 text-gray-800">Add New Volume</h5>
-                <br>
                 <hr>
                 <form method="post" action="{{ route('create-volume') }}" enctype="multipart/form-data">
                     @csrf
+                    @foreach($data['catalogues'] as $item)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="catalogue_id" id="inlineRadio{{ $item['id'] }}" value="{{ $item['id'] }}">
+                            <label class="form-check-label" for="inlineRadio1">{{ $item['name'] }}</label>
+                        </div>
+                    @endforeach
+                    <br><br>
                     <div class="row g-2 mb-3">
                         <div class="col-md">
                             <div class="form-floating">
@@ -42,27 +54,13 @@
                     <div class="row g-2 mb-3">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="author" required>
-                                <label for="floatingInputGrid">Author Name</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="magazine" required>
-                                <label for="floatingInputGrid">Magazine</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2 mb-3">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example" required>
-                                    <option selected>Select Genre</option>
-                                    @foreach($data as $item)
-                                        <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                <select class="form-select" name="item_id" id="floatingSelectGrid" aria-label="Floating label select example" required>
+                                    <option selected>Select Series</option>
+                                    @foreach($data['items'] as $item)
+                                        <option value="{{ $item['id'] }}">{{ $item['title'] }}</option>
                                     @endforeach
                                 </select>
-                                <label for="floatingSelectGrid">Genre</label>
+                                <label for="floatingSelectGrid">Series</label>
                             </div>
                         </div>
                     </div>
@@ -75,11 +73,30 @@
                     <div class="row g-2 mb-3">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="meta_keywords" aria-describedby="HelpBlock" required>
-                                <label for="floatingInputGrid">Keywords</label>
-                                <div id="passwordHelpBlock" class="form-text">
-                                    Insert maximum 5 comma seperated keywords to better describe the series.
-                                </div>
+                                <input type="number" class="form-control" id="floatingInputGrid" name="quantity" required>
+                                <label for="floatingInputGrid">Quantity</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" name="cost" required>
+                                <label for="floatingInputGrid">Cost Per Item</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" name="price" required>
+                                <label for="floatingInputGrid">Price</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3" style="display: none;" id="discountDiv">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" name="price" required>
+                                <label for="floatingInputGrid">Discount Price</label>
                             </div>
                         </div>
                     </div>
@@ -87,7 +104,7 @@
                         <div class="file-drop-area">
                             <span class="choose-file-button">Choose Image File (.png,.jpg,.jpeg)</span>
                             <span class="file-message">or drag and drop file here</span>
-                            <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png" required>
+                            <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png">
                         </div>
                         <div id="imagePreview"></div>
                     </div>
