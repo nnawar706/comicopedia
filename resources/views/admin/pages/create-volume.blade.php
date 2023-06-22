@@ -78,7 +78,7 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-floating">
-                            <textarea class="form-control" name="detail" id="floatingTextarea2" style="height: 120px" required></textarea>
+                            <textarea class="form-control" name="details" id="floatingTextarea2" style="height: 120px" required></textarea>
                             <label for="floatingTextarea2">Details</label>
                         </div>
                     </div>
@@ -107,13 +107,13 @@
                     <div class="row g-2 mb-3" id="discountDiv" style="display: none;">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="price" required>
+                                <input type="text" class="form-control" id="floatingInputGrid" name="discount_price">
                                 <label for="floatingInputGrid">Discount Price</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="date" class="datepicker form-control" id="floatingInputGrid" name="price" required>
+                                <input type="date" class="datepicker form-control" id="floatingInputGrid" name="discount_valid_till">
                                 <label for="floatingInputGrid">Discount Valid Till</label>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                     <div class="row g-2 mb-3" id="releaseDiv" style="display: none;">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="release_date" required>
+                                <input type="date" class="form-control" id="floatingInputGrid" name="release_date">
                                 <label for="floatingInputGrid">Release Date</label>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                         <div class="file-drop-area">
                             <span class="choose-file-button">Choose Image File (.png,.jpg,.jpeg)</span>
                             <span class="file-message">or drag and drop file here</span>
-                            <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png">
+                            <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png" required>
                         </div>
                         <div id="imagePreview"></div>
                     </div>

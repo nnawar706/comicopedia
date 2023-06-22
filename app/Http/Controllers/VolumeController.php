@@ -37,6 +37,15 @@ class VolumeController extends Controller
 
     public function create(VolumeCreateRequest $request)
     {
-        $this->service1->store($request);
+        if($this->service1->store($request))
+        {
+            $msg = 'New volume has been stored successfully.';
+        }
+        else
+        {
+            $msg = 'Something went wrong. Please try again.';
+        }
+
+        return redirect()->back()->with('message', $msg);
     }
 }

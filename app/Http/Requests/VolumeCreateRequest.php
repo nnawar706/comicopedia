@@ -37,17 +37,23 @@ class VolumeCreateRequest extends FormRequest
                 })
             ],
             'details' => 'required|string|max:1000',
-            'release_date' => 'required',
+            'release_date' => 'sometimes|date_format:Ymd',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|lte:100',
-            'discount_valid_till' => 'nullable',
+            'discount' => 'sometimes|numeric|lte:100',
+            'discount_valid_till' => 'sometimes',
             'cost' => 'required|numeric',
         ];
 
-        if(!is_null($this->input('discount')))
+        if($this->input('catalogue_id') == 5)
         {
-            $rules['discount_valid_till'] = 'required';
+            $rules['discount'] = 'required';
+            $rules['discount_valid_till'] = 'required|date_format:Ymd';
+        }
+
+        if($this->input('catalogue_id') == 2)
+        {
+            $rules['release_date'] = 'required';
         }
 
         return $rules;
