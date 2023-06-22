@@ -34,13 +34,15 @@
 
 <script src="{{ asset('assets/js/image-preview.js') }}"></script>
 
-window.onload = (event) => {
-    let myAlert = document.querySelector('.toast');
-    let bsAlert = new bootstrap.Toast(myAlert);
+<script>
+    window.onload = (event) => {
+        let myAlert = document.querySelector('.toast');
+        let bsAlert = new bootstrap.Toast(myAlert);
 
-    setTimeout(function () {
-        bsAlert.show();
-    }, 5000);
-};
+        setTimeout(function () {
+            bsAlert.show();
+        }, 5000);
+    };
+</script>
 
 @endpush

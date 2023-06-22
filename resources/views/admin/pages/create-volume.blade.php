@@ -23,16 +23,15 @@
 @section('content')
 
     <div class="container-fluid">
-        <!-- Page Heading -->
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('show-items') }}">Volumes</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New Volume</li>
-            </ol>
-        </nav>
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('show-volumes') }}">Volumes</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    </ol>
+                </nav>
                 <hr>
                 <form method="post" action="{{ route('create-volume') }}" enctype="multipart/form-data">
                     @csrf
@@ -158,13 +157,15 @@
 
 <script src="{{ asset('assets/js/image-preview.js') }}"></script>
 
-window.onload = (event) => {
-    let myAlert = document.querySelector('.toast');
-    let bsAlert = new bootstrap.Toast(myAlert);
+<script>
+    window.onload = (event) => {
+        let myAlert = document.querySelector('.toast');
+        let bsAlert = new bootstrap.Toast(myAlert);
 
-    setTimeout(function () {
-        bsAlert.show();
-    }, 5000);
-};
+        setTimeout(function () {
+            bsAlert.show();
+        }, 5000);
+    };
+</script>
 
 @endpush
