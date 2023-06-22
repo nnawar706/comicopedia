@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Volumes</li>
             </ol>
         </nav>
-            <a href="{{ route('create-item-view') }}">
+            <a href="{{ route('create-volume-view') }}">
                 <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
                     Add Volume
                 </button>

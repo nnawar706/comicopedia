@@ -11,8 +11,7 @@ use App\Services\ItemService;
 
 class ItemController extends Controller
 {
-    private $service;
-    private $categoryService;
+    private $service, $categoryService;
 
     public function __construct(ItemService $service, CategoryService $categoryService)
     {

@@ -107,6 +107,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::controller(VolumeController::class)->group(function () {
 
             Route::get('volumes', 'getAll')->name('show-volumes');
+            Route::get('volumes/create', 'createView')->name('create-volume-view');
+            Route::post('volumes', 'create')->name('create-volume');
         });
 
     });

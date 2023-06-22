@@ -15,12 +15,13 @@ class CatalogueSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('catalogues')->insert(
-            ['name' => 'New Arrivals', 'created_at' => now(), 'updated_at' => now()],
-            ['name' =>'Upcoming Releases', 'created_at' => now(), 'updated_at' => now()],
-            ['name' =>'Bestsellers', 'created_at' => now(), 'updated_at' => now()],
-            ['name' =>'Featured', 'created_at' => now(), 'updated_at' => now()],
-            ['name' =>'Offers', 'created_at' => now(), 'updated_at' => now()]
-        );
+        DB::table('catalogues')->insert([
+            ['id' => 1, 'name' => 'New Arrivals', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 2, 'name' =>'Upcoming Releases', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 3, 'name' =>'Bestsellers', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 4, 'name' =>'Featured', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 5, 'name' =>'Offers', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 6, 'name' =>'General', 'created_at' => now(), 'updated_at' => now()]
+        ]);
     }
 }

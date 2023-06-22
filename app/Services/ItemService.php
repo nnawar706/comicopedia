@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ItemService
 {
-    private $item;
-    private $categoryService;
+    private $item, $categoryService;
 
     public function __construct(Item $item, CategoryService $categoryService)
     {
@@ -18,6 +17,10 @@ class ItemService
         $this->categoryService = $categoryService;
     }
 
+    public function getItems()
+    {
+        return $this->item->newQuery()->select('id','title')->latest()->get();
+    }
 
     public function getItem($id)
     {
