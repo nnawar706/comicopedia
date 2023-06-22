@@ -85,6 +85,21 @@
                     bsAlert.show();
                 }, 5000);
             };
+
+            function showDiscount() {
+                document.getElementById("releaseDiv").style.display = "none";
+                document.getElementById("discountDiv").style.display = "block";
+            }
+
+            function showRelease() {
+                document.getElementById("discountDiv").style.display = "none";
+                document.getElementById("releaseDiv").style.display = "block";
+            }
+
+            function hideAll() {
+                document.getElementById("discountDiv").style.display = "none";
+                document.getElementById("releaseDiv").style.display = "none";
+            }
         </script>
     </body>
 </html>

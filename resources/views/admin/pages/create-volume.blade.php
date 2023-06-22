@@ -37,10 +37,22 @@
                 <form method="post" action="{{ route('create-volume') }}" enctype="multipart/form-data">
                     @csrf
                     @foreach($data['catalogues'] as $item)
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="catalogue_id" id="inlineRadio{{ $item['id'] }}" value="{{ $item['id'] }}">
-                            <label class="form-check-label" for="inlineRadio1">{{ $item['name'] }}</label>
-                        </div>
+                        @if($item['name'] == 'Offers')
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="catalogue_id" id="inlineRadio{{ $item['id'] }}" onclick="showDiscount()" value="{{ $item['id'] }}">
+                                <label class="form-check-label" for="inlineRadio1">{{ $item['name'] }}</label>
+                            </div>
+                        @elseif($item['name'] == 'Upcoming Releases')
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="catalogue_id" id="inlineRadio{{ $item['id'] }}" onclick="showRelease()" value="{{ $item['id'] }}">
+                                <label class="form-check-label" for="inlineRadio1">{{ $item['name'] }}</label>
+                            </div>
+                        @else
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="catalogue_id" id="inlineRadio{{ $item['id'] }}" onclick="hideAll()" value="{{ $item['id'] }}">
+                                <label class="form-check-label" for="inlineRadio1">{{ $item['name'] }}</label>
+                            </div>
+                        @endif
                     @endforeach
                     <br><br>
                     <div class="row g-2 mb-3">
@@ -92,11 +104,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2 mb-3" style="display: none;" id="discountDiv">
+                    <div class="row g-2 mb-3" id="discountDiv" style="display: none;">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInputGrid" name="price" required>
                                 <label for="floatingInputGrid">Discount Price</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="date" class="datepicker form-control" id="floatingInputGrid" name="price" required>
+                                <label for="floatingInputGrid">Discount Valid Till</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3" id="releaseDiv" style="display: none;">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" name="release_date" required>
+                                <label for="floatingInputGrid">Release Date</label>
                             </div>
                         </div>
                     </div>
