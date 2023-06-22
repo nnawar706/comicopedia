@@ -4,13 +4,13 @@
 
     <div class="container-fluid">
         <!-- Page Heading -->
-        @include('admin.includes.dashboard-header')
+        @include('admin.includes.dashboard.header')
 
         <!-- Report Row -->
-        @include('admin.includes.reports')
+        @include('admin.includes.dashboard.reports')
 
         <!-- Chart Row -->
-        @include('admin.includes.dashboard-charts')
+        @include('admin.includes.dashboard.charts')
 
         <!-- Content row -->
         <div class="row">

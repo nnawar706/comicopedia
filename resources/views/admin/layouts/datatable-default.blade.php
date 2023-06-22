@@ -26,13 +26,13 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('admin.includes.sidebar')
+    @include('admin.includes.general.sidebar')
 
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
             <!-- Topbar -->
-            @include('admin.includes.topbar')
+            @include('admin.includes.general.topbar')
 
             <!-- Page Content -->
             @yield('content')
@@ -40,7 +40,7 @@
         </div>
 
         <footer class="container">
-            @include('admin.includes.footer')
+            @include('admin.includes.general.footer')
         </footer>
     </div>
 
