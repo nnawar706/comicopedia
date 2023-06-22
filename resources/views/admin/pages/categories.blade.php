@@ -54,3 +54,19 @@
 
 
 @stop
+
+
+@push('scripts')
+
+<script src="{{ asset('assets/js/shuffle.js') }}"></script>
+
+window.onload = (event) => {
+    let myAlert = document.querySelector('.toast');
+    let bsAlert = new bootstrap.Toast(myAlert);
+
+    setTimeout(function () {
+        bsAlert.show();
+    }, 5000);
+};
+
+@endpush

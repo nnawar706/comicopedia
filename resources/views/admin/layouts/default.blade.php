@@ -67,16 +67,9 @@
 
         <!-- Custom scripts -->
         <script src="{{ asset('assets/js/admin-main.min.js') }}"></script>
-        <script src="{{ asset('assets/js/image-preview.js') }}"></script>
-        <script src="{{ asset('assets/js/shuffle.js') }}"></script>
 
-        <!-- Page level plugins -->
-        <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
+        @stack('scripts')
 
-        <!-- Page level custom scripts -->
-        <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
-        <script src="{{ asset('assets/js/charts/chart-bar-demo.js') }}"></script>
         <script>
             window.onload = (event) => {
                 let myAlert = document.querySelector('.toast');

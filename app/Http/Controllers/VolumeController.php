@@ -43,7 +43,7 @@ class VolumeController extends Controller
         else
         {
             $msg = 'Something went wrong. Please try again.';
-        }
+        }   
 
         return redirect()->back()->with('message', $msg);
     }

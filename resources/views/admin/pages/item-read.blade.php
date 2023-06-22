@@ -187,3 +187,10 @@
     </div>
 
 @stop
+
+@push('scripts')
+
+<script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('assets/js/charts/chart-bar-demo.js') }}"></script>
+
+@endpush
