@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\VolumeController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
@@ -112,6 +113,12 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('volumes/create', 'createView')->name('create-volume-view');
             Route::post('volumes', 'create')->name('create-volume');
             Route::get('series/volumes/{id}', 'volumeList');
+        });
+
+        Route::controller(ReportController::class)->group(function () {
+
+            Route::get('series/export-data/all', 'exportSeries')->name('export-series');
+            Route::get('volumes/export-data/all', 'exportVolumes')->name('export-volumes');
         });
 
     });

@@ -32,6 +32,12 @@
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </nav>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h6 class="h4 mb-0 text-gray-800">New Series</h6>
+                
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Import Series</a>
+            </div>
             <hr>
             <form method="post" action="{{ route('create-item') }}" enctype="multipart/form-data">
                 @csrf
