@@ -11,12 +11,15 @@
                     <li class="breadcrumb-item active" aria-current="page">Volumes</li>
                 </ol>
             </nav>
-            <a href="{{ route('create-volume-view') }}">
-                <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
-                    Add Volume
-                </button>
-            </a>
-            @include('admin.includes.items.create')
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <a href="{{ route('create-volume-view') }}">
+                    <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
+                        Add Volume
+                    </button>
+                </a>
+                <a href="{{ route('export-volumes') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Export Volumes</a>
+            </div>
         </div>
     </div>
     <div class="row">

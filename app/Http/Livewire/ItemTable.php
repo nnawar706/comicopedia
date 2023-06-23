@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Item;
-use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};

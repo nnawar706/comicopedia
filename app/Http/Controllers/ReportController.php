@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ItemExport;
-use Illuminate\Http\Request;
+use App\Exports\VolumeExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
@@ -13,5 +13,12 @@ class ReportController extends Controller
         $file = 'series-list-' . date('dis') . '.xlsx';
 
         return Excel::download(new ItemExport, $file);
+    }
+
+    public function exportVolumes()
+    {
+        $file = 'volumes-list-' . date('dis') . '.xlsx';
+
+        return Excel::download(new VolumeExport, $file);
     }
 }
