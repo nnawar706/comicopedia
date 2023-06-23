@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="{{ route('banner-list') }}">
                         <i class="fas fa-fw fa-image"></i>
                         <span>Banners</span>
                     </a>

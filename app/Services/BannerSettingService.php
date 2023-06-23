@@ -6,7 +6,7 @@ use App\Models\BannerSetting;
 use App\Models\BannerType;
 use Illuminate\Http\Request;
 
-class BannerSettingService extends GeneralService
+class BannerSettingService
 {
     private $type;
     private $setting;
@@ -29,14 +29,14 @@ class BannerSettingService extends GeneralService
 
     public function createSetting(Request $request, $type_id)
     {
-        $response = $this->uploadMultipleImage($request, 'uploads/banners/');
+        // $response = $this->uploadMultipleImage($request, 'uploads/banners/');
 
-        foreach($response as $item)
-        {
-            $this->setting->create([
-                'banner_type_id' => $type_id,
-                'photo_path' => 'uploads/banners/' . $item
-            ]);
-        }
+        // foreach($response as $item)
+        // {
+        //     $this->setting->create([
+        //         'banner_type_id' => $type_id,
+        //         'photo_path' => 'uploads/banners/' . $item
+        //     ]);
+        // }
     }
 }
