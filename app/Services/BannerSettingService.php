@@ -17,6 +17,11 @@ class BannerSettingService
         $this->setting = $setting;
     }
 
+    public function getOne($id)
+    {
+        return $this->type->newQuery()->with('banners')->findOrFail($id);
+    }
+
     public function findOrCreateType(Request $request)
     {
         $type = $this->type->newQuery()->firstOrCreate(

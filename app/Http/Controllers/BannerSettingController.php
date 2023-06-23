@@ -21,6 +21,13 @@ class BannerSettingController extends Controller
         return view('admin.pages.banner');
     }
 
+    public function read($id)
+    {
+        $data = $this->service->getOne($id);
+
+        return response()->json($data);
+    }
+
     public function store(BannerSettingRequest $request1, MultipleImageRequest $request2)
     {
         $type_id = $this->service->findOrCreateType($request1);

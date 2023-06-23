@@ -9,7 +9,7 @@ class BannerType extends Model
 {
     use HasFactory;
 
-    protected $table = 'banner_type';
+    protected $table = 'banner_types';
 
     protected $fillable = [
         'name'
@@ -21,6 +21,6 @@ class BannerType extends Model
 
     public function banners()
     {
-        return $this->hasMany(BannerType::class, 'banner_type_id');
+        return $this->hasMany(BannerSetting::class, 'banner_type_id');
     }
 }
