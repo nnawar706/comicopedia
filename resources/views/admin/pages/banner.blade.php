@@ -60,12 +60,12 @@
                                     <h6 class="modal-title" id="exampleModalLabel1">Update Website Logo</h6>
                                 </div>
                                 <div class="modal-body image-body text-center">
-                                    <form action="{{ route('update-info') }}" method="post" enctype="multipart/form-data">
+                                    <form action="/admin/banners/1" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="file-drop-area">
                                             <span class="choose-file-button">Choose Files</span>
                                             <span class="file-message">or drag and drop files here</span>
-                                            <input type="file" name="image" class="file-input" accept=".jpg,.jpeg,.png" required multiple>
+                                            <input type="file" name="images[]" class="file-input" accept=".jpg,.jpeg,.png" required multiple>
                                         </div>
                                         <div id="imagePreview"></div>
                                         <hr>

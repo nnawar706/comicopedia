@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class BannerSettingService
 {
     private $type;
-    private $setting;
+    private $banner;
 
-    public function __construct(BannerType $type, BannerSetting $setting)
+    public function __construct(BannerType $type, BannerSetting $banner)
     {
-        $this->type = $type;
-        $this->setting = $setting;
+        $this->type     = $type;
+        $this->banner   = $banner;
     }
 
     public function getOne($id)
@@ -34,14 +34,13 @@ class BannerSettingService
 
     public function createSetting(Request $request, $type_id)
     {
-        // $response = $this->uploadMultipleImage($request, 'uploads/banners/');
+        foreach ($request->images as $image)
+        {
+            $banner = $this->banner->newQuery()->create([
+                'banner_type_id' => $type_id,
+            ]);
 
-        // foreach($response as $item)
-        // {
-        //     $this->setting->create([
-        //         'banner_type_id' => $type_id,
-        //         'photo_path' => 'uploads/banners/' . $item
-        //     ]);
-        // }
+            saveFile($image, '/uploads/banners/',$banner,'photo_path');
+        }
     }
 }

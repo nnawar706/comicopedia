@@ -27,7 +27,7 @@ class MultipleImageRequest extends FormRequest
     {
         return [
             'images' => 'required|array',
-            'images.*' => 'required|image|mimes:jpg,png,jpeg,svg,gif'
+            'images.*' => 'required|image|mimes:jpg,png,jpeg,svg,gif|max:2048'
         ];
     }
 

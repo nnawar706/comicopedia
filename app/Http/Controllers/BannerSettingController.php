@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BannerSettingRequest;
 use App\Http\Requests\MultipleImageRequest;
 use App\Services\BannerSettingService;
-use Illuminate\Http\Request;
 
 class BannerSettingController extends Controller
 {
@@ -28,14 +26,10 @@ class BannerSettingController extends Controller
         return response()->json($data);
     }
 
-    public function store(BannerSettingRequest $request1, MultipleImageRequest $request2)
+    public function store(MultipleImageRequest $request, $id)
     {
-        $type_id = $this->service->findOrCreateType($request1);
+        $this->service->createSetting($request, $id);
 
-        $this->service->createSetting($request2, $type_id);
-
-        return response()->json([
-            'status' => true,
-        ]);
+        return redirect()->back()->with('message', 'New banner has been uploaded successfully.');
     }
 }

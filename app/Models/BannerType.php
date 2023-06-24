@@ -11,12 +11,12 @@ class BannerType extends Model
 
     protected $table = 'banner_types';
 
-    protected $fillable = [
+    protected $guarded = [
         'name'
     ];
 
     protected $hidden = [
-        'created_at'
+        'created_at','updated_at'
     ];
 
     public function banners()

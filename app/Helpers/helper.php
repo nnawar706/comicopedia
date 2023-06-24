@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 
-function saveFile($file, $path, $model, $field)
+function saveFile($file, $path, $model, $field): void
 {
     $file_name = time() . rand(100,999) . '.' . $file->getClientOriginalExtension();
 
@@ -13,7 +13,7 @@ function saveFile($file, $path, $model, $field)
     $model->save();
 }
 
-function deleteFile($path)
+function deleteFile($path): void
 {
     if(File::exists($path))
     {
