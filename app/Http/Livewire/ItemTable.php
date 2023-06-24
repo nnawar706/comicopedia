@@ -157,7 +157,7 @@ class ItemTable extends PowerGridComponent
         return [
             Button::make('read', '<i class="fas fa-info-circle"></i>')
                 ->class('btn btn-info btn-circle btn-sm')
-            ->route('read-item-view', ['id' => 'id']),
+                ->route('read-item-view', ['id' => 'id'])->target(''),
 
             Button::make('edit', '<i class="fas fa-pen"></i>')
                 ->class('btn btn-warning btn-circle btn-sm'),

@@ -48,12 +48,7 @@ class MultipleImageRequest extends FormRequest
             $rules['images.*'] = 'dimensions:width=970,height=90';
         }
 
-        else if($type == 4)
-        {
-            $rules['images.*'] = 'dimensions:width=120,height=240';
-        }
-
-        else if($type == 5)
+        else if($type == 4 || $type == 5)
         {
             $rules['images.*'] = 'dimensions:width=120,height=240';
         }
