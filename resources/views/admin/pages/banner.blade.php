@@ -36,30 +36,17 @@
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="card card-body">
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="{{ asset('uploads/general/1687025780980.png') }}" height="300" class="img-fluid d-block w-100" alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('uploads/general/1687025780980.png') }}" height="300" class="img-fluid d-block w-100" alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('uploads/general/1687025780980.png') }}" height="300" class="img-fluid d-block w-100" alt="...">
-                                    </div>
+                            <div class="d-flex justify-content-evenly">
+                                <div style="position: relative; display: inline-block">
+                                    <img class="img-thumbnail" src="{{ asset('uploads/general/1687025780980.png') }}">
+                                    <a><button style="position: absolute; top:15px; right:15px; padding:0; background-color: transparent; border:none; color: #fff; font-size: 20px; cursor:pointer">&times;</button></a>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                                <img class="img-thumbnail" src="{{ asset('uploads/general/1687025780980.png') }}">
+                                <img class="img-thumbnail" src="{{ asset('uploads/general/1687025780980.png') }}">
                             </div>
                             <a href="/admin/banners/1" class="text-center" style="margin-top:20px;">
                                 <button type="button" class="btn btn-primary">
-                                    Update
+                                    Add New
                                 </button>
                             </a>
                         </div>
