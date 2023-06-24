@@ -87,7 +87,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('admins/store', 'createView')->name('create-admin-view');
             Route::post('admins', 'store')->name('admin-create');
             Route::get('admins/change-status/{id}', 'updateStatus')->name('change-status');
-            Route::delete('admins/{id}', 'delete')->name('admin-delete');
+            Route::get('admins/delete/{id}', 'delete')->name('admin-delete');
 
         });
 

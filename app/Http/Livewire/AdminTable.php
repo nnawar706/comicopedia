@@ -115,8 +115,7 @@ final class AdminTable extends PowerGridComponent
         {
             $actions[] = Button::make('destroy', '<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger btn-circle btn-sm')
-                // ->route('item.destroy', ['item' => 'id'])
-                ->method('delete')->target('');
+                ->route('admin-delete', ['id' => 'id'])->target('');
         }
 
         return $actions;
