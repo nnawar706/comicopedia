@@ -32,6 +32,7 @@
                     @include('admin.includes.banners.top')
                     @include('admin.includes.banners.about-us')
                     @include('admin.includes.banners.contact')
+                    @include('admin.includes.banners.advertisement')
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@
                 @if(count($data[5]['banners']) === 0)
                     <p>No Banner Found</p>
                 @else
-                    @foreach($data[0]['banners'] as $item)
+                    @foreach($data[5]['banners'] as $item)
                         <div style="position: relative; display: inline-block">
                             <img class="img-thumbnail" src="{{ asset($item['photo_path']) }}" height="100" width="100">
                             <a href="/admin/banners/delete/{{ $item['id'] }}"><button style="position: absolute; top:15px; right:15px; padding:0; background-color: transparent; border:none; color: #fff; font-size: 20px; cursor:pointer">&times;</button></a>
@@ -33,7 +33,7 @@
                 <h6 class="modal-title" id="exampleModalLabel1">Advertisements</h6>
             </div>
             <div class="modal-body image-body text-center">
-                <form action="/admin/banners/4" method="post" enctype="multipart/form-data">
+                <form action="/admin/banners/6" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="file-drop-area">
                         <span class="choose-file-button">Choose Files</span>
