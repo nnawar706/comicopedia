@@ -30,7 +30,7 @@ class BannerSettingService
                 'banner_type_id' => $type_id,
             ]);
 
-            saveFile($image, '/uploads/banners/',$banner,'photo_path');
+            saveFile($image, 'uploads/banners/',$banner,'photo_path');
         }
     }
 

@@ -47,7 +47,10 @@ class GeneralSettingService
             saveFile($request->file('logo'), 'uploads/general/', $this->info, 'logo_path');
         }
 
-        if ($request->file('favicon')) {
+        if ($request->file('favicon'))
+        {
+            deleteFile($this->info->favicon_path);
+
             saveFile($request->file('favicon'), '/uploads/general/', $this->info, 'favicon_path');
         }
     }
@@ -59,7 +62,7 @@ class GeneralSettingService
         $this->setting->promo_on_new_user_sign_in = $request->input('promo_on_new_user_sign_in') ?? 0;
         $this->setting->welcome_mail_on_new_user_sign_in = $request->input('welcome_mail_on_new_user_sign_in') ?? 0;
         $this->setting->weekly_newsletter = $request->input('weekly_newsletter');
-        
+
         $this->setting->save();
     }
 
