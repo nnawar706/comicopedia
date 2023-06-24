@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('banners', 'getAll')->name('banner-list');
             Route::get('banners/{id}', 'read')->name('banner-read');
             Route::post('banners/{id}', 'store')->name('store-banner');
-            Route::delete('banners/{id}', 'delete')->name('delete-banner');
+            Route::get('banners/delete/{id}', 'delete')->name('delete-banner');
 
         });
 

@@ -17,22 +17,12 @@ class BannerSettingService
         $this->banner   = $banner;
     }
 
-    public function getOne($id)
+    public function getAll()
     {
-        return $this->type->newQuery()->with('banners')->findOrFail($id);
+        return $this->type->newQuery()->with('banners')->orderBy('id')->get();
     }
 
-    public function findOrCreateType(Request $request)
-    {
-        $type = $this->type->newQuery()->firstOrCreate(
-            ['name' => $request->banner_type],
-            ['name' => $request->banner_type]
-        );
-
-        return $type->id;
-    }
-
-    public function createSetting(Request $request, $type_id)
+    public function createSetting(Request $request, $type_id): void
     {
         foreach ($request->images as $image)
         {
@@ -42,5 +32,14 @@ class BannerSettingService
 
             saveFile($image, '/uploads/banners/',$banner,'photo_path');
         }
+    }
+
+    public function deleteBanner($id): void
+    {
+        $banner = $this->banner->newQuery()->find($id);
+
+        deleteFile($banner->photo_path);
+
+        $banner->delete();
     }
 }
