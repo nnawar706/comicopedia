@@ -32,39 +32,17 @@ class ItemTable extends PowerGridComponent
         ];
     }
 
-    /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Item>
-    */
     public function datasource(): Builder
     {
         return Item::query()->leftJoin('genres', 'items.genre_id', '=', 'genres.id')
             ->select('items.*', 'genres.name as genre');
     }
 
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
     public function relationSearch(): array
     {
         return [];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    | ❗ IMPORTANT: When using closures, you must escape any value coming from
-    |    the database using the `e()` Laravel Helper function.
-    |
-    */
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
@@ -84,20 +62,6 @@ class ItemTable extends PowerGridComponent
             ->addColumn('created_at_formatted', fn (Item $model) => Carbon::parse($model->created_at)->format('d-m-Y'));
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-     /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
@@ -137,21 +101,6 @@ class ItemTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Method
-    |--------------------------------------------------------------------------
-    | Enable the method below only if the Routes below are defined in your app.
-    |
-    */
-
-     /**
-     * PowerGrid Item Action Buttons.
-     *
-     * @return array<int, Button>
-     */
-
-
     public function actions(): array
     {
         return [
@@ -170,25 +119,10 @@ class ItemTable extends PowerGridComponent
             ];
     }
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Rules
-    |--------------------------------------------------------------------------
-    | Enable the method below to configure Rules for your Table and Action Buttons.
-    |
-    */
-
-     /**
-     * PowerGrid Item Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
-
     /*
     public function actionRules(): array
     {
-       return [
+        return [
 
            //Hide button edit for ID 1
             Rule::button('edit')

@@ -83,8 +83,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::controller(AdminController::class)->group(function () {
 
             Route::get('admins', 'getAll')->name('admin-list');
+            Route::get('admins/{id}', 'read')->name('read-admin-view');
             Route::get('admins/store', 'createView')->name('create-admin-view');
             Route::post('admins', 'store')->name('admin-create');
+            Route::get('admins/change-status/{id}', 'updateStatus')->name('change-status');
 
         });
 

@@ -18,7 +18,7 @@
                     @endforeach
                 @endif
             </div>
-            @if(auth()->guard('admin')->user()->hasPermissionTo('Product-list'))
+            @if(auth()->guard('admin')->user()->hasPermissionTo('add banner'))
                 <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
                         data-bs-target="#updateAd" data-whatever="@mdo">
                     Add New

@@ -18,10 +18,12 @@
                     @endforeach
                 @endif
             </div>
-            <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
-                    data-bs-target="#updateNews" data-whatever="@mdo">
-                Add New
-            </button>
+            @if(auth()->guard('admin')->user()->hasPermissionTo('add banner'))
+                <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
+                        data-bs-target="#updateNews" data-whatever="@mdo">
+                    Add New
+                </button>
+            @endif
         </div>
     </div>
 </div>

@@ -20,83 +20,88 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            @if(auth()->guard('admin')->user()->getRoleNames()->first() == 'Super admin')
+            @if(auth()->guard('admin')->user()->hasPermissionTo('website information') || auth()->guard('admin')->user()->hasPermissionTo('banner list'))
 
                 <div class="sidebar-heading">
                     Configurations
                 </div>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('settings') }}">
-                        <i class="fas fa-fw fa-wrench"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
+                @if(auth()->guard('admin')->user()->hasPermissionTo('website information'))
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('banner-list') }}">
-                        <i class="fas fa-fw fa-image"></i>
-                        <span>Banners</span>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('settings') }}">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+
+                @endif
+
+                @if(auth()->guard('admin')->user()->hasPermissionTo('banner list'))
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('banner-list') }}">
+                            <i class="fas fa-fw fa-image"></i>
+                            <span>Banners</span>
+                        </a>
+                    </li>
+
+                @endif
 
             @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Components
-            </div>
+            @if(auth()->guard('admin')->user()->hasPermissionTo('user list') || auth()->guard('admin')->user()->hasPermissionTo('customer list'))
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Components
+                </div>
 
-            @if(auth()->guard('admin')->user()->getRoleNames()->first() == 'Super admin')
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-id-card"></i>
-                        <span>Admins</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('admin-list') }}">Admin List</a>
-                            <a class="collapse-item" href="cards.html">Role Management</a>
+                @if(auth()->guard('admin')->user()->hasPermissionTo('user list') || auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-id-card"></i>
+                            <span>Users</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('user list'))
+                                    <a class="collapse-item" href="{{ route('admin-list') }}">User List</a>
+                                @endif
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
+                                    <a class="collapse-item" href="cards.html">Role Management</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                        aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Customers</span>
-                    </a>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="route('user-list')">Customer List</a>
-                            <a class="collapse-item" href="cards.html">Activity Log</a>
+                    </li>
+                @endif
+                @if(auth()->guard('admin')->user()->hasPermissionTo('customer list'))
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="true" aria-controls="collapseThree">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Customers</span>
+                        </a>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('customer list'))
+                                    <a class="collapse-item" href="route('user-list')">Customer List</a>
+                                @endif
+                                <a class="collapse-item" href="cards.html">Activity Log</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-
-            @elseif(auth()->guard('admin')->user()->getRoleNames()->first() == 'Admin')
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                        aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Customers</span>
-                    </a>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="buttons.html">Customer List</a>
-                            <a class="collapse-item" href="cards.html">Activity Log</a>
-                        </div>
-                    </div>
-                </li>
-
+                    </li>
+                @endif
             @endif
+
+            @if(auth()->guard('admin')->user()->hasPermissionTo('genre list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('series list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('volume list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('expense list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('order list'))
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
@@ -106,28 +111,44 @@
                     </a>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('show-categories') }}">Genres</a>
-                            <a class="collapse-item" href="{{ route('show-items') }}">Series</a>
-                            <a class="collapse-item" href="{{ route('show-volumes') }}">Volumes</a>
-                            <a class="collapse-item" href="cards.html">Expenses</a>
+                            @if(auth()->guard('admin')->user()->hasPermissionTo('genre list'))
+                                <a class="collapse-item" href="{{ route('show-categories') }}">Genres</a>
+                            @endif
+                            @if(auth()->guard('admin')->user()->hasPermissionTo('series list'))
+                                <a class="collapse-item" href="{{ route('show-items') }}">Series</a>
+                            @endif
+                            @if(auth()->guard('admin')->user()->hasPermissionTo('volume list'))
+                                <a class="collapse-item" href="{{ route('show-volumes') }}">Volumes</a>
+                            @endif
+                            @if(auth()->guard('admin')->user()->hasPermissionTo('expense list'))
+                                <a class="collapse-item" href="cards.html">Expenses</a>
+                            @endif
                         </div>
                     </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
-                        aria-expanded="true" aria-controls="collapseFive">
-                        <i class="fas fa-fw fa-list"></i>
-                        <span>Orders</span>
-                    </a>
-                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="buttons.html">Promo Codes</a>
-                            <a class="collapse-item" href="buttons.html">Orders</a>
-                            <a class="collapse-item" href="cards.html">Pending Orders</a>
+                @if(auth()->guard('admin')->user()->hasPermissionTo('order list') ||
+                auth()->guard('admin')->user()->hasPermissionTo('promo-code list') ||
+                auth()->guard('admin')->user()->hasPermissionTo('pending order list'))
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                            aria-expanded="true" aria-controls="collapseFive">
+                            <i class="fas fa-fw fa-list"></i>
+                            <span>Orders</span>
+                        </a>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="buttons.html">Promo Codes</a>
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('order list'))
+                                    <a class="collapse-item" href="buttons.html">Orders</a>
+                                @endif
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('pending order list'))
+                                    <a class="collapse-item" href="cards.html">Pending Orders</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                @endif
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">

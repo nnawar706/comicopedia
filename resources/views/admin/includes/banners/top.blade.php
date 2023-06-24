@@ -18,15 +18,17 @@
                     @endforeach
                 @endif
             </div>
-            <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
-                    data-bs-target="#updateTop" data-whatever="@mdo">
-                Add New
-            </button>
+            @if(auth()->guard('admin')->user()->hasPermissionTo('add banner'))
+                <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
+                        data-bs-target="#updateTop" data-whatever="@mdo">
+                    Add New
+                </button>
+            @endif
         </div>
     </div>
 </div>
 <div class="modal fade" id="updateTop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
