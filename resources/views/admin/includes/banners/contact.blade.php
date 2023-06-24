@@ -1,9 +1,9 @@
 <h2 class="accordion-header" id="flush-headingOne">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        About Us <span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 336x280</span>
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Contact <span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 336x280</span>
     </button>
 </h2>
-<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
     <div class="accordion-body">
         <div class="card card-body">
             <div class="d-flex flex-nowrap">
@@ -19,28 +19,28 @@
                 @endif
             </div>
             <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal"
-                    data-bs-target="#updateAbout" data-whatever="@mdo">
+                    data-bs-target="#updateContact" data-whatever="@mdo">
                 Add New
             </button>
         </div>
     </div>
 </div>
-<div class="modal fade" id="updateAbout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+<div class="modal fade" id="updateContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel1">About</h6>
+                <h6 class="modal-title" id="exampleModalLabel1">Contact Banner</h6>
             </div>
             <div class="modal-body image-body text-center">
-                <form action="/admin/banners/2" method="post" enctype="multipart/form-data">
+                <form action="/admin/banners/4" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="file-drop-area">
                         <span class="choose-file-button">Choose Files</span>
                         <span class="file-message">or drag and drop files here</span>
                         <input type="file" name="images[]" class="file-input" accept=".jpg,.jpeg,.png" required multiple>
                     </div>
-                    <div id="aboutPreview"></div>
+                    <div id="faviconPreview"></div>
                     <hr>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>

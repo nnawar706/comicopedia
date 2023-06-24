@@ -1,6 +1,6 @@
 <h2 class="accordion-header" id="flush-headingOne">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Top Banners <span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 970x250</span>
+        Top Banners<span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 970x250</span>
     </button>
 </h2>
 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -30,7 +30,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel1">Update Website Logo</h6>
+                <h6 class="modal-title" id="exampleModalLabel1">Top Banner</h6>
             </div>
             <div class="modal-body image-body text-center">
                 <form action="/admin/banners/1" method="post" enctype="multipart/form-data">

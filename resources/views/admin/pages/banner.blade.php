@@ -31,6 +31,7 @@
                 <div class="accordion-item">
                     @include('admin.includes.banners.top')
                     @include('admin.includes.banners.about-us')
+                    @include('admin.includes.banners.contact')
                 </div>
             </div>
         </div>
