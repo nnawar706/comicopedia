@@ -16,5 +16,5 @@ class Admin extends Authenticatable
         'name','email','contact','password','profile_photo_path','is_active'
     ];
 
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['updated_at'];
 }

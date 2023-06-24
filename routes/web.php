@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerSettingController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
@@ -75,7 +76,15 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(UserController::class)->group(function () {
 
-            Route::get('user-list', 'getAll')->name('user-list');
+            Route::get('users', 'getAll')->name('user-list');
+
+        });
+
+        Route::controller(AdminController::class)->group(function () {
+
+            Route::get('admins', 'getAll')->name('admin-list');
+            Route::get('admins/store', 'createView')->name('create-admin-view');
+            Route::post('admins', 'store')->name('admin-create');
 
         });
 
