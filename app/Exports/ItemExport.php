@@ -26,7 +26,7 @@ class ItemExport implements FromCollection, WithHeadings
                 'title'     => $value->title,
                 'author'    => $value->author,
                 'magazine'  => $value->magazine,
-                'volumes'   => $value->volumes
+                'volumes'   => $value->volumes==0 ? 'N/A' : $value->volumes
             );
         }
 
