@@ -18,27 +18,46 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         $permission = [
-            'Role-list',
-            'Role-create/update',
-            'Role-delete',
-            'User-list',
-            'User-create/update',
-            'User-delete',
-            'Product-list',
-            'Product-create/update',
-            'Product-delete',
-            'Order-list',
-            'Order-update',
-            'Order-delete',
-            'Order-status',
-            'Admin-list',
-            'Admin-create/update',
-            'Admin-delete',
-            'Admin-role',
-            'Permission-list',
+            'access role list',
+            'add role',
+            'delete role',
+            'assign role to user',
+            'access permission list',
+            'assign permissions to role',
+            'access website information',
+            'update website information',
+            'access banner list',
+            'add banner',
+            'update banner',
+            'delete banner',
+            'access user list',
+            'export user',
+            'access user information',
+            'add user',
+            'update user',
+            'assign role to user',
+            'activate/deactivate user',
+            'delete user',
+            'access customer list',
+            'export customer',
+            'access customer information',
+            'access series list',
+            'export series',
+            'add series',
+            'import series',
+            'update series',
+            'delete series',
+            'access series report',
+            'access volume list',
+            'export volume',
+            'add volume',
+            'import volume',
+            'update volume',
+            'delete volume',
+            'access volume report',
         ];
 
-        foreach ($permission as $value) 
+        foreach ($permission as $value)
         {
             Permission::create([
                 'name' => $value,
@@ -48,14 +67,14 @@ class RolePermissionSeeder extends Seeder
 
         $role = ['Super admin', 'Admin', 'Manager'];
 
-        foreach ($role as $value) 
+        foreach ($role as $value)
         {
             $role = Role::create([
                 'name' => $value,
                 'guard_name' => 'admin'
             ]);
 
-            if ($value == 'Super admin') 
+            if ($value == 'Super admin')
             {
                 $user = Admin::where('email', 'admin@admin.com')->first();
                 $user->assignRole($role);
