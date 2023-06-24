@@ -39,6 +39,7 @@ class MultipleImageRequest extends FormRequest
 
         else if($type == 2)
         {
+            $rules['images']   = 'size:1';
             $rules['images.*'] = 'dimensions:width=336,height=280';
         }
 
@@ -68,6 +69,7 @@ class MultipleImageRequest extends FormRequest
     public function messages()
     {
         return [
+            'images.size'         => 'Number of selected file must be 1.',
             'images.*.dimensions' => 'Dimensions of the selected images are not valid.'
         ];
     }
@@ -76,7 +78,6 @@ class MultipleImageRequest extends FormRequest
     {
         throw new HttpResponseException(
             redirect()->back()->with('message', $validator->errors()->first())
-//            response()->json([$validator->errors()->all()])
         );
     }
 }

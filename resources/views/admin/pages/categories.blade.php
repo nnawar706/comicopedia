@@ -28,8 +28,6 @@
                 Re-shuffle
             </button>
 
-            @include('admin.includes.categories.create')
-
             @include('admin.includes.categories.reshuffle')
 
             @include('admin.includes.categories.table')
