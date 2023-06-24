@@ -23,8 +23,6 @@
                         data-bs-target="#updateAd" data-whatever="@mdo">
                     Add New
                 </button>
-            @else
-                nhnery
             @endif
         </div>
     </div>
