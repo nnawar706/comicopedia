@@ -23,7 +23,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Joined On</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['user']['created_at'] }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ \Carbon\Carbon::parse($data['user']['created_at'])->format('F d, Y') }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
