@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Services\AuthService;
-use App\Services\CategoryService;
-use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ChangeInfoRequest;

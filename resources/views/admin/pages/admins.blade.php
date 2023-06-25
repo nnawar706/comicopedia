@@ -16,7 +16,7 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 @if(auth()->guard('admin')->user()->hasPermissionTo('add user'))
                     <a href="{{ route('create-admin-view') }}">
-                        <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
+                        <button style="margin-bottom:30px;" type="button" class="btn btn-primary">
                             Add User
                         </button>
                     </a>

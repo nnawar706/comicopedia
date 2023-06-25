@@ -74,7 +74,7 @@
                                     <a class="collapse-item" href="{{ route('admin-list') }}">User List</a>
                                 @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
-                                    <a class="collapse-item" href="">Role & Permissions</a>
+                                    <a class="collapse-item" href="{{ route('role-list') }}">Role & Permissions</a>
                                 @endif
                             </div>
                         </div>

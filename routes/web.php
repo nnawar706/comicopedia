@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BannerSettingController;
-use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GeneralSettingController;
+use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\BannerSettingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\VolumeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +46,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('change-photo', 'changePhoto')->name('admin-change-photo');
             Route::get('logout', 'logout')->name('admin-logout');
 
+        });
+
+        Route::controller(RolePermissionController::class)->group(function () {
+
+            Route::get('roles', 'getRoles')->name('role-list');
+            Route::get('roles/create', 'createView')->name('create-role-view');
+            Route::post('roles', 'store')->name('create-role');
+            Route::put('roles/{id}', 'updateRole')->name('update-role');
         });
 
         Route::controller(GeneralSettingController::class)->group(function () {

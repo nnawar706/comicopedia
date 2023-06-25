@@ -6,8 +6,6 @@ use App\Http\Requests\AdminCreateRequest;
 use App\Http\Requests\ImageRequest;
 use App\Services\AdminService;
 use App\Services\RolePermissionService;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -33,16 +31,11 @@ class AdminController extends Controller
 
     public function read($id)
     {
-        $user = $this->service->getInfo($id);
-
-        $permissions = Permission::all();
-
         $data = array(
-            'user' => $user,
-            'permissions' => $permissions
+            'user' => $this->service->getInfo($id),
+            'permissions' => (new RolePermissionService)->getPermissions()
         );
 
-        // return response()->json(array('data' => $data));
         return view('admin.pages.admin-read')->with('data', $data);
     }
 

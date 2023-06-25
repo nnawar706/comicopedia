@@ -57,7 +57,7 @@ class AdminService
             'password' => $password
         );
 
-        $admin->notify(new AdminRegistrationNotification($data));
+        // $admin->notify(new AdminRegistrationNotification($data));
 
         notifyAdmins('A new user account has been created', 'admin', $admin->id);
     }
