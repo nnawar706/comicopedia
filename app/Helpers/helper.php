@@ -23,9 +23,9 @@ function deleteFile($path): void
     }
 }
 
-function notifyAdmins($message, $model, $id): void
+function notifyAdmins($role, $message, $model, $id): void
 {
-    $admins = Admin::role(1)->get();
+    $admins = Admin::role($role)->get();
 
     foreach ($admins as $admin)
     {

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleStoreRequest;
+use App\Http\Requests\RoleUpdateRequest;
 use App\Services\RolePermissionService;
-use Illuminate\Http\Request;
 
 class RolePermissionController extends Controller
 {
@@ -26,9 +27,11 @@ class RolePermissionController extends Controller
         return view('admin.pages.role-permission')->with('data', $data);
     }
 
-    public function updateRole(Request $request)
+    public function updateRole(RoleUpdateRequest $request, $id)
     {
-        return response()->json($request);
+        $this->service->updateRole($request, $id);
+
+        return redirect()->route('role-list')->with('message','Permissions have been updated successfully.');
     }
 
     public function createView()
@@ -36,5 +39,12 @@ class RolePermissionController extends Controller
         $data = $this->service->getPermissions();
 
         return view('admin.pages.create-role')->with('data', $data);
+    }
+
+    public function store(RoleStoreRequest $request)
+    {
+        $this->service->store($request);
+
+        redirect()->redirect()->route('create-role-view')->with('message', 'A new role has been created successfully.');
     }
 }

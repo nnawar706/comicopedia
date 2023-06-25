@@ -51,14 +51,14 @@ class AdminService
 
         saveFile($request->file('image'), 'uploads/admins/', $admin, 'profile_photo_path');
 
-        $data = array(
-            'name' => $admin->name,
-            'email' => $admin->email,
-            'password' => $password
-        );
+        // $data = array(
+        //     'name' => $admin->name,
+        //     'email' => $admin->email,
+        //     'password' => $password
+        // );
 
         // $admin->notify(new AdminRegistrationNotification($data));
 
-        notifyAdmins('A new user account has been created', 'admin', $admin->id);
+        notifyAdmins(1, 'A new user account has been created.', 'admin', 2);
     }
 }
