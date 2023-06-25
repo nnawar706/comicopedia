@@ -35,11 +35,7 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $data = array(
-            'notifications' => auth()->guard('admin')->user()->notifications
-        );
-
-        return view('admin.pages.dashboard')->with('data', $data);
+        return view('admin.pages.dashboard');
     }
 
     public function profile()
