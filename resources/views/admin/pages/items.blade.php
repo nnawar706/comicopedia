@@ -14,13 +14,18 @@
         </nav>
 
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <a href="{{ route('create-item-view') }}">
-                    <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
-                        Add Series
-                    </button>
-                </a>
-                <a href="{{ route('export-series') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Export Series</a>
+                @if(auth()->guard('admin')->user()->hasPermissionTo('add series'))
+                    <a href="{{ route('create-item-view') }}">
+                        <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
+                            Add Series
+                        </button>
+                    </a>
+                @endif
+                @if(auth()->guard('admin')->user()->hasPermissionTo('export series'))
+                    <a href="{{ route('export-series') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Export Series
+                    </a>
+                @endif
             </div>
         </div>
     </div>

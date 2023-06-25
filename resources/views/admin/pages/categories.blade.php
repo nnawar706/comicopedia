@@ -24,11 +24,13 @@
             {{-- <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add Genre
             </button> --}}
-            <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                Re-shuffle
-            </button>
+            @if(auth()->guard('admin')->user()->hasPermissionTo('reshuffle genre'))
+                <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    Re-shuffle
+                </button>
 
-            @include('admin.includes.categories.reshuffle')
+                @include('admin.includes.categories.reshuffle')
+            @endif
 
             @include('admin.includes.categories.table')
 

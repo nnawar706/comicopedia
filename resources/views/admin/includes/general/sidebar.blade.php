@@ -53,7 +53,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            @if(auth()->guard('admin')->user()->hasPermissionTo('user list') || auth()->guard('admin')->user()->hasPermissionTo('customer list'))
+            @if(auth()->guard('admin')->user()->hasPermissionTo('user list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('customer list') ||
+            auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     Components
@@ -121,7 +123,7 @@
                                 <a class="collapse-item" href="{{ route('show-volumes') }}">Volumes</a>
                             @endif
                             @if(auth()->guard('admin')->user()->hasPermissionTo('expense list'))
-                                <a class="collapse-item" href="cards.html">Expenses</a>
+                                <a class="collapse-item" href="">Expenses</a>
                             @endif
                         </div>
                     </div>
