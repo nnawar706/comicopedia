@@ -139,12 +139,14 @@
                         </a>
                         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <a class="collapse-item" href="buttons.html">Promo Codes</a>
+                                @if(auth()->guard('admin')->user()->hasPermissionTo('promo-code list'))
+                                    <a class="collapse-item" href="">Promo Codes</a>
+                                @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('order list'))
-                                    <a class="collapse-item" href="buttons.html">Orders</a>
+                                    <a class="collapse-item" href="">Orders</a>
                                 @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('pending order list'))
-                                    <a class="collapse-item" href="cards.html">Pending Orders</a>
+                                    <a class="collapse-item" href="">Pending Orders</a>
                                 @endif
                             </div>
                         </div>
