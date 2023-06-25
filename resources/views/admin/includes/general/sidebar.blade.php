@@ -20,13 +20,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            @if(auth()->guard('admin')->user()->hasPermissionTo('website information') || auth()->guard('admin')->user()->hasPermissionTo('banner list'))
+            @if(auth()->guard('admin')->user()->hasPermissionTo('update website setting') || auth()->guard('admin')->user()->hasPermissionTo('banner list'))
 
                 <div class="sidebar-heading">
                     Configurations
                 </div>
 
-                @if(auth()->guard('admin')->user()->hasPermissionTo('website information'))
+                @if(auth()->guard('admin')->user()->hasPermissionTo('update website setting'))
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('settings') }}">
@@ -72,7 +72,7 @@
                                     <a class="collapse-item" href="{{ route('admin-list') }}">User List</a>
                                 @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
-                                    <a class="collapse-item" href="cards.html">Role Management</a>
+                                    <a class="collapse-item" href="">Role & Permissions</a>
                                 @endif
                             </div>
                         </div>

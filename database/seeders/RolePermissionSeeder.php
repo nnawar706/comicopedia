@@ -18,20 +18,21 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         $permission = [
-            // 'role list','add role','delete role','assign role to user','permission list','assign permissions to role',
-            // 'website information','update website information','general setting','update general setting',
-            // 'banner list','add banner','update banner','delete banner',
-            // 'user list','export user','user information','add user','update user',
-            // 'activate/deactivate user','delete user',
-            // 'customer list','export customer','customer information',
-            // 'genre list','reshuffle genre',
-            // 'series list','export series','add series','import series','update series','delete series','series report',
-            // 'volume list','export volume','add volume','import volume','update volume','delete volume','volume report',
-            // 'promo-code list','add promo-code','update promo-code','delete promo-code',
-            // 'order list','export order',
-            // 'pending order list','update order status',
-            'expense-type list','add expense-type','update expense-type', 'delete expense-type','expense list',
-            'add expense', 'import expense','update expense','export expense'
+//            'role & permissions',
+//            'update website setting',
+//            'banner list','add banner','update banner','delete banner',
+//            'user list','export user','user information','add user','update user',
+//            'activate/deactivate user','delete user',
+//            'customer list','export customer','customer information',
+//            'genre list','reshuffle genre',
+//            'series list','export series','add series','import series','update series','delete series','series report',
+//            'volume list','export volume','add volume','import volume','update volume','delete volume','volume report',
+//            'promo-code list','add promo-code','update promo-code','delete promo-code',
+//            'order list','export order',
+//            'pending order list','update order status',
+//            'expense-type list','add expense-type','update expense-type', 'delete expense-type','expense list',
+//            'add expense', 'import expense','update expense','export expense',
+            'generate report'
         ];
 
         foreach ($permission as $value)
