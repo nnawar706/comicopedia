@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let alert_id = event.target.dataset.notificationId;
 
-            console.log(alert_id);
+            alert(alert_id);
         })
     });
 })
