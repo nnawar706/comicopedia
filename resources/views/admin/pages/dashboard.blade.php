@@ -85,4 +85,18 @@
 <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
 
+document.addEventListener('DOMContentLoaded', function() {
+    let reads = document.getElementsByClassName('markRead');
+
+    Array.from(reads).forEach(function (item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            let alert_id = event.target.dataset.notificationId;
+
+            console.log(alert_id);
+        })
+    });
+})
+
 @endpush

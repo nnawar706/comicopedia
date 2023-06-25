@@ -48,27 +48,51 @@
 
         <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
+            @php
+            $unread = auth()->guard('admin')->user()->notifications->filter(function ($notification) {
+                return $notification->read_at === null;
+            });
+            @endphp
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">{{ count(auth()->guard('admin')->user()->notifications) }}</span>
+                <span class="badge badge-danger badge-counter">{{ count($unread) }}</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Alerts Center
+                    Notification Center
                 </h6>
-                @foreach(auth()->guard('admin')->user()->notifications as $key => $item)
-                    <a class="dropdown-item d-flex align-items-center"
-                       @if($item['data']['model'] == 'admin')
-                           href="{{ route('read-admin-view', ['id' => $item['data']['model_id']]) }}"
-                       @endif>
+
+                @foreach($unread as $key => $item)
+                    @if($key === 6)
+                        @break
+                    @endif
+                    <a class="markRead dropdown-item d-flex align-items-center"
+
+                            @if($item['data']['model'] == 'admin')
+                            href="{{ route('read-admin-view', ['id' => $item['data']['model_id']]) }}"
+
+                            @elseif($item['data']['model'] == 'permission')
+                            href="{{ route('admin-permissions') }}"
+
+                            @elseif($item['data']['model'] == 'role')
+                            href="{{ route('role-list') }}"
+
+                            @endif
+                    data-notification-id="{{ $item['id'] }}">
                         <div class="mr-3">
+                            @if($item['data']['type'] == 'success')
                             <div class="icon-circle bg-success">
-                                <i class="fas fa-donate text-white"></i>
+                                <i class="fas fa-check text-white"></i>
                             </div>
+                            @elseif($item['data']['type'] == 'warning')
+                            <div class="icon-circle bg-warning">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                            @endif
                         </div>
                         <div>
                             <div class="small text-gray-500">{{ \Carbon\Carbon::parse($item['created_at'])->format('F d, Y') }}</div>

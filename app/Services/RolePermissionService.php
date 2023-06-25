@@ -32,7 +32,7 @@ class RolePermissionService
 
         $role->syncPermissions($request->permissions);
 
-        notifyAdmins(1, 'A new role has been created.', 'role', 0);
+        notifyAdmins(1, 'A new role has been created.', 'role', 0, 'success');
     }
 
     public function updateRole(Request $request, $id)
@@ -41,7 +41,7 @@ class RolePermissionService
 
         $role->syncPermissions($request->permissions);
 
-        notifyAdmins($id, 'Your permissions have been updated.', 'permission', 0);
+        notifyAdmins($id, 'Your permissions have been updated.', 'permission', 0, 'warning');
     }
 
 }

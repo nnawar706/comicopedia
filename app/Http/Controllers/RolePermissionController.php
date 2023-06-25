@@ -45,6 +45,6 @@ class RolePermissionController extends Controller
     {
         $this->service->store($request);
 
-        redirect()->redirect()->route('create-role-view')->with('message', 'A new role has been created successfully.');
+        return redirect()->route('create-role-view')->with('message', 'A new role has been created successfully.');
     }
 }

@@ -59,6 +59,6 @@ class AdminService
 
         // $admin->notify(new AdminRegistrationNotification($data));
 
-        notifyAdmins(1, 'A new user account has been created.', 'admin', 2);
+        notifyAdmins(1, 'A new user account has been created.', 'admin', 2, 'success');
     }
 }

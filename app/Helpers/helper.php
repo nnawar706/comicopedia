@@ -23,12 +23,12 @@ function deleteFile($path): void
     }
 }
 
-function notifyAdmins($role, $message, $model, $id): void
+function notifyAdmins($role, $message, $model, $id, $type): void
 {
     $admins = Admin::role($role)->get();
 
     foreach ($admins as $admin)
     {
-        $admin->notify(new AdminNotification($message, $model, $id));
+        $admin->notify(new AdminNotification($message, $model, $id, $type));
     }
 }
