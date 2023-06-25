@@ -46,22 +46,8 @@ class AdminRegistrationNotification extends Notification implements ShouldQueue
                     ->subject('New Account')
                     ->greeting('Dear ' . $this->admin['name'])
                     ->line('A new account has been created for you.')
-                    ->line('')
                     ->line('Your credentials: ')
                     ->line('email: '.$this->admin['email'] . ' , password: ' . $this->admin['password'])
-                    ->action('Welcome to Mangamania', url('http://127.0.0.1:8000/admin/login'));
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+                    ->action('Welcome to Mangamania', url('http://localhost:8000/admin/login'));
     }
 }

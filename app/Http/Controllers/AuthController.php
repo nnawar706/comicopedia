@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    protected $service1, $service2;
+    protected $service1;
 
-    public function __construct(AuthService $service1, CategoryService $service2)
+    public function __construct(AuthService $service1)
     {
         $this->service1 = $service1;
-        $this->service2 = $service2;
     }
 
     public function loginForm()
@@ -36,10 +35,8 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $categories = $this->service2->index();
-
         $data = array(
-            'genres' => $categories
+            'notifications' => auth()->guard('admin')->user()->notifications
         );
 
         return view('admin.pages.dashboard')->with('data', $data);

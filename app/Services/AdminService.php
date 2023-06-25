@@ -5,8 +5,7 @@ namespace App\Services;
 use App\Models\Admin;
 use App\Notifications\AdminRegistrationNotification;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminService
 {
@@ -39,12 +38,13 @@ class AdminService
 
     public function createAdmin(Request $request)
     {
+        $password = Str::random(8);
 
         $admin = $this->admin->newQuery()->create([
             'name'      => $request->name,
             'email'     => $request->email,
             'contact'   => $request->contact,
-            'password'  => bcrypt('123456')
+            'password'  => bcrypt($password)
         ]);
 
         $admin->assignRole($request->role_id);
@@ -54,7 +54,7 @@ class AdminService
         $data = array(
             'name' => $admin->name,
             'email' => $admin->email,
-            'password' => '123456'
+            'password' => $password
         );
 
         $admin->notify(new AdminRegistrationNotification($data));
