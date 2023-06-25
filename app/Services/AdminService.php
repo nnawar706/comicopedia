@@ -47,6 +47,8 @@ class AdminService
             'password'  => bcrypt('123456')
         ]);
 
+        $admin->assignRole($request->role_id);
+
         saveFile($request->file('image'), 'uploads/admins/', $admin, 'profile_photo_path');
 
         $data = array(

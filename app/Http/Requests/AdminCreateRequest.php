@@ -26,9 +26,10 @@ class AdminCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:admins,email',
-            'contact' => ['required','regex:/^(?:\+88|88)?(01[3-9]\d{8})$/','unique:admins,contact'],
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|email|unique:admins,email',
+            'contact'   => ['required','regex:/^(?:\+88|88)?(01[3-9]\d{8})$/','unique:admins,contact'],
+            'role_id'   => 'required|exists:roles,id'
         ];
     }
 
