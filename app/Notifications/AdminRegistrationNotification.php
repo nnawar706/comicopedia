@@ -3,11 +3,10 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminRegistrationNotification extends Notification implements ShouldQueue
+class AdminRegistrationNotification extends Notification
 {
     use Queueable;
 
@@ -48,6 +47,6 @@ class AdminRegistrationNotification extends Notification implements ShouldQueue
                     ->line('A new account has been created for you.')
                     ->line('Your credentials: ')
                     ->line('email: '.$this->admin['email'] . ' , password: ' . $this->admin['password'])
-                    ->action('Welcome to Mangamania', url('http://localhost:8000/admin/login'));
+                    ->action('Welcome to MangaMania', url('http://localhost:8000/admin/login'));
     }
 }

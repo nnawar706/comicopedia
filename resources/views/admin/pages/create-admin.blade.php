@@ -65,13 +65,13 @@
                     <div class="row g-2 mb-3">
                         <div class="col-md">
                             <div class="form-floating">
-                                <select class="form-select" name="genre_id" id="floatingSelectGrid" aria-label="Floating label select example" required>
+                                <select class="form-select" name="role_id" id="floatingSelectGrid" aria-label="Floating label select example" required>
                                     <option selected>Select Role</option>
                                     @foreach($data as $item)
                                         <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                                     @endforeach
                                 </select>
-                                <label for="floatingSelectGrid">Genre</label>
+                                <label for="floatingSelectGrid">Role</label>
                             </div>
                         </div>
                     </div>
