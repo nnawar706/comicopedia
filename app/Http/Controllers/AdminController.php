@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AdminService;
+use App\Services\RolePermissionService;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
@@ -18,7 +19,9 @@ class AdminController extends Controller
 
     public function createView()
     {
-        return view('admin.pages.create-admin');
+        $roles = (new RolePermissionService)->getRoles();
+
+        return view('admin.pages.create-admin')->with('data', $roles);
     }
 
     public function getAll()

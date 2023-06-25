@@ -15,14 +15,14 @@
 
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 @if(auth()->guard('admin')->user()->hasPermissionTo('add user'))
-                    <a href="{{ route('create-item-view') }}">
+                    <a href="{{ route('create-admin-view') }}">
                         <button style="margin-bottom:30px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSeries">
                             Add User
                         </button>
                     </a>
                 @endif
                 @if(auth()->guard('admin')->user()->hasPermissionTo('export user'))
-                    <a href="{{ route('export-series') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    <a href="{{ route('export-admins') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-download fa-sm text-white-50"></i> Export Users</a>
                 @endif
             </div>

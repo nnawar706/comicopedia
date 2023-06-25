@@ -83,9 +83,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::controller(AdminController::class)->group(function () {
 
             Route::get('admins', 'getAll')->name('admin-list');
-            Route::get('admins/{id}', 'read')->name('read-admin-view');
+            Route::get('admins/read/{id}', 'read')->name('read-admin-view');
             Route::get('admins/store', 'createView')->name('create-admin-view');
-            Route::post('admins', 'store')->name('admin-create');
+            Route::post('admins', 'store')->name('create-admin');
             Route::get('admins/change-status/{id}', 'updateStatus')->name('change-status');
             Route::get('admins/delete/{id}', 'delete')->name('admin-delete');
 
@@ -130,6 +130,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(ReportController::class)->group(function () {
 
+            Route::get('admins/export-data/all', 'exportAdmins')->name('export-admins');
             Route::get('series/export-data/all', 'exportSeries')->name('export-series');
             Route::get('volumes/export-data/all', 'exportVolumes')->name('export-volumes');
         });
