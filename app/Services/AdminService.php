@@ -61,4 +61,17 @@ class AdminService
 
         notifyAdmins(1, 'A new user account has been created.', 'admin', 2, 'success');
     }
+
+    public function destroy($id): void
+    {
+        $admin = $this->admin->find($id);
+
+        $role = $admin->getRoleNames();
+
+        if($role[0] != 'Super admin')
+        {
+            deleteFile($admin->profile_photo_path);
+            $admin->delete();
+        }
+    }
 }

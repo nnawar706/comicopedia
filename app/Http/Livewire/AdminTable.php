@@ -107,7 +107,7 @@ final class AdminTable extends PowerGridComponent
         }
         if (auth()->guard('admin')->user()->hasPermissionTo('activate/deactivate user'))
         {
-            $actions[] = Button::make('destroy', '<i class="fas fa-power-off"></i>')
+            $actions[] = Button::make('status', '<i class="fas fa-power-off"></i>')
             ->class('btn btn btn-warning btn-circle btn-sm')
             ->route('change-status', ['id' => 'id'])->target('');
         }
@@ -121,16 +121,26 @@ final class AdminTable extends PowerGridComponent
         return $actions;
     }
 
-    /*
     public function actionRules(): array
     {
         return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($admin) => $admin->id === 1)
+            Rule::button('status')
+                ->when(fn($admin) => $this->isSuperAdmin($admin->id))
+                ->hide(),
+
+            Rule::button('destroy')
+                ->when(fn($admin) => $this->isSuperAdmin($admin->id))
                 ->hide(),
         ];
     }
-    */
+
+    private function isSuperAdmin($id)
+    {
+        $admin = Admin::find($id);
+
+        $role = $admin->getRoleNames();
+
+        return $role[0] === 'Super admin';
+    }
 }

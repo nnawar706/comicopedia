@@ -1,4 +1,4 @@
-<h2 class="accordion-header" id="flush-heading{{ $key }}">
+                        <h2 class="accordion-header" id="flush-heading{{ $key }}">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $key }}" aria-expanded="false" aria-controls="flush-collapseOne">
                                 {{ $item['name'] }}
                             </button>
@@ -27,7 +27,7 @@
                                         @endforeach
                                         </div>
                                     </div>
-                                    @if(auth()->guard('admin')->user()->hasPermissionTo('role & permissions'))
+                                    @if(auth()->guard('admin')->user()->hasPermissionTo('role & permissions') && $item['id'] !== 1)
                                         <hr>
                                         <button type="submit" class="btn btn-primary" style="margin-left: 45%">
                                             Update

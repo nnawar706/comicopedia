@@ -52,5 +52,11 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $this->service->destroy($id);
+        return redirect()->back();
+    }
 }
 

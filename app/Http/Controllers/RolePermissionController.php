@@ -21,14 +21,16 @@ class RolePermissionController extends Controller
             'roles'       => $this->service->index(),
             'permissions' => $this->service->getPermissions()
         );
-
-        // return response()->json(['data' => $data]);
-
         return view('admin.pages.role-permission')->with('data', $data);
     }
 
     public function updateRole(RoleUpdateRequest $request, $id)
     {
+        if($id === 1)
+        {
+            return redirect()->route('role-list')->with('message','Super admins must have access to all permissions.');
+        }
+
         $this->service->updateRole($request, $id);
 
         return redirect()->route('role-list')->with('message','Permissions have been updated successfully.');
