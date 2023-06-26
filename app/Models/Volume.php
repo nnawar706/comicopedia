@@ -30,4 +30,9 @@ class Volume extends Model
     {
         return $this->belongsTo(Catalogue::class, 'catalogue_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'volume_id');
+    }
 }
