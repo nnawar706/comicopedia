@@ -56,7 +56,7 @@ class VolumeService
 
     public function getVolume($id)
     {
-        return $this->volume->newQuery()->with('item','catalogue')->findOrFail($id);
+        return $this->volume->newQuery()->with('item','catalogue','reviews')->findOrFail($id);
     }
 
     public function volumeList($item_id)
