@@ -35,7 +35,7 @@ class AuthService{
         return Role::with('permissions')->where('name' , $admin->getRoleNames()->first())->first();
     }
 
-    public function updateInfo(Request $request)
+    public function updateInfo(Request $request): void
     {
         $this->admin->newQuery()->find(auth()->guard('admin')->user()->id)
         ->update([
@@ -45,7 +45,7 @@ class AuthService{
         ]);
     }
 
-    public function updatePhoto(Request $request)
+    public function updatePhoto(Request $request): void
     {
         $admin = $this->admin->newQuery()->find(auth()->guard('admin')->user()->id);
 
@@ -56,7 +56,7 @@ class AuthService{
         saveFile($request->file('image'), '/uploads/admins/', $admin, 'profile_photo_path');
     }
 
-    public function matchPassword(Request $request)
+    public function matchPassword(Request $request): bool
     {
         if(!Hash::check($request->current_password, auth()->guard('admin')->user()->password)) {
             return false;
@@ -64,14 +64,14 @@ class AuthService{
         return true;
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request): void
     {
         $this->admin->newQuery()->find(auth()->guard('admin')->user()->id)->update([
             'password' => Hash::make($request->password),
         ]);
     }
 
-    public function read($notification_id)
+    public function read($notification_id): void
     {
         auth()->guard('admin')->user()->unreadNotifications->where('id', $notification_id)->markAsRead();
     }

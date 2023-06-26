@@ -65,7 +65,11 @@
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
+                    @if(count($unread) !== 0)
                     Alerts
+                    @else
+                    No Alerts Found
+                    @endif
                 </h6>
 
                 @foreach($unread as $key => $item)
