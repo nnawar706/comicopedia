@@ -57,13 +57,15 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
+                @if(count($unread) !== 0)
                 <span class="badge badge-danger badge-counter">{{ count($unread) }}</span>
+                @endif
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Notification Center
+                    Alerts
                 </h6>
 
                 @foreach($unread as $key => $item)
@@ -100,7 +102,6 @@
                         </div>
                     </a>
                 @endforeach
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
             </div>
         </li>
 

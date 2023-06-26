@@ -32,8 +32,6 @@ class AuthService{
     {
         $admin = $this->admin->newQuery()->find(auth()->guard('admin')->user()->id);
 
-        $role = $admin->getRoleNames()->first();
-
         return Role::with('permissions')->where('name' , $admin->getRoleNames()->first())->first();
     }
 
@@ -71,5 +69,10 @@ class AuthService{
         $this->admin->newQuery()->find(auth()->guard('admin')->user()->id)->update([
             'password' => Hash::make($request->password),
         ]);
+    }
+
+    public function read($notification_id)
+    {
+        auth()->guard('admin')->user()->unreadNotifications->where('id', $notification_id)->markAsRead();
     }
 }

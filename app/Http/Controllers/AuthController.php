@@ -35,6 +35,14 @@ class AuthController extends Controller
         return view('admin.pages.dashboard');
     }
 
+    public function markRead(): void
+    {
+        if(request()->input('id'))
+        {
+            $this->service1->read(request()->input('id'));
+        }
+    }
+
     public function profile()
     {
         return view('admin.pages.profile');

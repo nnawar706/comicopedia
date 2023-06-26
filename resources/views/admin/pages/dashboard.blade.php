@@ -85,18 +85,22 @@
 <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    let reads = document.getElementsByClassName('markRead');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
 
-    Array.from(reads).forEach(function (item) {
-        item.addEventListener('click', function(event) {
+        let read = document.getElementsByClassName('markRead');
+
+        read[0].addEventListener('click', function(event) {
             event.preventDefault();
 
-            let alert_id = event.target.dataset.notificationId;
+            let alert_id = read[0].getAttribute("data-notification-id");
 
-            alert(alert_id);
+            fetch('/admin/read-notification?id=' + alert_id)
+                .then(function redirect() {
+                    window.location.href = read[0].href;
+                })
         })
-    });
-})
+    })
+</script>
 
 @endpush
