@@ -130,20 +130,28 @@ final class VolumeTable extends PowerGridComponent
 
     public function actions(): array
     {
-        return [
-            Button::make('read', '<i class="fas fa-info-circle"></i>')
-            ->class('btn btn-info btn-circle btn-sm')
-            ->route('read-volume-view', ['id' => 'id']),
+        $actions = [];
 
-            Button::make('edit', '<i class="fas fa-pen"></i>')
-            ->class('btn btn-warning btn-circle btn-sm'),
-            // ->route('item.edit', ['item' => 'id']),
+        if(auth()->guard('admin')->user()->hasPermissionTo('volume report'))
+        {
+            $actions[] = Button::make('read', '<i class="fas fa-info-circle"></i>')
+                ->class('btn btn-info btn-circle btn-sm')
+                ->route('read-volume-view', ['id' => 'id'])->target('');
+        }
+        if(auth()->guard('admin')->user()->hasPermissionTo('update volume'))
+        {
+            $actions[] = Button::make('edit', '<i class="fas fa-pen"></i>')
+                ->class('btn btn-warning btn-circle btn-sm');
+            // ->route('item.edit', ['item' => 'id'])->target('');
+        }
+        if(auth()->guard('admin')->user()->hasPermissionTo('delete volume'))
+        {
+            $actions[] = Button::make('destroy', '<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger btn-circle btn-sm');
+            // ->route('item.destroy', ['item' => 'id'])->target('')
+        }
 
-            Button::make('destroy', '<i class="fas fa-trash"></i>')
-            ->class('btn btn-danger btn-circle btn-sm')
-            // ->route('item.destroy', ['item' => 'id'])
-            ->method('delete')
-        ];
+        return $actions;
     }
 
 

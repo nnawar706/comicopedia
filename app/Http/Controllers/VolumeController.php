@@ -43,7 +43,7 @@ class VolumeController extends Controller
         else
         {
             $msg = 'Something went wrong. Please try again.';
-        }   
+        }
 
         return redirect()->back()->with('message', $msg);
     }
@@ -51,7 +51,9 @@ class VolumeController extends Controller
     public function read($id)
     {
         $data = $this->service1->getVolume($id);
-        return view('admin.pages.read-volume')->with('data', $data);
+
+//        return response()->json(['data' => $data]);
+        return view('admin.pages.volume-read')->with('data', $data);
     }
 
     public function volumeList($id)
