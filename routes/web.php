@@ -55,7 +55,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('roles/create', 'createView')->name('create-role-view');
             Route::post('roles', 'store')->name('create-role');
             Route::put('roles/{id}', 'updateRole')->name('update-role');
-        });
+
+        })->middleware('permission:role & permissions');
 
         Route::controller(GeneralSettingController::class)->group(function () {
 
@@ -63,14 +64,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('site-information', 'updateInfo')->name('update-info');
             Route::put('general-config', 'updateConfig')->name('update-config');
 
-        });
+        })->middleware('permission:update website setting');
 
         Route::controller(BannerSettingController::class)->group(function () {
 
-            Route::get('banners', 'getAll')->name('banner-list');
-            Route::get('banners/{id}', 'read')->name('banner-read');
-            Route::post('banners/{id}', 'store')->name('store-banner');
-            Route::get('banners/delete/{id}', 'delete')->name('delete-banner');
+            Route::get('banners', 'getAll')->name('banner-list')->middleware('permission:banner list');
+            Route::get('banners/{id}', 'read')->name('banner-read')->middleware('permission:banner list');
+            Route::post('banners/{id}', 'store')->name('store-banner')->middleware('permission:add banner');
+            Route::get('banners/delete/{id}', 'delete')->name('delete-banner')->middleware('permission:delete banner');
 
         });
 
@@ -82,12 +83,12 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(AdminController::class)->group(function () {
 
-            Route::get('admins', 'getAll')->name('admin-list');
-            Route::get('admins/read/{id}', 'read')->name('read-admin-view');
-            Route::get('admins/store', 'createView')->name('create-admin-view');
-            Route::post('admins', 'store')->name('create-admin');
-            Route::get('admins/change-status/{id}', 'updateStatus')->name('change-status');
-            Route::get('admins/delete/{id}', 'delete')->name('admin-delete');
+            Route::get('admins', 'getAll')->name('admin-list')->middleware('permission:user list');
+            Route::get('admins/read/{id}', 'read')->name('read-admin-view')->middleware('permission:user information');
+            Route::get('admins/store', 'createView')->name('create-admin-view')->middleware('permission:add user');
+            Route::post('admins', 'store')->name('create-admin')->middleware('permission:add user');
+            Route::get('admins/change-status/{id}', 'updateStatus')->name('change-status')->middleware('permission:activate/deactivate user');
+            Route::get('admins/delete/{id}', 'delete')->name('admin-delete')->middleware('permission:delete user');
 
         });
 
@@ -102,19 +103,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::controller(CategoryController::class)->group(function () {
 
             Route::get('category-list', 'index');
-            Route::get('categories', 'getAll')->name('show-categories');
-            Route::post('categories', 'create')->name('create-category');
-            Route::put('categories/re-shuffle', 'shuffle')->name('shuffle-categories');
+            Route::get('categories', 'getAll')->name('show-categories')->middleware('permission:genre list');
+            Route::put('categories/re-shuffle', 'shuffle')->name('shuffle-categories')->middleware('permission:reshuffle genre');
         });
 
         Route::controller(ItemController::class)->group(function () {
 
-            Route::get('series', 'getAll')->name('show-items');
-            Route::get('series/create', 'createView')->name('create-item-view');
-            Route::get('series/read/{id}', 'read')->name('read-item-view');
-            Route::post('series', 'create')->name('create-item');
-            Route::post('series/{id}', 'update')->name('update-item');
-            Route::delete('series/{id}', 'delete')->name('delete-item');
+            Route::get('series', 'getAll')->name('show-items')->middleware('permission:series list');
+            Route::get('series/create', 'createView')->name('create-item-view')->middleware('permission:add series');
+            Route::get('series/read/{id}', 'read')->name('read-item-view')->middleware('permission:add series');
+            Route::post('series', 'create')->name('create-item')->middleware('permission:add series');
+            Route::post('series/{id}', 'update')->name('update-item')->middleware('permission:update series');
+            Route::delete('series/{id}', 'delete')->name('delete-item')->middleware('permission:delete series');
 
         });
 
@@ -125,6 +125,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('volumes/change_status/{id}', 'changeStatus');
             Route::get('volumes/create', 'createView')->name('create-volume-view');
             Route::post('volumes', 'create')->name('create-volume');
+            Route::put('volumes/update/{id}', 'update')->name('update-volume');
             Route::get('series/volumes/{id}', 'volumeList');
         });
 

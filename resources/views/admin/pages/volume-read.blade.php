@@ -174,19 +174,50 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="floatingInputGrid" name="quantity" value="{{ $data['quantity'] }}" required>
-                                            <label for="floatingInputGrid">Update Stock</label>
+                                    <form method="post" action="">
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="floatingInputGrid"
+                                                    name="quantity" value="{{ $data['quantity'] }}" {{ auth()->guard('admin')->user()->hasPermissionTo('update volume') ? 'required' : 'readonly' }}>
+                                                    <label for="floatingInputGrid">Update Stock</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="floatingInputGrid" name="damage" value="{{ $data['quantity'] }}" required>
-                                            <label for="floatingInputGrid">Damage Count</label>
+                                        <hr>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="floatingInputGrid"
+                                                    name="damage_count" value="{{ $data['damage_count'] }}" {{ auth()->guard('admin')->user()->hasPermissionTo('update volume') ? 'required' : 'readonly' }}>
+                                                    <label for="floatingInputGrid">Damage Count</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
+                                        <hr>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="floatingInputGrid" name="discount"
+                                                    value="{{ $data['discount'] }}" {{ auth()->guard('admin')->user()->hasPermissionTo('update volume') ? 'required' : 'readonly' }}>
+                                                    <label for="floatingInputGrid">Discount(%)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control" id="floatingInputGrid" name="discount_active_till"
+                                                    value="{{ $data['discount_active_till'] }}" {{ auth()->guard('admin')->user()->hasPermissionTo('update volume') ? 'required' : 'readonly' }}>
+                                                    <label for="floatingInputGrid">Validity</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    @if(auth()->guard('admin')->user()->hasPermissionTo('update volume'))
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 43%">
+                                        Update
+                                    </button>
+                                    @endif
+                                    </form>
                                 </div>
                             </div>
                         </div>
