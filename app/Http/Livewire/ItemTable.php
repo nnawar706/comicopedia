@@ -20,8 +20,6 @@ class ItemTable extends PowerGridComponent
 {
     use ActionButton;
 
-    public bool $multiSort = true;
-
     public function setUp():array
     {
         return [
