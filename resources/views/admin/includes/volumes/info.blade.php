@@ -36,10 +36,6 @@
                                     <b>Details:</b> {{ $data['details'] }}<br></p>
                                 <hr>
                                 <b>Tags:</b> {{ $data['item']['meta_keywords'] }}<br>
-
-                                <br>
-{{--                                <span style="margin-right:20px;"><i class="fas fa-thumbs-up" style="color:#4e73df"></i> {{ $data['like_count'] }} </span> |--}}
-{{--                                <span style="margin-left:20px;"> <i class="fas fa-thumbs-down" style="color:#4e73df"></i> {{ $data['dislike_count'] }}</span>--}}
                             </div>
                         </div>
                     </div>
@@ -49,7 +45,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Accordion -->
                     <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                       role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                        role="button" aria-expanded="true" aria-controls="collapseCardExample">
                         <h6 class="m-0 font-weight-bold text-primary">Overview</h6>
                     </a>
                     <!-- Card Content - Collapse -->
@@ -57,7 +53,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form method="post" action="">
+                                    <form method="post" action="{{ route('update-volume', ['id' => $data['id']]) }}">
+                                        @method("PUT")
+                                        @csrf
                                         <div class="row g-2 mb-3">
                                             <div class="col-md">
                                                 <div class="form-floating">

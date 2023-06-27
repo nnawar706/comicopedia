@@ -1,6 +1,6 @@
 <h2 class="accordion-header" id="flush-headingOne">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-        Newsletter Us <span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 970x90</span>
+        Newsletter <span style="margin-left:10px;font-size: 12px; color: #5a5c69">*Dimensions: 970x90</span>
     </button>
 </h2>
 <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
