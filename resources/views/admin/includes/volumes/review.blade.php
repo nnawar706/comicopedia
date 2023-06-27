@@ -19,7 +19,7 @@
                         <img class="img-profile rounded-circle"
                         src="{{ $review['user']['profile_photo_url'] }}" height="45" width="45" alt="reviewer-image">
                         <br>
-                        <span style="font-size:12px;color:#BFBFBF">Anonymous</span>
+                        <span style="font-size:12px;color:#BFBFBF">{{ $review->user->name }}</span>
                     @endif
                     <div>
                         @if($review->rating === 1)
@@ -55,7 +55,7 @@
                         @endif
                     </div>
                     <p style="font-size:14px">{{ $review->comment}}</p>
-                    <a href="">
+                    <a href="/admin/review/delete/{{ $review['id'] }}">
                         <button class="btn btn-danger btn-circle btn-sm">
                             <i class="fas fa-trash"></i>
                         </button>

@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -127,6 +127,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('volumes', 'create')->name('create-volume');
             Route::put('volumes/update/{id}', 'update')->name('update-volume');
             Route::get('series/volumes/{id}', 'volumeList');
+        });
+
+        Route::controller(ReviewController::class)->group(function () {
+
+            Route::get('review/delete/{id}', 'delete')->name('review-delete');
         });
 
         Route::controller(ReportController::class)->group(function () {

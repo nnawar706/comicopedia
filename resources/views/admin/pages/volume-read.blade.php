@@ -27,14 +27,19 @@
         </nav>
 
         @php
+
             $rating = 0;
+            $rate = 0;
 
-            foreach($data['reviews'] as $review)
+            if(count($data['reviews']) !=0)
             {
-                $rating += $review['rating'];
-            }
+                foreach($data['reviews'] as $review)
+                {
+                    $rating += $review['rating'];
+                }
 
-            $rate = ($rating / (count($data['reviews'])*5)) * 100;
+                $rate = ($rating / (count($data['reviews'])*5)) * 100;
+            }
         @endphp
 
         @include('admin.includes.volumes.top')
