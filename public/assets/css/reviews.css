@@ -1,0 +1,13 @@
+@keyframes slide {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-100%);
+    }
+}
+
+.reviews {
+    height: 100px;
+    ovverflow: hidden;
+}

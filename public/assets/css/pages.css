@@ -45,3 +45,28 @@
     cursor: pointer;
     opacity: 0;
 }
+
+
+@keyframes slide {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-100%);
+    }
+}
+
+.reviews {
+    height: 360px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.reviews:hover .review-slider {
+    animation-play-state: paused;
+}
+
+.review-slider {
+    display: block;
+    animation: 13s slide infinite linear;
+}

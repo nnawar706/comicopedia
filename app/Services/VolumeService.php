@@ -53,10 +53,18 @@ class VolumeService
             return false;
         }
     }
-
+// 'item','catalogue','reviews'
     public function getVolume($id)
     {
-        return $this->volume->newQuery()->with('item','catalogue','reviews')->findOrFail($id);
+        return $this->volume->newQuery()
+        ->with(['item' => function($q) {
+            $q->select('id','genre_id','title','magazine','meta_keywords')->with('genre');
+        }])
+        ->with('catalogue')
+        ->with(['reviews.user' => function($q) {
+            $q->select('id','name');
+        }])
+        ->findOrFail($id);
     }
 
     public function volumeList($item_id)

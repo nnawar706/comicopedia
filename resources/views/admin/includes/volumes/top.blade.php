@@ -41,31 +41,29 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Ratings
                                 </div>
                                 <div class="row no-gutters align-items-center">
-{{--                                    @if (($data['like_count'] + $data['dislike_count']) != 0)--}}
+                                    @if ($rate != 0)
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">67%</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $rate }}%</div>
                                         </div>
                                         <div class="col">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
-                                                     style="width: 67%" aria-valuenow="67" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
+                                                    style="width: {{ $rate }}%" aria-valuenow="{{ $rate }}" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
                                             </div>
                                         </div>
-{{--                                    @else--}}
-{{--                                        <div class="col-auto">--}}
-{{--                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col">--}}
-{{--                                            <div class="progress progress-sm mr-2">--}}
-{{--                                                <div class="progress-bar bg-info" role="progressbar"--}}
-{{--                                                     style="width: 0%" aria-valuenow="0" aria-valuemin="0"--}}
-{{--                                                     aria-valuemax="100"></div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
-
-
+                                    @else
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-info" role="progressbar"
+                                                style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-auto">

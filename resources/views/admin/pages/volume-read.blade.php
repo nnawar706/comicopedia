@@ -10,9 +10,14 @@
     </div>
 @endif
 
+@section('styles')
+
+
+@endsection
+
 @section('content')
     <div class="container-fluid">
-        <!-- Page Heading -->
+
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
@@ -20,6 +25,17 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ $data['item']['title']}}, {{ $data['title'] }}</li>
             </ol>
         </nav>
+
+        @php
+            $rating = 0;
+
+            foreach($data['reviews'] as $review)
+            {
+                $rating += $review['rating'];
+            }
+
+            $rate = ($rating / (count($data['reviews'])*5)) * 100;
+        @endphp
 
         @include('admin.includes.volumes.top')
 
