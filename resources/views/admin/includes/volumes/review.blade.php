@@ -55,11 +55,13 @@
                         @endif
                     </div>
                     <p style="font-size:14px">{{ $review->comment}}</p>
+                    @if(auth()->guard('admin')->user()->hasPermissionTo('delete review'))
                     <a href="/admin/review/delete/{{ $review['id'] }}">
                         <button class="btn btn-danger btn-circle btn-sm">
                             <i class="fas fa-trash"></i>
                         </button>
                     </a>
+                    @endif
                 </div>
                 <hr>
                 @endforeach

@@ -131,7 +131,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(ReviewController::class)->group(function () {
 
-            Route::get('review/delete/{id}', 'delete')->name('review-delete');
+            Route::get('review/delete/{id}', 'delete')->name('review-delete')->middleware('permission:delete-review');
         });
 
         Route::controller(ReportController::class)->group(function () {
