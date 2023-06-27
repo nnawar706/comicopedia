@@ -58,7 +58,7 @@ class VolumeService
     {
         return $this->volume->newQuery()
         ->with(['item' => function($q) {
-            $q->select('id','genre_id','title','magazine','meta_keywords')->with('genre');
+            $q->select('id','genre_id','author','title','magazine','meta_keywords')->with('genre');
         }])
         ->with('catalogue')
         ->with(['reviews.user' => function($q) {

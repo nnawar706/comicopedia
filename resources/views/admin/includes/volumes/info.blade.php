@@ -32,6 +32,7 @@
                                 <p><b>Author:</b> {{ $data['item']['author'] }}<br>
                                     <b>Magazine:</b> {{ $data['item']['magazine'] }}<br>
                                     <b>Genre:</b> {{ $data['item']['genre']['name'] }}<br>
+                                    <b>ISBN no:</b> {{ $data['isbn'] }}<br>
                                     <b>Details:</b> {{ $data['details'] }}<br></p>
                                 <hr>
                                 <b>Tags:</b> {{ $data['item']['meta_keywords'] }}<br>

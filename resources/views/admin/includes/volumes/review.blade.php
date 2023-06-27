@@ -5,12 +5,22 @@
         </div>
         <div class="card-body reviews">
             <div class="review-slider">
+                @if($rate == 0)
+                <div class="text-center">No review found</div>
+                @else
                 @foreach($data['reviews'] as $review)
                 <div class="text-center">
-                    <img class="img-profile rounded-circle"
-                    src="{{ asset(auth()->guard('admin')->user()->profile_photo_path) }}" height="50" width="50" alt="reviewer-image">
-                    <br>
-                    <span style="font-size:12px;color:#BFBFBF">{{ $review->user==null ? 'Anonymous' : $review->user->name }}</span>
+                    @if($review->user==null)
+                        <img class="img-profile rounded-circle"
+                        src="https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF" height="50" width="50" alt="reviewer-image">
+                        <br>
+                        <span style="font-size:12px;color:#BFBFBF">Anonymous</span>
+                    @else
+                        <img class="img-profile rounded-circle"
+                        src="{{ $review['user']['profile_photo_url'] }}" height="45" width="45" alt="reviewer-image">
+                        <br>
+                        <span style="font-size:12px;color:#BFBFBF">Anonymous</span>
+                    @endif
                     <div>
                         @if($review->rating === 1)
                             <i class="fas fa-star" style="color:#FFC300"></i>
@@ -53,6 +63,7 @@
                 </div>
                 <hr>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
