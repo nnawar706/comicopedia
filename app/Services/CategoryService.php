@@ -26,15 +26,6 @@ class CategoryService
         return $this->category->newQuery()->orderBy('order')->get();
     }
 
-    public function getAllWithItem()
-    {
-        return $this->category->newQuery()
-        ->with(['items' => function ($q) {
-            $q->select('id','genre_id','title');
-        }])
-        ->orderBy('order')->get();
-    }
-
     public function createCategory(Request $request)
     {
         $cat = $this->category->newQuery()->create([

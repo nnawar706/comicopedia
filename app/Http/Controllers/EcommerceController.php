@@ -23,7 +23,7 @@ class EcommerceController extends Controller
 
         $banners = (new BannerSettingService)->getAll();
         $catalogues = (new CatalogueService(new Catalogue()))->getAllWithItems();
-        $genre = (new CategoryService(new Category()))->getAllWithItem();
+        $genre = (new CategoryService(new Category()))->getCategories();
 
         $data = array(
             'banners' => $banners,
@@ -31,7 +31,7 @@ class EcommerceController extends Controller
             'genres' => $genre
         );
 
-        return response()->json(['data' => $data]);
-        // return view('welcome');
+        // return response()->json(['data' => $data]);
+        return view('welcome')->with('data', $data);
     }
 }
