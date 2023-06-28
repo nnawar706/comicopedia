@@ -26,30 +26,16 @@
         @yield('styles')
     </head>
 
-    <body id="page-top">
+    <body class="bg-secondary">
 
-        <div id="wrapper">
+        <!-- Topbar -->
+        @include('ecommerce.includes.general.topbar')
 
-            <!-- Sidebar -->
-            @include('admin.includes.general.sidebar')
+        <!-- Page Content -->
+        @yield('content')
 
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Topbar -->
-                    @include('admin.includes.general.topbar')
-
-                    <!-- Page Content -->
-                    @yield('content')
-
-                </div>
-
-                <footer class="container">
-                    @include('admin.includes.general.footer')
-                </footer>
-            </div>
-
-        </div>
+        <!-- Footer -->
+        @include('ecommerce.includes.general.footer')
 
         @stack('scripts')
 

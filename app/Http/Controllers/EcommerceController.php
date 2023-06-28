@@ -32,6 +32,6 @@ class EcommerceController extends Controller
         );
 
         // return response()->json(['data' => $data]);
-        return view('welcome')->with('data', $data);
+        return view('ecommerce.pages.welcome')->with('data', $data);
     }
 }
