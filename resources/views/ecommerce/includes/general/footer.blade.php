@@ -3,7 +3,10 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
+                    <h6 class="mb-4 display-5 font-weight-semi-bold" style="font-size:35px">
+                        <span class="text-primary font-weight-bold px-3 mr-1">
+                            <img src="{{ asset('uploads/general/1687025780980.png') }}" height="60" width="80" alt="site-logo">
+                        </span>MANGAMANIA</h6>
                 </a>
                 <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
@@ -36,7 +39,7 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
+                        <form method="post" action="">
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
                             </div>

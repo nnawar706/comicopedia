@@ -28,6 +28,16 @@
 
     <body>
 
+        @if (isset($message))
+        <div class="toast show fixed-bottom ms-auto text-bg-danger" style="--bs-bg-opacity: .8;" animation="true" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ $message }}
+                </div>
+            </div>
+        </div>
+        @endif
+
         <!-- Topbar -->
         @include('ecommerce.includes.general.topbar')
 
@@ -37,7 +47,33 @@
         <!-- Footer -->
         @include('ecommerce.includes.general.footer')
 
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
         @stack('scripts')
 
+        <!-- Template Javascript -->
+        <script src="{{ asset('assets/js/ecommerce.js') }}"></script>
+        <script src="{{ asset('assets/js/easing/easing.min.js') }}"></script>
+        <script src="{{ asset('assets/js/owlcarousel/owl.carousel.min.js') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            window.onload = (event) => {
+                let myAlert = document.querySelector('.toast');
+                let bsAlert = new bootstrap.Toast(myAlert);
+
+                setTimeout(function () {
+                    bsAlert.show();
+                }, 5000);
+            };
+        </script>
     </body>
 </html>
