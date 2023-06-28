@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Catalogue;
 use App\Models\Category;
+use App\Models\Item;
 use App\Services\BannerSettingService;
 use App\Services\CatalogueService;
 use App\Services\CategoryService;
+use App\Services\ItemService;
 
 class EcommerceController extends Controller
 {
@@ -24,11 +26,13 @@ class EcommerceController extends Controller
         $banners = (new BannerSettingService)->getAll();
         $catalogues = (new CatalogueService(new Catalogue()))->getAllWithItems();
         $genre = (new CategoryService(new Category()))->getCategories();
+        $items = (new ItemService(new Item()))->getTopItems();
 
         $data = array(
-            'banners' => $banners,
-            'catalogues' => $catalogues,
-            'genres' => $genre
+            'banners'       => $banners,
+            'catalogues'    => $catalogues,
+            'genres'        => $genre,
+            'items'         => $items
         );
 
         // return response()->json(['data' => $data]);

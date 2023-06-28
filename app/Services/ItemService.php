@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -9,17 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 class ItemService
 {
-    private $item, $categoryService;
+    private $item;
 
-    public function __construct(Item $item, CategoryService $categoryService)
+    public function __construct(Item $item)
     {
         $this->item = $item;
-        $this->categoryService = $categoryService;
     }
 
     public function getItems()
     {
         return $this->item->newQuery()->select('id','title')->latest()->get();
+    }
+
+    public function getTopItems()
+    {
+        return $this->item->newQuery()
+        ->select('id','item_unique_id','title','image_path','volumes')
+        ->orderBy('like_count', 'desc')->limit(8)->get();
     }
 
     public function getItem($id)
@@ -43,7 +50,7 @@ class ItemService
 
             saveFile($request1->file('image'), '/uploads/series/', $item, 'image_path');
 
-            $this->categoryService->incrementItemCount($request2->genre_id);
+            (new CategoryService(new Category()))->incrementItemCount($request2->genre_id);
 
             DB::commit();
 

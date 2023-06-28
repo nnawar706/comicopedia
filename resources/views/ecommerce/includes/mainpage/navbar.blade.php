@@ -37,8 +37,15 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="text-sm nav-item nav-link">Dashboard</a>
+                            @else
+                                <a href="{{ route('login') }}" class="text-sm nav-item nav-link">Log in</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="ml-4 nav-item nav-link">Register</a>
+                                @endif
+                            @endauth
                         </div>
                     </div>
                 </nav>
