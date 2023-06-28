@@ -28,6 +28,7 @@ Route::middleware([
 
 Route::controller(EcommerceController::class)->group(function () {
     Route::get('/', 'getMainPage')->name('welcome');
+    Route::get('genres/{id}', 'getGenre')->name('genre-info');
 });
 
 Route::group(['prefix' => 'admin'], function () {
