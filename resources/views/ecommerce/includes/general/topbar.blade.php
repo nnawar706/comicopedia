@@ -12,13 +12,11 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
-            <img src="img/language.png" alt="">
+            <img src="{{ asset('uploads/general/1687029130129.png') }}" alt="language">
             <div>English</div>
-            <span class="arrow_carrot-down"></span>
-            <ul>
-                <li><a href="#">Spanis</a></li>
-                <li><a href="#">English</a></li>
-            </ul>
+        </div>
+        <div class="header__top__right__auth">
+            <a href="#"><i class="fa fa-user"></i> Login</a>
         </div>
         <div class="header__top__right__auth">
             <a href="#"><i class="fa fa-user"></i> Login</a>
@@ -78,17 +76,22 @@
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__language">
-                            <img src="img/language.png" alt="">
+                            <img src="{{ asset('uploads/general/1687029130129.png') }}" alt="language">
                             <div>English</div>
-                            <span class="arrow_carrot-down"></span>
-                            <ul>
-                                <li><a href="#">Spanis</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
                         </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                        </div>
+                        @if (Route::has('login'))
+                            <div class="header__top__right__auth">
+                                @auth
+                                    <a href="{{ url('/dashboard') }}"><i class="fa fa-user"></i>Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i>Log in</a>
+
+                                    {{-- @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                    @endif --}}
+                                @endauth
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -98,7 +101,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
+                    <a href="#"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
                 </div>
             </div>
             <div class="col-lg-6">

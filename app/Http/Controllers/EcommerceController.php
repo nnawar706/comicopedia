@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubscriberRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Catalogue;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\Subscriber;
 use App\Services\BannerSettingService;
 use App\Services\CatalogueService;
 use App\Services\CategoryService;
 use App\Services\ItemService;
+use App\Services\SubscriberService;
 
 class EcommerceController extends Controller
 {
@@ -37,5 +40,12 @@ class EcommerceController extends Controller
 
         // return response()->json(['data' => $data]);
         return view('ecommerce.pages.welcome')->with('data', $data);
+    }
+
+    public function subscribe(SubscriberRequest $request)
+    {
+        // (new SubscriberService(new Subscriber()))->store($request);
+
+        redirect()->back()->with('message', 'You have been subscribed successfully.');
     }
 }

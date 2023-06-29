@@ -6,7 +6,7 @@ use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\BannerSettingController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\VolumeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminController;
@@ -30,6 +30,8 @@ Route::controller(EcommerceController::class)->group(function () {
     Route::get('/', 'getMainPage')->name('welcome');
     Route::get('genres/{id}', 'getGenre')->name('genre-info');
     Route::get('items/{id}', 'getItem')->name('item-info');
+
+    Route::post('subscribe', 'subscribe')->name('subscribe');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -95,7 +97,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         });
 
-        Route::controller(MessageController::class)->group(function () {
+        Route::controller(SubscriberController::class)->group(function () {
 
             Route::get('subscriber-list', 'getAll')->name('subscriber-list');
             Route::get('send-newsletter', 'getView')->name('send-newsletter');

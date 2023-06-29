@@ -63,7 +63,6 @@ class VolumeCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'item_id.exists' => '',
             'discount.lte' => 'The discount percentage must not be greater than 100.'
         ];
     }
