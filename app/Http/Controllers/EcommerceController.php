@@ -44,8 +44,8 @@ class EcommerceController extends Controller
 
     public function subscribe(SubscriberRequest $request)
     {
-        // (new SubscriberService(new Subscriber()))->store($request);
+        (new SubscriberService(new Subscriber()))->store($request);
 
-        redirect()->back()->with('message', 'You have been subscribed successfully.');
+        return redirect()->route('welcome')->with('message', 'You have been subscribed successfully.');
     }
 }

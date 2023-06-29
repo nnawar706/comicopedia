@@ -42,6 +42,16 @@
         </div>
     @endif
 
+    @if (session('message'))
+    <div class="toast show fixed-bottom ms-auto text-bg-danger" style="--bs-bg-opacity: .8;" animation="true" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('message') }}
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div id="preloder">
         <div class="loader"></div>
     </div>

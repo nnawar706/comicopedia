@@ -613,7 +613,6 @@ ol {
 	position: absolute;
 	right: 18px;
 	top: 9px;
-	content: "3";
 	font-family: "ElegantIcons";
 	font-size: 18px;
 	color: #ffffff;
@@ -713,6 +712,7 @@ ol {
 	border-radius: 50%;
 	float: left;
 	margin-right: 20px;
+    transform: scaleX(-1);
 }
 
 .hero__search__phone__text {
