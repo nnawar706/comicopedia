@@ -124,6 +124,7 @@ ol {
 	color: #1c1c1c;
 	font-weight: 700;
 	position: relative;
+    font-size: 26px;
 }
 
 .section-title h2:after {
@@ -776,7 +777,7 @@ ol {
 }
 
 .categories__item h5 a {
-	font-size: 18px;
+	font-size: 14px;
 	color: #1c1c1c;
 	font-weight: 700;
 	text-transform: uppercase;
