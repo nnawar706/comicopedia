@@ -31,7 +31,7 @@ class ItemService
 
     public function getItem($id)
     {
-        return $this->item->newQuery()->with('genre')->findOrFail($id);
+        return $this->item->newQuery()->with('genre', 'volume_list')->findOrFail($id);
     }
 
     public function storeItem(Request $request1, Request $request2)

@@ -42,6 +42,15 @@ class EcommerceController extends Controller
         return view('ecommerce.pages.welcome')->with('data', $data);
     }
 
+    public function getItem($id)
+    {
+        $data = (new ItemService(new Item()))->getItem($id);
+
+        // return response()->json(['data' => $data]);
+
+        return view('ecommerce.pages.item-read')->with('data', $data);
+    }
+
     public function subscribe(SubscriberRequest $request)
     {
         (new SubscriberService(new Subscriber()))->store($request);
