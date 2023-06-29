@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                     <div class="footer__widget">
-                        <h6 style="margin-left:30px;">Useful Links</h6>
+                        <h6>Useful Links</h6>
                         <ul>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">About Our Shop</a></li>
@@ -130,7 +130,7 @@
                     <div class="footer__copyright">
                         <div class="footer__copyright__text">
                             <p>
-                            MangaMania &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Designed and Developed by <a href="https://colorlib.com" target="_blank">CodeArc</a>
+                            MangaMania &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Designed and Developed by <a style="color:#101f56; font-weight:bold" href="https://colorlib.com" target="_blank">CodeArc</a>
                             </p>
                         </div>
                         <div class="footer__copyright__payment"><img src="{{ asset('uploads/general/1687029130912.png') }}" alt="payment-gateways"></div>
