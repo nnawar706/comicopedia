@@ -9,7 +9,7 @@
                                 src="{{ asset($data['image_path']) }}" alt="manga-image">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            @foreach($data['volume_list'] as $volume)
+                            @foreach($data['volume_list'] as $key => $volume)
                             <img data-imgbigurl="{{ asset($volume['image_path']) }}"
                                 src="{{ asset($volume['image_path']) }}" alt="">
                             @endforeach
