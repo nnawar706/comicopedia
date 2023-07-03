@@ -27,4 +27,6 @@
 
 @include('ecommerce.includes.item.info')
 
+@include('ecommerce.includes.item.volume-list')
+
 @stop
