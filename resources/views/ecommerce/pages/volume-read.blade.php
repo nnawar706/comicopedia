@@ -7,6 +7,18 @@
     {
         $discount = ($data['discount'] * $data['price']) / 100;
     }
+    $rating = 0;
+    $rate = 0;
+
+    if(count($data['reviews']) !=0)
+    {
+        foreach($data['reviews'] as $review)
+        {
+            $rating += $review['rating'];
+        }
+
+        $rate = ($rating / (count($data['reviews'])*5)) * 100;
+    }
     @endphp
 
 @include('ecommerce.includes.volume.breadcrumb')

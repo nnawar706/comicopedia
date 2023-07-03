@@ -6,58 +6,68 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="{{ asset($data['image_path']) }}" alt="manga-image" height="850">
+                             src="{{ asset($data['image_path']) }}" alt="manga-image" height="700">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3>{{ $data['item']['title'] }}, {{ $data['title'] }}</h3>
-{{--                    <div class="product__details__rating">--}}
-{{--                        @if($rate === 1)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 2)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 3)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 4)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 5)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                        @else--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
+                    <div class="product__details__rating">
+                        @if($rate === 1)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate === 2)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate === 3)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate === 4)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate === 5)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                        @else
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @endif
+                    </div>
                     @if(!is_null($data['discount']))
                         <div class="product__details__price"><s style="color: #000">&#2547; {{ $data['price'] }}</s> <span>&#2547; {{ $data['price'] - $discount }}</span></div>
                     @else
                     <div class="product__details__price">&#2547; {{ $data['price'] }}</div>
                     @endif
-                    <p>{{ $data['details'] }}</p>
+                    <div class="d-flex mb-3">
+                        <p class="text-dark font-weight-medium mb-0 mr-3">Type:</p>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-2" name="size">
+                            <label class="custom-control-label" for="size-2">Hardcover</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-1" name="size">
+                            <label class="custom-control-label" for="size-1">Paperback <span style="color: #b30000">(+&#2547; 150)</span></label>
+                        </div>
+                    </div>
                     <div class="product__details__quantity">
                         <div class="quantity">
                             <div class="pro-qty">
@@ -93,6 +103,7 @@
                     </ul>
                 </div>
             </div>
+            @include('ecommerce.includes.volume.reviews')
         </div>
     </div>
 </section>
