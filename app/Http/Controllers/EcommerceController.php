@@ -59,6 +59,8 @@ class EcommerceController extends Controller
 
         $volume->incrementView($id);
 
+//        return response()->json($data);
+
         return view('ecommerce.pages.volume-read')->with('data',$data);
     }
 
