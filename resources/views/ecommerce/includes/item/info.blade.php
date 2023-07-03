@@ -6,7 +6,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset($data['image_path']) }}" alt="manga-image" height="700">
+                                src="{{ asset($data['image_path']) }}" alt="manga-image" height="750">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             @foreach($data['volume_list'] as $key => $volume)
@@ -20,20 +20,57 @@
                     <div class="product__details__text">
                         <h3>{{ $data['title'] }}</h3>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
+                            @if($rate === 1)
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            @elseif($rate === 2)
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            @elseif($rate === 3)
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            @elseif($rate === 4)
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            @elseif($rate === 5)
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                                <i class="fas fa-star" style="color:#FFC300"></i>
+                            @else
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            @endif
                         </div>
                         <p>{{ $data['detail'] }}</p>
                         <ul>
-                            <li>{{ $rate }}</li>
+                            <li><b>Item ID</b> <span>{{ $data['item_unique_id'] }}</span></li>
                             <li><b>Author</b> <span>{{ $data['author'] }}</span></li>
                             <li><b>Magazine</b> <span>{{ $data['magazine'] }}</span></li>
                             <li><b>Genre</b> <span>{{ $data['genre']['name'] }}</span></li>
                             <li><b>Total Volumes</b> <span>{{ $data['volumes'] }}</span></li>
-                            <li><b>Availability</b> <span>In Stock</span></li>
+                            @if($availability == count($data['volume_list']))
+                                <li><b>Availability</b> <span>All the volumes are available</span></li>
+                            @else
+                                <li><b>Availability</b> <span>{{ $availability }} out of {{ count($data['volume_list']) }} volumes are available</span></li>
+                            @endif
+
                             <li><b>Keywords</b> <span>{{ $data['meta_keywords'] }}</span></li>
                             <li><b>Share on</b>
                                 <div class="share">
