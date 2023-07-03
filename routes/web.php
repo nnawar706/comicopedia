@@ -30,6 +30,7 @@ Route::controller(EcommerceController::class)->group(function () {
     Route::get('/', 'getMainPage')->name('welcome');
     Route::get('genres/{id}', 'getGenre')->name('genre-info');
     Route::get('items/{id}', 'getItem')->name('item-info');
+    Route::get('volumes/{id}', 'getVolume')->name('volume-info');
 
     Route::post('subscribe', 'subscribe')->name('subscribe');
 });

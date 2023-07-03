@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubscriberRequest;
+use App\Models\Volume;
+use App\Services\VolumeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Catalogue;
@@ -49,6 +51,15 @@ class EcommerceController extends Controller
 //         return response()->json(['data' => $data]);
 
         return view('ecommerce.pages.item-read')->with('data', $data);
+    }
+
+    public function getVolume($id)
+    {
+        $data = (new VolumeService(new Volume()))->getVolume($id);
+
+        return response()->json(['data' => $data]);
+
+//        return view('ecommerce.pages.volume-read')->with('data',$data);
     }
 
     public function subscribe(SubscriberRequest $request)

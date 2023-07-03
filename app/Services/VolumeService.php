@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Item;
 use App\Models\Volume;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -10,12 +11,11 @@ use Illuminate\Support\Facades\DB;
 class VolumeService
 {
 
-    private $volume, $service;
+    private $volume;
 
-    public function __construct(Volume $volume, ItemService $service)
+    public function __construct(Volume $volume)
     {
         $this->volume = $volume;
-        $this->service = $service;
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class VolumeService
 
             saveFile($request->file('image'), '/uploads/volumes/', $volume, 'image_path');
 
-            $this->service->incrementVolumes($request->item_id);
+            (new ItemService(new Item()))->incrementVolumes($request->item_id);
 
             DB::commit();
 
@@ -53,7 +53,7 @@ class VolumeService
             return false;
         }
     }
-// 'item','catalogue','reviews'
+
     public function getVolume($id)
     {
         return $this->volume->newQuery()

@@ -13,23 +13,20 @@
                     $discount = (($volume['discount'] ? : 0) * $volume['price'])/100;
                 @endphp
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
+                    <div class="shadow p-3 mb-5 bg-white rounded product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{ asset($volume['image_path']) }}">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">{{ $volume['title'] }}</a></h6>
+                        <a href="{{ route('volume-info', ['id' => $volume['id']]) }}"><div class="product__item__text">
+                            <h6>{{ $volume['title'] }}</h6>
+                            <h5>&#2547; {{ $volume['price'] }}</h5>
                             @if($discount != 0)
-                                <h5>&#2547; {{ $volume['price'] - $discount }}</h5>
-                                <p style="font-size: 10px;color: #b30000">** {{ $volume['discount'] }}% discount is applicable till {{ $volume['discount_active_till'] }}</p>
-                            @else
-                                <h5>&#2547; {{ $volume['price'] }}</h5>
+                                <p style="font-size: 11px;color: #b30000">** {{ $volume['discount'] }}% discount is applicable till {{ \Carbon\Carbon::parse($volume['discount_active_till'])->format('F d, Y') }}</p>
                             @endif
-                        </div>
+                        </div></a>
                     </div>
                 </div>
             @endforeach
