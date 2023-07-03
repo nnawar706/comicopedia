@@ -19,18 +19,59 @@
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
                 <div class="product__details__tab__desc">
-                    <h6>Customer Reviews</h6>
-                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                        Proin eget tortor risus.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="mb-4">Customer Reviews</h6>
+                            <hr>
+                            @foreach($data['reviews'] as $review)
+                            <div class="media mb-4">
+                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <div class="media-body">
+                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
+                                    <div class="text-primary mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="mb-4">Leave a review</h6>
+                            <small>Your email address will not be published. Required fields are marked *</small>
+                            <div class="d-flex my-3">
+                                <p class="mb-0 mr-2">Your Rating * :</p>
+                                <div class="text-primary">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <label for="message">Your Review *</label>
+                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Your Name *</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email *</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group mb-0">
+                                    <input type="submit" value="Leave Your Review" class="btn primary-btn px-3">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

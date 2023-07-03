@@ -93,4 +93,18 @@ class VolumeService
         $volume->view_count += 1;
         $volume->save();
     }
+
+    public function incrementSell($id)
+    {
+        $volume = $this->volume->newQuery()->find($id);
+        $volume->sell_count += 1;
+        $volume->save();
+    }
+
+    public function incrementReview($id)
+    {
+        $volume = $this->volume->newQuery()->find($id);
+        $volume->review_count += 1;
+        $volume->save();
+    }
 }
