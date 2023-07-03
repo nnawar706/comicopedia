@@ -19,7 +19,7 @@
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/shuffle.css') }}" rel="stylesheet">
-        <link href="asset('assets/css/reviews.css')" rel="stylesheet">
+        <link href="{{ asset('assets/css/reviews.css') }}" rel="stylesheet">
         @yield('styles')
     </head>
 
