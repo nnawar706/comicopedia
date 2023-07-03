@@ -57,9 +57,9 @@ class EcommerceController extends Controller
     {
         $data = (new VolumeService(new Volume()))->getVolume($id);
 
-        return response()->json(['data' => $data]);
+//        return response()->json(['data' => $data]);
 
-//        return view('ecommerce.pages.volume-read')->with('data',$data);
+        return view('ecommerce.pages.volume-read')->with('data',$data);
     }
 
     public function subscribe(SubscriberRequest $request)
