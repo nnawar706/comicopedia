@@ -46,7 +46,7 @@ class EcommerceController extends Controller
     {
         $data = (new ItemService(new Item()))->getItem($id);
 
-        // return response()->json(['data' => $data]);
+//         return response()->json(['data' => $data]);
 
         return view('ecommerce.pages.item-read')->with('data', $data);
     }
