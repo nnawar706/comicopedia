@@ -86,4 +86,11 @@ class VolumeService
 
         $volume->save();
     }
+
+    public function incrementView($id)
+    {
+        $volume = $this->volume->newQuery()->find($id);
+        $volume->view_count += 1;
+        $volume->save();
+    }
 }

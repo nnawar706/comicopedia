@@ -17,7 +17,7 @@
             $rating += $review['rating'];
         }
 
-        $rate = ($rating / (count($data['reviews'])*5)) * 100;
+        $rate = ($rating / ($data['review_count']*5)) * 100;
     }
     @endphp
 

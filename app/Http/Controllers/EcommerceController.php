@@ -48,16 +48,16 @@ class EcommerceController extends Controller
     {
         $data = (new ItemService(new Item()))->getItem($id);
 
-//         return response()->json(['data' => $data]);
-
         return view('ecommerce.pages.item-read')->with('data', $data);
     }
 
     public function getVolume($id)
     {
-        $data = (new VolumeService(new Volume()))->getVolume($id);
+        $volume = new VolumeService(new Volume());
 
-//        return response()->json(['data' => $data]);
+        $data = $volume->getVolume($id);
+
+        $volume->incrementView($id);
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
     }
