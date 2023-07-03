@@ -32,31 +32,31 @@ class MultipleImageRequest extends FormRequest
             'images.*' => 'required|image|mimes:jpg,png,jpeg,svg,gif|max:2048'
         ];
 
-        if($type == 1)
-        {
-            $rules['images.*'] = 'dimensions:width=970,height=250';
-        }
-
-        else if($type == 2)
-        {
-            $rules['images']   = 'size:1';
-            $rules['images.*'] = 'dimensions:width=336,height=280';
-        }
-
-        else if($type == 3)
-        {
-            $rules['images.*'] = 'dimensions:width=970,height=90';
-        }
-
-        else if($type == 4 || $type == 5)
-        {
-            $rules['images.*'] = 'dimensions:width=120,height=240';
-        }
-
-        else if($type == 6)
-        {
-            $rules['images.*'] = 'dimensions:width=160,height=600';
-        }
+//        if($type == 1)
+//        {
+//            $rules['images.*'] = 'dimensions:width=970,height=250';
+//        }
+//
+//        else if($type == 2)
+//        {
+//            $rules['images']   = 'size:1';
+//            $rules['images.*'] = 'dimensions:width=336,height=280';
+//        }
+//
+//        else if($type == 3)
+//        {
+//            $rules['images.*'] = 'dimensions:width=970,height=90';
+//        }
+//
+//        else if($type == 4 || $type == 5)
+//        {
+//            $rules['images.*'] = 'dimensions:width=120,height=240';
+//        }
+//
+//        else if($type == 6)
+//        {
+//            $rules['images.*'] = 'dimensions:width=160,height=600';
+//        }
 
         return $rules;
     }
