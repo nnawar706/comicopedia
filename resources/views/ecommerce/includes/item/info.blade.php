@@ -28,6 +28,7 @@
                         </div>
                         <p>{{ $data['detail'] }}</p>
                         <ul>
+                            <li>{{ $rate }}</li>
                             <li><b>Author</b> <span>{{ $data['author'] }}</span></li>
                             <li><b>Magazine</b> <span>{{ $data['magazine'] }}</span></li>
                             <li><b>Genre</b> <span>{{ $data['genre']['name'] }}</span></li>
