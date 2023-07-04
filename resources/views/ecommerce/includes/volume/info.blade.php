@@ -57,26 +57,30 @@
                     @else
                     <div class="product__details__price">&#2547; {{ $data['info']['price'] }}</div>
                     @endif
-                    <div class="d-flex mb-3">
-                        <p class="text-dark font-weight-medium mb-0 mr-3">Type:</p>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-2" name="size">
-                            <label class="custom-control-label" for="size-2">Hardcover</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-1" name="size">
-                            <label class="custom-control-label" for="size-1">Paperback <span style="color: #b30000">(+&#2547; 150)</span></label>
-                        </div>
-                    </div>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1" name="quantity">
+                    <form method="post" action="{{ route('add-cart') }}">
+                        @csrf
+                        <div class="d-flex mb-3">
+                            <input type="hidden" name="volume_id" value="{{ $data['info']['id'] }}">
+                            <p class="text-dark font-weight-medium mb-0 mr-3">Type:</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="size-2" name="attribute_id" value="{{ $data['info']['attributes'][0]['id'] }}">
+                                <label class="custom-control-label" for="size-2">{{ $data['info']['attributes'][0]['name'] }}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="size-1" name="attribute_id" value="{{ $data['info']['attributes'][1]['id'] }}">
+                                <label class="custom-control-label" for="size-1">{{ $data['info']['attributes'][1]['name'] }} <span style="color: #b30000">(+&#2547; 150)</span></label>
                             </div>
                         </div>
-                    </div>
-                    <a href="#" class="primary-btn">ADD TO CART</a>
-                    <a href="#" class="heart-icon"><i style="color: #6f6f6f" class="fa fa-heart"></i></a>
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" value="1" name="quantity">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" style="display: inline-block" class="primary-btn">ADD TO CART</button>
+                        <a href="#" class="heart-icon"><i style="color: #6f6f6f" class="fa fa-heart"></i></a>
+                    </form>
                     <ul>
                         <li><b>Volume ID</b> <span>{{ $data['info']['product_unique_id'] }}</span></li>
                         <li><b>Author</b> <span>{{ $data['info']['item']['author'] }}</span></li>
@@ -84,7 +88,7 @@
                         <li><b>Genre</b> <span>{{ $data['info']['item']['genre']['name'] }}</span></li>
                         <li><b>ISBN No</b> <span>{{ $data['info']['isbn'] }}</span></li>
                         @if($data['info']['quantity'] != 0 && $data['info']['status'] != 0)
-                            <li><b>Availability</b> <span>In Stock</span></li>
+                            <li><b>Availability</b> <span>(Paperback - {{ $data['info']['attributes'][0]['quantity'] }}, Hardcover - {{ $data['info']['attributes'][1]['quantity'] }})</span></li>
                         @else
                             <li><b>Availability</b> <span style="color: #b30000">Out of Stock</span></li>
                         @endif

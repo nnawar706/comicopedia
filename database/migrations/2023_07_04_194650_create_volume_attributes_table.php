@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('volume_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('volume_id')->constrained('volumes')->onDelete('cascade');
+            $table->string('name',30);
             $table->integer('quantity');
             $table->timestamps();
         });

@@ -60,7 +60,7 @@ class VolumeService
         ->with(['item' => function($q) {
             $q->select('id','genre_id','author','title','magazine','meta_keywords')->with('genre');
         }])
-        ->with('catalogue')
+        ->with('catalogue','attributes')
         ->with(['reviews.user' => function($q) {
             $q->select('id','name');
         }])

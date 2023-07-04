@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CartRequest;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SubscriberRequest;
 use App\Models\Review;
@@ -13,8 +14,10 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Catalogue;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\Cart;
 use App\Models\Subscriber;
 use App\Services\BannerSettingService;
+use App\Services\CartService;
 use App\Services\CatalogueService;
 use App\Services\CategoryService;
 use App\Services\ItemService;
@@ -27,7 +30,7 @@ class EcommerceController extends Controller
     {
         if(!Session::has('customer_unique_id'))
         {
-            Session::put('customer_unique_id', uniqid('CUS'));
+            Session::put('customer_unique_id', uniqid('CUS-'));
         }
         // $banners = Cache::remember('bannerList', 60*60*24, function() {
         //     return (new BannerSettingService)->getAll();
@@ -84,10 +87,21 @@ class EcommerceController extends Controller
         $volume->incrementView($id);
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
+
+        // return response()->json($data);
     }
 
-    public function addCart()
-    {}
+    public function addCart(CartRequest $request)
+    {
+        if((new CartService(new Cart()))->storeCart($request))
+        {
+            $msg = 'New volume has been added to cart.';
+        } else {
+            $msg = 'Something went wrong. Please try again.';
+        }
+
+        return redirect()->route('volume-info', ['id' => $request->volume_id])->with('message', $msg);
+    }
 
     public function rateVolume(ReviewRequest $request, $id)
     {

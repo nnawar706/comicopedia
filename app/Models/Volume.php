@@ -21,6 +21,11 @@ class Volume extends Model
         'created_at','updated_at'
     ];
 
+    public function attributes()
+    {
+        return $this->hasMany(VolumeAttribute::class, 'volume_id');
+    }
+
     public function item()
     {
         return $this->belongsTo(Item::class, 'item_id');
