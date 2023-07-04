@@ -34,6 +34,9 @@ Route::controller(EcommerceController::class)->group(function () {
 
     Route::post('subscribe', 'subscribe')->name('subscribe');
     Route::post('review/volume/{id}', 'rateVolume')->name('rate-volume');
+
+    Route::post('add-to-cart', 'addCart')->name('add-cart');
+    Route::post('add-to-wishlist', 'addWish')->name('add-wishlist');
 });
 
 Route::group(['prefix' => 'admin'], function () {

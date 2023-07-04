@@ -19,11 +19,16 @@ use App\Services\CatalogueService;
 use App\Services\CategoryService;
 use App\Services\ItemService;
 use App\Services\SubscriberService;
+use Illuminate\Support\Facades\Session;
 
 class EcommerceController extends Controller
 {
     public function getMainPage()
     {
+        if(!Session::has('customer_unique_id'))
+        {
+            Session::put('customer_unique_id', uniqid('CUS'));
+        }
         // $banners = Cache::remember('bannerList', 60*60*24, function() {
         //     return (new BannerSettingService)->getAll();
         // });
@@ -63,6 +68,9 @@ class EcommerceController extends Controller
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
     }
+
+    public function addCart()
+    {}
 
     public function rateVolume(ReviewRequest $request, $id)
     {
