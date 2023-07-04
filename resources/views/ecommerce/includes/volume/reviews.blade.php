@@ -7,14 +7,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                   aria-selected="false">Reviews <span>({{ $data['review_count'] }})</span></a>
+                   aria-selected="false">Reviews <span>({{ $data['info']['review_count'] }})</span></a>
             </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                 <div class="product__details__tab__desc">
                     <h6>Summary</h6>
-                    <p>{{ $data['details'] }}</p>
+                    <p>{{ $data['info']['details'] }}</p>
                 </div>
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
@@ -23,37 +23,37 @@
                         <div class="col-md-6">
                             <h6 class="mb-4">Latest Customer Reviews</h6>
                             <hr>
-                            @for($i=count($data['reviews'])-1;$i>=0;$i--)
+                            @for($i=count($data['info']['reviews'])-1;$i>=0;$i--)
                             <div class="media mb-4">
-                                <img src="{{ $data['reviews'][$i]->user==null ? 'https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF' : $data['reviews'][$i]->user->profile_photo_url }}" alt="reviewer-image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <img src="{{ $data['info']['reviews'][$i]->user==null ? 'https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF' : $data['info']['reviews'][$i]->user->profile_photo_url }}" alt="reviewer-image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                                 <div class="media-body">
-                                    <h6 style="margin-bottom: 2px">{{ $data['reviews'][$i]->user==null ? 'Anonymous' : $data['reviews'][$i]->user->name }}<small> - <i>{{ \Carbon\Carbon::parse($data['reviews'][$i]->created_at)->format('F d, Y') }}</i></small></h6>
+                                    <h6 style="margin-bottom: 2px">{{ $data['info']['reviews'][$i]->user==null ? 'Anonymous' : $data['info']['reviews'][$i]->user->name }}<small> - <i>{{ \Carbon\Carbon::parse($data['info']['reviews'][$i]->created_at)->format('F d, Y') }}</i></small></h6>
                                     <div style="margin-bottom: 4px">
-                                        @if($data['reviews'][$i]->rating == 1)
+                                        @if($data['info']['reviews'][$i]->rating == 1)
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
-                                        @elseif($data['reviews'][$i]->rating == 2)
+                                        @elseif($data['info']['reviews'][$i]->rating == 2)
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
-                                        @elseif($data['reviews'][$i]->rating == 3)
+                                        @elseif($data['info']['reviews'][$i]->rating == 3)
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
-                                        @elseif($data['reviews'][$i]->rating == 4)
+                                        @elseif($data['info']['reviews'][$i]->rating == 4)
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
-                                        @elseif($data['reviews'][$i]->rating == 5)
+                                        @elseif($data['info']['reviews'][$i]->rating == 5)
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
                                             <i class="fas fa-star" style="color:#FFC300"></i>
@@ -67,14 +67,14 @@
                                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                                         @endif
                                     </div>
-                                    <p>{{ $data['reviews'][$i]['comment'] }}</p>
+                                    <p>{{ $data['info']['reviews'][$i]['comment'] }}</p>
                                 </div>
                             </div>
                             @endfor
                         </div>
                         <div class="col-md-6">
                             <h6 class="mb-4">Leave a review</h6>
-                            <form method="post" action="{{ route('rate-volume', ['id' => $data['id']]) }}">
+                            <form method="post" action="{{ route('rate-volume', ['id' => $data['info']['id']]) }}">
                                 @csrf
                                 <div class="d-flex my-3">
                                     <div class="mb-0 mr-2">

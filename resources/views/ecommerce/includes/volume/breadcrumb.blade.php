@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>{{ $data['title'] }}</h2>
+                    <h2>{{ $data['info']['title'] }}</h2>
                     <div class="breadcrumb__option">
                         <a href="{{ route('welcome') }}">Home</a>
-                        <a href="{{ route('item-info', ['id' => $data['item_id']]) }}">Item</a>
-                        <span>{{ $data['item']['title'] }}, {{ $data['title'] }}</span>
+                        <a href="{{ route('item-info', ['id' => $data['info']['item_id']]) }}">Item</a>
+                        <span>{{ $data['info']['item']['title'] }}, {{ $data['info']['title'] }}</span>
                     </div>
                 </div>
             </div>

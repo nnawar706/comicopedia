@@ -63,10 +63,13 @@ class EcommerceController extends Controller
     public function getVolume($id)
     {
         $volume = new VolumeService(new Volume());
-        $data = $volume->getVolume($id);
+        $data = array(
+            'info' => $volume->getVolume($id)
+        );
         $volume->incrementView($id);
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
+//        return response($data);
     }
 
     public function addCart()

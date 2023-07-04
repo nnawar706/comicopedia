@@ -6,13 +6,13 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="{{ asset($data['image_path']) }}" alt="manga-image" height="700">
+                             src="{{ asset($data['info']['image_path']) }}" alt="manga-image" height="700">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
-                    <h3>{{ $data['item']['title'] }}, {{ $data['title'] }}</h3>
+                    <h3>{{ $data['info']['item']['title'] }}, {{ $data['info']['title'] }}</h3>
                     <div class="product__details__rating">
                         @if($rate == 1)
                             <i class="fas fa-star" style="color:#FFC300"></i>
@@ -52,10 +52,10 @@
                             <i class="fas fa-star" style="color:#D9D9D9"></i>
                         @endif
                     </div>
-                    @if(!is_null($data['discount']))
-                        <div class="product__details__price"><s style="color: #000">&#2547; {{ $data['price'] }}</s> <span>&#2547; {{ $data['price'] - $discount }}</span></div>
+                    @if(!is_null($data['info']['discount']))
+                        <div class="product__details__price"><s style="color: dimgrey">&#2547; {{ $data['info']['price'] }}</s> <span>&#2547; {{ $data['info']['price'] - $discount }}</span></div>
                     @else
-                    <div class="product__details__price">&#2547; {{ $data['price'] }}</div>
+                    <div class="product__details__price">&#2547; {{ $data['info']['price'] }}</div>
                     @endif
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">Type:</p>
@@ -78,17 +78,17 @@
                     <a href="#" class="primary-btn">ADD TO CART</a>
                     <a href="#" class="heart-icon"><i style="color: #6f6f6f" class="fa fa-heart"></i></a>
                     <ul>
-                        <li><b>Volume ID</b> <span>{{ $data['product_unique_id'] }}</span></li>
-                        <li><b>Author</b> <span>{{ $data['item']['author'] }}</span></li>
-                        <li><b>Magazine</b> <span>{{ $data['item']['magazine'] }}</span></li>
-                        <li><b>Genre</b> <span>{{ $data['item']['genre']['name'] }}</span></li>
-                        <li><b>ISBN No</b> <span>{{ $data['isbn'] }}</span></li>
-                        @if($data['quantity'] != 0 && $data['status'] != 0)
+                        <li><b>Volume ID</b> <span>{{ $data['info']['product_unique_id'] }}</span></li>
+                        <li><b>Author</b> <span>{{ $data['info']['item']['author'] }}</span></li>
+                        <li><b>Magazine</b> <span>{{ $data['info']['item']['magazine'] }}</span></li>
+                        <li><b>Genre</b> <span>{{ $data['info']['item']['genre']['name'] }}</span></li>
+                        <li><b>ISBN No</b> <span>{{ $data['info']['isbn'] }}</span></li>
+                        @if($data['info']['quantity'] != 0 && $data['info']['status'] != 0)
                             <li><b>Availability</b> <span>In Stock</span></li>
                         @else
                             <li><b>Availability</b> <span style="color: #b30000">Out of Stock</span></li>
                         @endif
-                        <li><b>Keywords</b> <span>{{ $data['item']['meta_keywords'] }}</span></li>
+                        <li><b>Keywords</b> <span>{{ $data['info']['item']['meta_keywords'] }}</span></li>
                         <li><b>Share on</b>
                             <div class="share">
                                 <a href="#"><i class="fab fa-facebook"></i></a>
@@ -97,8 +97,8 @@
                                 <a href="#"><i class="fab fa-pinterest"></i></a>
                             </div>
                         </li>
-                        @if(!is_null($data['discount']))
-                            <li><span style="font-size: 12px;color: #b30000">*** {{ $data['discount'] }}% discount is applicable till {{ \Carbon\Carbon::parse($data['discount_active_till'])->format('F d, Y') }}</span></li>
+                        @if(!is_null($data['info']['discount']))
+                            <li><span style="font-size: 12px;color: #b30000">*** {{ $data['info']['discount'] }}% discount is applicable till {{ \Carbon\Carbon::parse($data['info']['discount_active_till'])->format('F d, Y') }}</span></li>
                         @endif
                     </ul>
                 </div>
