@@ -57,7 +57,7 @@ class EcommerceController extends Controller
 
         $data = $volume->getVolume($id);
 
-        $volume->incrementView($id);
+//        $volume->incrementView($id);
 
 //        return response()->json($data);
 

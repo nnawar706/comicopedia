@@ -10,15 +10,15 @@
     $rating = 0;
     $rate = 0;
 
-//    if(count($data['reviews']) !=0)
-//    {
-//        foreach($data['reviews'] as $review)
-//        {
-//            $rating += $review['rating'];
-//        }
-//
-//        $rate = ($rating / ($data['review_count']*5)) * 100;
-//    }
+    if(count($data['reviews']) !=0)
+    {
+        foreach($data['reviews'] as $review)
+        {
+            $rating += $review['rating'];
+        }
+
+        $rate = round($rating / $data['review_count']);
+    }
     @endphp
 
 @include('ecommerce.includes.volume.breadcrumb')

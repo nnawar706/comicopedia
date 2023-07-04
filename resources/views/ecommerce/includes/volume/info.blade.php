@@ -14,43 +14,43 @@
                 <div class="product__details__text">
                     <h3>{{ $data['item']['title'] }}, {{ $data['title'] }}</h3>
                     <div class="product__details__rating">
-{{--                        @if($rate === 1)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 2)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 3)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 4)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @elseif($rate === 5)--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#FFC300"></i>--}}
-{{--                        @else--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                            <i class="fas fa-star" style="color:#D9D9D9"></i>--}}
-{{--                        @endif--}}
+                        @if($rate == 1)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate == 2)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate == 3)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate == 4)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @elseif($rate == 5)
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                            <i class="fas fa-star" style="color:#FFC300"></i>
+                        @else
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                        @endif
                     </div>
                     @if(!is_null($data['discount']))
                         <div class="product__details__price"><s style="color: #000">&#2547; {{ $data['price'] }}</s> <span>&#2547; {{ $data['price'] - $discount }}</span></div>
