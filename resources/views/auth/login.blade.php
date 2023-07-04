@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-validation-errors class="mb-4" />
-    
+
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -42,6 +42,13 @@
                 <x-button class="ml-4">
                     {{ __('Log in') }}
                 </x-button>
+            </div>
+            <br>
+            <hr>
+            <div class="flex items-center justify-center mt-4">
+                @if (Route::has('register'))
+                    Don't have an account yet?<a href="{{ route('register') }}" class="ml-4 underline text-sm text-gray-700 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register Now</a>
+                @endif
             </div>
         </form>
     </x-authentication-card>

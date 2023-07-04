@@ -22,6 +22,18 @@
                 @else
                     <a href="{{ route('login') }}"><i class="fa fa-user"></i>Log in</a>
 
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
+        @if (Route::has('register'))
+            <div class="header__top__right__auth">
+                @auth
+                @else
+                    <a href="{{ route('register') }}"><i class="fa fa-user"></i>Register</a>
+
                     {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                     @endif --}}
