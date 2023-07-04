@@ -64,7 +64,8 @@ class EcommerceController extends Controller
     {
         $volume = new VolumeService(new Volume());
         $data = array(
-            'info' => $volume->getVolume($id)
+            'info'    => $volume->getVolume($id),
+            'related' => $volume->getRelatedVolumes($id)
         );
         $volume->incrementView($id);
 

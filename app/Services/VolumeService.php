@@ -114,4 +114,8 @@ class VolumeService
         $volume->review_count += 1;
         $volume->save();
     }
+
+    public function getRelatedVolumes($id)
+    {
+    }
 }
