@@ -1,7 +1,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
+        <a href="{{ route('welcome') }}"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -31,7 +31,7 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
+            <li class="active"><a href="{{ route('welcome') }}">Home</a></li>
             <li><a href="./shop-grid.html">Shop</a></li>
             <li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
@@ -108,13 +108,13 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="#"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
+                    <a href="{{ route('welcome') }}"><img src="{{ asset('uploads/general/1687025780980.png') }}" alt="site-logo" height="60" width="80"></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
+                        <li class="active"><a href="{{ route('welcome') }}">Home</a></li>
                         <li><a href="./shop-grid.html">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
