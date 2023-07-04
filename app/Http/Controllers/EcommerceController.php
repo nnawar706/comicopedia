@@ -50,7 +50,6 @@ class EcommerceController extends Controller
 
         // return response()->json(['data' => $data]);
         return view('ecommerce.pages.welcome')->with('data', $data);
-//        return view('dashboard');
     }
 
     public function getItem($id)
@@ -63,14 +62,23 @@ class EcommerceController extends Controller
     public function getVolume($id)
     {
         $volume = new VolumeService(new Volume());
+
+        $info = Cache::remember('volumeInfo', 60*60*24, function () use ($volume, $id) {
+            return $volume->getVolume($id);
+        });
+
+        $related_volumes = Cache::remember('relatedVolumes', 60 * 60 * 24, function () use ($volume, $id) {
+            return $volume->getRelatedVolumes($id);
+        });
+
         $data = array(
-            'info'    => $volume->getVolume($id),
-            'related' => $volume->getRelatedVolumes($id)
+            'info'    => $info,
+            'related' => $related_volumes
         );
+
         $volume->incrementView($id);
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
-//        return response($data);
     }
 
     public function addCart()

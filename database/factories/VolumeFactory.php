@@ -20,14 +20,14 @@ class VolumeFactory extends Factory
     public function definition()
     {
         return [
-            'item_id' => 1,
+            'item_id' => 7,
             'catalogue_id' => 1,
             'product_unique_id' => 'VOL-' . date('Hsi') . '-' . rand(10000,99999),
             'title' => $this->faker->name(),
             'isbn' => $this->faker->isbn10(),
             'details' => $this->faker->sentence(200),
             'release_date' => date('Y-m-d'),
-            'image_path' => '/uploads/volumes/1687433043989.jpg',
+            'image_path' => '/uploads/volumes/1687442380684.jpg',
             'quantity' => $this->faker->randomNumber(2),
             'price' => $this->faker->randomNumber(4),
             'cost' => 1245,

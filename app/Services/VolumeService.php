@@ -117,5 +117,16 @@ class VolumeService
 
     public function getRelatedVolumes($id)
     {
+        $genre = $this->volume->newQuery()->find($id)->item->genre->id;
+
+        return $this->volume->newQuery()
+            ->leftJoin('items','volumes.item_id','=','items.id')
+            ->select('volumes.id as volume_id','volumes.title as volume','volumes.price',
+            'volumes.discount','volumes.discount_active_till','volumes.image_path','items.title as item')
+            ->where('items.genre_id',$genre)
+            ->where('volumes.status',1)
+            ->where('volumes.catalogue_id','!=',2)
+            ->orderBy('volumes.sell_count','desc')
+            ->limit(8)->get();
     }
 }
