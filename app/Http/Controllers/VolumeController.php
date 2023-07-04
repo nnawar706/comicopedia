@@ -52,7 +52,6 @@ class VolumeController extends Controller
     {
         $data = $this->service1->getVolume($id);
 
-        // return response()->json($data);
         return view('admin.pages.volume-read')->with('data', $data);
     }
 

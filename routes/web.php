@@ -22,7 +22,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('ecommerce.pages.welcome');
+        return redirect()->route('welcome');
     })->name('dashboard');
 });
 

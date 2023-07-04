@@ -21,7 +21,7 @@
                 <div class="product__details__tab__desc">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="mb-4">Customer Reviews</h6>
+                            <h6 class="mb-4">Latest Customer Reviews</h6>
                             <hr>
                             @for($i=count($data['reviews'])-1;$i>=0;$i--)
                             <div class="media mb-4">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-md-6">
                             <h6 class="mb-4">Leave a review</h6>
-                            <form method="POST" action="{{ route('rate-volume', ['id' => $data['id']]) }}">
+                            <form method="post" action="{{ route('rate-volume', ['id' => $data['id']]) }}">
                                 @csrf
                                 <div class="d-flex my-3">
                                     <div class="mb-0 mr-2">

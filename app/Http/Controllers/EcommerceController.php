@@ -44,8 +44,8 @@ class EcommerceController extends Controller
         );
 
         // return response()->json(['data' => $data]);
-//        return view('ecommerce.pages.welcome')->with('data', $data);
-        return view('welcome');
+        return view('ecommerce.pages.welcome')->with('data', $data);
+//        return view('dashboard');
     }
 
     public function getItem($id)
@@ -69,7 +69,7 @@ class EcommerceController extends Controller
         (new VolumeService(new Volume()))->incrementReview($id);
         (new ReviewService(new Review()))->store($request, $id);
 
-        return redirect()->route('rate-volume', ['id' => $id])->with('message', 'Your review has been stored successfully.');
+        return redirect()->route('volume-info', ['id' => $id])->with('message', 'Your review has been stored successfully.');
     }
 
     public function subscribe(SubscriberRequest $request)

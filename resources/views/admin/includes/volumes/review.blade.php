@@ -17,7 +17,7 @@
                         <span style="font-size:12px;color:#BFBFBF">Anonymous</span>
                     @else
                         <img class="img-profile rounded-circle"
-                        src="{{ $review['user']['profile_photo_url'] }}" height="45" width="45" alt="reviewer-image">
+                        src="{{ $review['user']['profile_photo_path'] ?? $review['user']['profile_photo_url'] }}" height="45" width="45" alt="reviewer-image">
                         <br>
                         <span style="font-size:12px;color:#BFBFBF">{{ $review->user->name }}</span>
                     @endif
