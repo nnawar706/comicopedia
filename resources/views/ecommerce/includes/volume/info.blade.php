@@ -6,7 +6,7 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="{{ asset($data['info']['image_path']) }}" alt="manga-image" height="700">
+                            src="{{ asset($data['info']['image_path']) }}" alt="manga-image" height="700">
                     </div>
                 </div>
             </div>

@@ -63,17 +63,22 @@ class EcommerceController extends Controller
     {
         $volume = new VolumeService(new Volume());
 
-        $info = Cache::remember('volumeInfo', 60*60*24, function () use ($volume, $id) {
-            return $volume->getVolume($id);
-        });
+        // $info = Cache::remember('volumeInfo', 60*60*24, function () use ($volume, $id) {
+        //     return $volume->getVolume($id);
+        // });
 
-        $related_volumes = Cache::remember('relatedVolumes', 60 * 60 * 24, function () use ($volume, $id) {
-            return $volume->getRelatedVolumes($id);
-        });
+        // $related_volumes = Cache::remember('relatedVolumes', 60 * 60 * 24, function () use ($volume, $id) {
+        //     return $volume->getRelatedVolumes($id);
+        // });
+
+        // $data = array(
+        //     'info'    => $info,
+        //     'related' => $related_volumes
+        // );
 
         $data = array(
-            'info'    => $info,
-            'related' => $related_volumes
+            'info'    => $volume->getVolume($id),
+            'related' => $volume->getRelatedVolumes($id)
         );
 
         $volume->incrementView($id);
