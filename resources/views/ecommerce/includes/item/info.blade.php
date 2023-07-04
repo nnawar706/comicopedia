@@ -57,8 +57,15 @@
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                             @endif
+
+                            <button class="primary-btn sm" style="float: right">like</button>
                         </div>
-                        <p>{{ $data['detail'] }}</p>
+                        <p>{{ $data['detail'] }}<br>
+                            <b>
+                                <span><i class="fa fa-thumbs-up"></i> {{ $data['like_count'] }}</span>
+                                <span style="margin-left: 30px"><i class="fa fa-thumbs-down"></i> {{ $data['dislike_count'] }}</span>
+                            </b>
+                        </p>
                         <ul>
                             <li><b>Item ID</b> <span>{{ $data['item_unique_id'] }}</span></li>
                             <li><b>Author</b> <span>{{ $data['author'] }}</span></li>
