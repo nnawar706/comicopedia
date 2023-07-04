@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SubscriberRequest;
+use App\Models\Review;
 use App\Models\Volume;
+use App\Services\ReviewService;
 use App\Services\VolumeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -54,14 +57,18 @@ class EcommerceController extends Controller
     public function getVolume($id)
     {
         $volume = new VolumeService(new Volume());
-
         $data = $volume->getVolume($id);
-
-//        $volume->incrementView($id);
-
-//        return response()->json($data);
+        $volume->incrementView($id);
 
         return view('ecommerce.pages.volume-read')->with('data',$data);
+    }
+
+    public function rateVolume(ReviewRequest $request, $id)
+    {
+        (new VolumeService(new Volume()))->incrementReview($id);
+        (new ReviewService(new Review()))->store($request, $id);
+
+        return redirect()->route('rate-volume', ['id' => $id])->with('message', 'Your review has been stored successfully.');
     }
 
     public function subscribe(SubscriberRequest $request)

@@ -33,6 +33,7 @@ Route::controller(EcommerceController::class)->group(function () {
     Route::get('volumes/{id}', 'getVolume')->name('volume-info');
 
     Route::post('subscribe', 'subscribe')->name('subscribe');
+    Route::post('review/volume/{id}', 'rateVolume')->name('rate-volume');
 });
 
 Route::group(['prefix' => 'admin'], function () {

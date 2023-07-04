@@ -23,51 +23,89 @@
                         <div class="col-md-6">
                             <h6 class="mb-4">Customer Reviews</h6>
                             <hr>
-                            @foreach($data['reviews'] as $review)
+                            @for($i=count($data['reviews'])-1;$i>=0;$i--)
                             <div class="media mb-4">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <img src="{{ $data['reviews'][$i]->user==null ? 'https://ui-avatars.com/api/?name=A&color=7F9CF5&background=EBF4FF' : $data['reviews'][$i]->user->profile_photo_url }}" alt="reviewer-image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                                 <div class="media-body">
-                                    <h6>{{ $review->user==null ? 'Anonymous' : $review->user->name }}<small> - <i>01 Jan 2045</i></small></h6>
-                                    <div class="text-primary mb-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
+                                    <h6 style="margin-bottom: 2px">{{ $data['reviews'][$i]->user==null ? 'Anonymous' : $data['reviews'][$i]->user->name }}<small> - <i>{{ \Carbon\Carbon::parse($data['reviews'][$i]->created_at)->format('F d, Y') }}</i></small></h6>
+                                    <div style="margin-bottom: 4px">
+                                        @if($data['reviews'][$i]->rating == 1)
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                        @elseif($data['reviews'][$i]->rating == 2)
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                        @elseif($data['reviews'][$i]->rating == 3)
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                        @elseif($data['reviews'][$i]->rating == 4)
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                        @elseif($data['reviews'][$i]->rating == 5)
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                            <i class="fas fa-star" style="color:#FFC300"></i>
+                                        @else
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                            <i class="fas fa-star" style="color:#D9D9D9"></i>
+                                        @endif
                                     </div>
-                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                    <p>{{ $data['reviews'][$i]['comment'] }}</p>
                                 </div>
                             </div>
-                            @endforeach
+                            @endfor
                         </div>
                         <div class="col-md-6">
                             <h6 class="mb-4">Leave a review</h6>
-                            <small>Your email address will not be published. Required fields are marked *</small>
-                            <div class="d-flex my-3">
-                                <p class="mb-0 mr-2">Your Rating * :</p>
-                                <div class="text-primary">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+                            <form method="POST" action="{{ route('rate-volume', ['id' => $data['id']]) }}">
+                                @csrf
+                                <div class="d-flex my-3">
+                                    <div class="mb-0 mr-2">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="rate-1" value="5" name="rating">
+                                            <label class="custom-control-label" for="rate-1">Excellent</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="rate-2" value="4" name="rating">
+                                            <label class="custom-control-label" for="rate-2">Very Good</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="rate-3" value="3" name="rating">
+                                            <label class="custom-control-label" for="rate-3">Good</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="rate-4" value="2" name="rating">
+                                            <label class="custom-control-label" for="rate-4">Bad</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="rate-5" value="1" name="rating">
+                                            <label class="custom-control-label" for="rate-5">Very Bad</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <form>
                                 <div class="form-group">
-                                    <label for="message">Your Review *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Your Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Your Email *</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <label for="message">Comment</label>
+                                    <textarea id="message" cols="30" rows="5" name="comment" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group mb-0">
-                                    <input type="submit" value="Leave Your Review" class="btn primary-btn px-3">
+                                    <button type="submit" class="btn primary-btn px-3">Leave Your Review</button>
                                 </div>
                             </form>
                         </div>
