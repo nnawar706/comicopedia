@@ -98,4 +98,25 @@ class CartService
         }
         return $amount;
     }
+
+    public function getCart()
+    {
+        return $this->cart->newQuery()
+            ->when(auth()->check()==true, function($query) {
+                return $query->where('user_id', auth()->user()->id);
+            })
+            ->when(auth()->check()==false, function($query) {
+                return $query->where('session_id', Session::get('customer_unique_id'));
+            })
+            ->leftJoin('volumes','carts.volume_id','=','volumes.id')
+            ->leftJoin('items','volumes.item_id','=','items.id')
+            ->leftJoin('volume_attributes','carts.attribute_id','=','volume_attributes.id')
+            ->where('is_ordered','=',0)
+            ->select('carts.quantity','volumes.price','volumes.discount','volume_attributes.id as attribute_id',
+                'volume_attributes.name as attribute_name','volumes.title as volume','items.title as item',
+                'volumes.image_path as volume_image','volumes.product_unique_id')
+            ->orderBy('carts.id','desc')
+            ->get();
+
+    }
 }

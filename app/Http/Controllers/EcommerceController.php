@@ -111,6 +111,13 @@ class EcommerceController extends Controller
         return redirect()->route('volume-info', ['id' => $request->volume_id])->with('message', $msg);
     }
 
+    public function cartView()
+    {
+        $data = (new CartService(new Cart()))->getCart();
+        return response()->json($data);
+//        return view('ecommerce.pages.cart')->with('data', $data);
+    }
+
     public function rateVolume(ReviewRequest $request, $id)
     {
         (new VolumeService(new Volume()))->incrementReview($id);

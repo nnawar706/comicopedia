@@ -6,9 +6,9 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>8</span></a></li>
+            <li><a href="{{ route('cart-view') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \Illuminate\Support\Facades\Session::get('cart_quantity') }}</span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span>&#2547;150.00</span></div>
+        <div class="header__cart__price">item: <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
@@ -147,7 +147,7 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ \Illuminate\Support\Facades\Session::get('cart_quantity') }}</span></a></li>
+                        <li><a href="{{ route('cart-view') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \Illuminate\Support\Facades\Session::get('cart_quantity') }}</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></div>
                 </div>
