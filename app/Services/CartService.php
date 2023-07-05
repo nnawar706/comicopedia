@@ -17,7 +17,7 @@ class CartService
         $this->cart = $cart;
     }
 
-    public function storeCart(Request $request)
+    public function storeCart(Request $request): bool
     {
         DB::beginTransaction();
 
@@ -35,7 +35,11 @@ class CartService
                     ->where('attribute_id',$request->attribute_id)->first();
             }
             $this->createUpdateCart($request, $cart);
+
             DB::commit();
+
+            updateSession('cart_quantity', 1);
+
             return true;
         }
         catch (QueryException $ex)
@@ -61,5 +65,10 @@ class CartService
             $cart->save();
         }
 
+    }
+
+    public function getItemValue(): int
+    {
+        return $this->cart->newQuery()->where('user_id', auth()->user()->id)->count();
     }
 }

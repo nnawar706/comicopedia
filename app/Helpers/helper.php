@@ -3,6 +3,7 @@
 use App\Models\Admin;
 use App\Notifications\AdminNotification;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 function saveFile($file, $path, $model, $field): void
 {
@@ -31,4 +32,13 @@ function notifyAdmins($role, $message, $model, $id, $type): void
     {
         $admin->notify(new AdminNotification($message, $model, $id, $type));
     }
+}
+
+function updateSession($key, $value): void
+{
+    $prev_value = Session::get($key);
+
+    $new_value = $prev_value + $value;
+
+    Session::put($key, $new_value);
 }

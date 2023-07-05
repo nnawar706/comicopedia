@@ -32,6 +32,10 @@ class EcommerceController extends Controller
         {
             Session::put('customer_unique_id', uniqid('CUS-'));
         }
+        if(!Session::has('cart_quantity'))
+        {
+            auth()->check() ? Session::put('cart_quantity', (new CartService(new Cart()))->getItemValue()) : Session::put('cart_quantity', 0);
+        }
         // $banners = Cache::remember('bannerList', 60*60*24, function() {
         //     return (new BannerSettingService)->getAll();
         // });
