@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        {{-- <h2>{{ $data['title'] }}</h2> --}}
+                        <h2>{{ $data['genre']['name'] }}</h2>
                         <div class="breadcrumb__option">
                             <a href="{{ route('welcome') }}">Home</a>
-                            {{-- <span>{{ $data['genre']['name'] }}</span> --}}
+                            <span>{{ $data['genre']['name'] }}</span>
                         </div>
                     </div>
                 </div>

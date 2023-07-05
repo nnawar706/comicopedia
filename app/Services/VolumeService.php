@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Item;
 use App\Models\Volume;
+use App\Models\Category;
 use App\Models\Catalogue;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -71,6 +72,7 @@ class VolumeService
     public function getAllData(Request $request, $id)
     {
         $data = array(
+            'genre'      => (new CategoryService(new Category()))->get($id),
             'catalogues' => (new CatalogueService(new Catalogue()))->getCatalogues(),
             'items'      => (new ItemService(new Item))->getItemsByGenre($id),
             'latest'     => $this->volume->newQuery()->whereHas('item', function($q) use($id) {

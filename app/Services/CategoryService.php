@@ -36,6 +36,11 @@ class CategoryService
         $cat->save();
     }
 
+    public function get($id)
+    {
+        return $this->category->newQuery()->find($id);
+    }
+
     public function reorderCategories($categories)
     {
         DB::beginTransaction();
