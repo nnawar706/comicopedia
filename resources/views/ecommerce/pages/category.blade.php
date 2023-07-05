@@ -15,6 +15,9 @@
                     @include('ecommerce.includes.category.latest')
                 </div>
             </div>
+            <div class="col-lg-9 col-md-7">
+                @include('ecommerce.includes.category.offers')
+            </div>
         </div>
     </div>
 </section>

@@ -73,8 +73,11 @@ class VolumeService
     {
         $data = array(
             'genre'      => (new CategoryService(new Category()))->get($id),
+
             'catalogues' => (new CatalogueService(new Catalogue()))->getCatalogues(),
+
             'items'      => (new ItemService(new Item))->getItemsByGenre($id),
+
             'latest'     => $this->volume->newQuery()->whereHas('item', function($q) use($id) {
                                 $q->where('genre_id', $id);
                             })
@@ -82,6 +85,14 @@ class VolumeService
                                 $q->select('id','title');
                             }])->where('catalogue_id', 1)->where('status',1)
                             ->select('id','item_id','title','price','image_path')->orderBy('sell_count','desc')->get(),
+
+            'offers'     => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
+                                $q->where('genre_id', $id);
+                            })
+                            ->with(['item' => function ($q) {
+                                $q->select('id', 'title');
+                            }])->where('catalogue_id', 5)->where('status', 1)
+                            ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
         );
 
         return $data;
