@@ -28,26 +28,32 @@ class CartRequest extends FormRequest
     {
         $attribute_id = $this->input('attribute_id');
 
+        $volume_id = $this->input('volume_id');
+
         return [
             'volume_id'    => 'required|exists:volumes,id',
             'attribute_id' => 'required|exists:volume_attributes,id',
             'quantity'     => ['required','min:1',
-                                    function($attr, $val, $fail) use ($attribute_id) {
-                                        $attribute = VolumeAttribute::findOrFail($attribute_id);
+                                    function($attr, $val, $fail) use ($volume_id, $attribute_id)
+                                    {
+                                        $attribute = VolumeAttribute::find($attribute_id);
 
-                                        if($attribute->volume_id != request()->input('volume_id'))
+                                        if(is_null($attribute))
                                         {
                                             $fail('Selected type is invalid.');
                                         }
 
-                                        if($attribute->quantity < $val)
+                                        else if($attribute->volume_id != $volume_id)
                                         {
-                                            if($attribute->quantity == 1){
-                                                $fail('Only ' . $attribute->quantity . ' copy of this volume is available.');
-                                            } else {
-                                                $fail('Only ' . $attribute->quantity . ' copies of this volume is available.');
-                                            }
+                                            $fail('Selected type is invalid.');
+                                        }
 
+                                        else if($attribute->quantity < $val)
+                                        {
+                                            $message = $attribute->quantity == 1
+                                                ? 'Only 1 copy of this volume is available.'
+                                                : 'Only ' . $attribute->quantity . ' copies of this volume are available.';
+                                            $fail($message);
                                         }
                                     }
                                 ],

@@ -13,7 +13,7 @@ class Cart extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $fillable = ['session_id','user_id','volume_id','quantity','is_ordered'];
+    protected $fillable = ['session_id','user_id','volume_id','attribute_id','quantity','is_ordered'];
 
     public function customer()
     {
