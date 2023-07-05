@@ -63,6 +63,15 @@ class EcommerceController extends Controller
         return view('ecommerce.pages.welcome')->with('data', $data);
     }
 
+    public function getGenre(Request $request, $id)
+    {
+        $data = (new VolumeService(new Volume()))->getAllData($request, $id);
+
+        // return view('ecommerce.pages.category')->with('data', $data);
+
+        return response()->json(['data' => $data]);
+    }
+
     public function getItem($id)
     {
         $data = (new ItemService(new Item()))->getItem($id);

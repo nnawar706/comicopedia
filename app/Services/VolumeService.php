@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Item;
 use App\Models\Volume;
+use App\Models\Catalogue;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,6 +66,16 @@ class VolumeService
             $q->select('id','name');
         }])
         ->findOrFail($id);
+    }
+
+    public function getAllData(Request $request, $id)
+    {
+        $data = array(
+            'catalogues' => (new CatalogueService(new Catalogue()))->getCatalogues(),
+            'items'      => (new ItemService(new Item))->getItemsByGenre($id),
+        );
+
+        return $data;
     }
 
     public function volumeList($item_id)

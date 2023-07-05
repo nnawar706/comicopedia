@@ -26,7 +26,13 @@ class ItemService
     {
         return $this->item->newQuery()
         ->select('id','item_unique_id','title','image_path','volumes')
-        ->orderBy('like_count', 'desc')->limit(8)->get();
+        ->orderBy('like_count', 'desc')->limit(15)->get();
+    }
+
+    public function getItemsByGenre($genre_id)
+    {
+        return $this->item->newQuery()->where('genre_id', $genre_id)
+        ->orderBy('like_count','desc')->select('id','title')->take(15)->get();
     }
 
     public function getItem($id)
