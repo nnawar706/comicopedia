@@ -24,4 +24,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Volume::class, 'volume_id');
     }
+
+    public function attribute()
+    {
+        return $this->belongsTo(VolumeAttribute::class, 'attribute_id');
+    }
 }

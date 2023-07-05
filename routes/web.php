@@ -37,6 +37,9 @@ Route::controller(EcommerceController::class)->group(function () {
 
     Route::get('cart', 'cartView')->name('cart-view');
     Route::post('add-to-cart', 'addCart')->name('add-cart');
+    Route::put('cart/update/{id}', 'updateCart')->name('update-cart');
+    Route::get('cart/delete/all', 'deleteCartData')->name('delete-cart-all');
+    Route::get('cart-delete/{id}', 'deleteCart')->name('delete-cart');
     Route::post('add-to-wishlist', 'addWish')->name('add-wishlist');
 });
 

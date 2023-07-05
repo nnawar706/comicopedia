@@ -33,7 +33,7 @@ class CartRequest extends FormRequest
         return [
             'volume_id'    => 'required|exists:volumes,id',
             'attribute_id' => 'required|exists:volume_attributes,id',
-            'quantity'     => ['required','min:1',
+            'quantity'     => ['required','gte:1',
                                     function($attr, $val, $fail) use ($volume_id, $attribute_id)
                                     {
                                         $attribute = VolumeAttribute::find($attribute_id);

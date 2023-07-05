@@ -114,8 +114,22 @@ class EcommerceController extends Controller
     public function cartView()
     {
         $data = (new CartService(new Cart()))->getCart();
-        return response()->json($data);
-//        return view('ecommerce.pages.cart')->with('data', $data);
+        // return response()->json($data);
+        return view('ecommerce.pages.cart')->with('data', $data);
+    }
+
+    public function deleteCart($id)
+    {
+        (new CartService(new Cart()))->deleteCart($id);
+
+        return redirect()->back()->with('message', 'A cart item has been deleted successfully.');
+    }
+
+    public function deleteCartData()
+    {
+        (new CartService(new Cart()))->deleteCartAll();
+
+        return redirect()->back()->with('message','Your cart has been refreshed.');
     }
 
     public function rateVolume(ReviewRequest $request, $id)

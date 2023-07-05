@@ -34,11 +34,12 @@ class CartService
                     ->where('volume_id',$request->volume_id)
                     ->where('attribute_id',$request->attribute_id)->first();
             }
-            $this->createUpdateCart($request, $cart);
+
+            $cart = $this->createUpdateCart($request, $cart);
+
+            updateSession('cart_price', calculatePrice($cart));
 
             DB::commit();
-
-            updateSession('cart_quantity', 1);
 
             return true;
         }
@@ -49,23 +50,29 @@ class CartService
         }
     }
 
-    private function createUpdateCart($request, $cart = null): void
+    private function createUpdateCart($request, $cart = null)
     {
         if(is_null($cart))
         {
-            $this->cart->newQuery()->create([
+            $cart = $this->cart->newQuery()->create([
                 'volume_id'    => $request->volume_id,
                 'attribute_id' => $request->attribute_id,
                 'quantity'     => $request->quantity,
                 'session_id'   => Session::get('customer_unique_id'),
                 'user_id'      => auth()->check() ? auth()->user()->id : null,
             ]);
+
+            updateSession('cart_quantity', 1);
+
         } else {
             $cart->quantity += $request->quantity;
             $cart->save();
         }
 
+        return $cart;
     }
+
+
 
     public function getItemValue(): int
     {
@@ -117,6 +124,30 @@ class CartService
                 'volumes.image_path as volume_image','volumes.product_unique_id')
             ->orderBy('carts.id','desc')
             ->get();
+    }
 
+    public function deleteCart($id)
+    {
+        $cart = $this->cart->newQuery()->findOrFail($id);
+
+        updateSession('cart_quantity', -1);
+
+        updateSession('cart_price', -(calculatePrice($cart)));
+
+        $cart->delete();
+    }
+
+    public function deleteCartAll()
+    {
+        if(auth()->check())
+        {
+            $this->cart->newQuery()->where('user_id', auth()->user()->id)->where('is_ordered',0)->delete();
+        }
+        else {
+            $this->cart->newQuery()->where('session_id', Session::get('customer_unique_id'))->delete();
+        }
+
+        Session::put('cart_quantity',0);
+        Session::put('cart_price', 0);
     }
 }

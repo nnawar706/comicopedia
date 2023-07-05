@@ -19,4 +19,9 @@ class VolumeAttribute extends Model
     {
         return $this->belongsTo(Volume::class, 'volume_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'attribute_id');
+    }
 }

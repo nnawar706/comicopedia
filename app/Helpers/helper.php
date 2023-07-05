@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\Cart;
 use App\Notifications\AdminNotification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -41,4 +42,18 @@ function updateSession($key, $value): void
     $new_value = $prev_value + $value;
 
     Session::put($key, $new_value);
+}
+
+function calculatePrice(Cart $cart)
+{
+    $attribute_name = $cart->attribute->name;
+
+    $price = $cart->volume->discount ? (($cart->volume->price - (($cart->volume->price * $cart->volume->discount) / 100)) * $cart->quantity) : ($cart->volume->price * $cart->quantity);
+
+    if($attribute_name == 'Hardcover')
+    {
+        $price += (150 * $cart->quantity);
+    }
+
+    return $price;
 }
