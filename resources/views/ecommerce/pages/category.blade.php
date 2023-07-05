@@ -11,6 +11,8 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     @include('ecommerce.includes.category.items')
+                    @include('ecommerce.includes.category.types')
+                    @include('ecommerce.includes.category.latest')
                 </div>
             </div>
         </div>
