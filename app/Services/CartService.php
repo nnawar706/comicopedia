@@ -57,7 +57,7 @@ class CartService
                 'volume_id'    => $request->volume_id,
                 'attribute_id' => $request->attribute_id,
                 'quantity'     => $request->quantity,
-                'session_id'   => auth()->check() ? null : Session::get('customer_unique_id'),
+                'session_id'   => Session::get('customer_unique_id'),
                 'user_id'      => auth()->check() ? auth()->user()->id : null,
             ]);
         } else {
@@ -69,6 +69,33 @@ class CartService
 
     public function getItemValue(): int
     {
-        return $this->cart->newQuery()->where('user_id', auth()->user()->id)->count();
+        return $this->cart->newQuery()->where('user_id', auth()->user()->id)->where('is_ordered','=',0)->count();
+    }
+
+    public function getAuthCartAmount()
+    {
+        $data = $this->cart->newQuery()->leftJoin('volumes','carts.volume_id','=','volumes.id')
+            ->leftJoin('volume_attributes','carts.attribute_id','=','volume_attributes.id')
+            ->where('user_id', auth()->user()->id)
+            ->where('is_ordered','=',0)
+            ->select('carts.quantity','volumes.price','volumes.discount','volume_attributes.name')
+            ->get();
+
+        if(is_null($data))
+        {
+            return 0;
+        }
+
+        $amount = 0;
+
+        foreach ($data as $value)
+        {
+            $amount = $value['discount'] ? ($amount + ($value['price'] - (($value['price']*$value['discount'])/100))*$value['quantity']) : ($amount + $value['price'] * $value['quantity']);
+            if($value['name'] == 'Hardcover')
+            {
+                $amount += (150*$value['quantity']);
+            }
+        }
+        return $amount;
     }
 }

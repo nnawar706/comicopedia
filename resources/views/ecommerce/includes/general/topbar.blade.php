@@ -149,7 +149,7 @@
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                         <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ \Illuminate\Support\Facades\Session::get('cart_quantity') }}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>&#2547;150.00</span></div>
+                    <div class="header__cart__price">item: <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></div>
                 </div>
             </div>
         </div>

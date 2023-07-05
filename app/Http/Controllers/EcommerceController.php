@@ -36,6 +36,10 @@ class EcommerceController extends Controller
         {
             auth()->check() ? Session::put('cart_quantity', (new CartService(new Cart()))->getItemValue()) : Session::put('cart_quantity', 0);
         }
+        if(!Session::has('cart_price'))
+        {
+            auth()->check() ? Session::put('cart_price', (new CartService(new Cart()))->getAuthCartAmount()) : Session::put('cart_price', 0);
+        }
         // $banners = Cache::remember('bannerList', 60*60*24, function() {
         //     return (new BannerSettingService)->getAll();
         // });
