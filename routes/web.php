@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GeneralSettingController;
@@ -39,14 +41,19 @@ Route::controller(EcommerceController::class)->group(function () {
 
     Route::post('subscribe', 'subscribe')->name('subscribe');
     Route::post('review/volume/{id}', 'rateVolume')->name('rate-volume');
+});
 
+Route::controller(CartController::class)->group(function() {
     Route::get('cart', 'cartView')->name('cart-view');
     Route::post('add-to-cart', 'addCart')->name('add-cart');
     Route::get('add-cart/{volume_id}', 'addToCart')->name('add-to-cart');
     Route::put('cart/update/{id}', 'updateCart')->name('update-cart');
     Route::get('cart/delete/all', 'deleteCartData')->name('delete-cart-all');
     Route::get('cart-delete/{id}', 'deleteCart')->name('delete-cart');
-    Route::post('add-to-wishlist', 'addWish')->name('add-wishlist');
+});
+
+Route::controller(WishlistController::class)->group(function () {
+    Route::get('add-to-wishlist/{volume_id}', 'addToWish')->name('add-to-wishlist');
 });
 
 Route::group(['prefix' => 'admin'], function () {
