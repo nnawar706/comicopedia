@@ -92,14 +92,14 @@
                     <div class="row g-2 mb-3">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingInputGrid" name="quantity" required>
-                                <label for="floatingInputGrid">Quantity</label>
+                                <input type="number" class="form-control" id="floatingInputGrid" name="quantity1" required>
+                                <label for="floatingInputGrid">Quantity (Paperback)</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="cost" required>
-                                <label for="floatingInputGrid">Cost Per Item</label>
+                                <input type="text" class="form-control" id="floatingInputGrid" name="quantity2">
+                                <label for="floatingInputGrid">Quantity (Hardcover)</label>
                             </div>
                         </div>
                     </div>
@@ -114,13 +114,13 @@
                     <div class="row g-2 mb-3" id="discountDiv" style="display: none;">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" name="discount_price">
-                                <label for="floatingInputGrid">Discount Price</label>
+                                <input type="text" class="form-control" id="floatingInputGrid" name="discount">
+                                <label for="floatingInputGrid">Discount(%)</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="date" class="datepicker form-control" id="floatingInputGrid" name="discount_valid_till">
+                                <input type="date" class="datepicker form-control" id="floatingInputGrid" name="discount_active_till">
                                 <label for="floatingInputGrid">Discount Valid Till</label>
                             </div>
                         </div>

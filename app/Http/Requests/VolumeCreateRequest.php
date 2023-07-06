@@ -39,32 +39,25 @@ class VolumeCreateRequest extends FormRequest
             'isbn' => 'required|string|unique:volumes,isbn',
             'details' => 'required|string|max:1000',
             'release_date' => 'sometimes',
-            'quantity' => 'required|integer',
+            'quantity1' => 'required|integer',
+            'quantity2' => 'sometimes|integer',
             'price' => 'required|numeric',
-            'discount' => 'sometimes|numeric|lte:100',
-            'discount_valid_till' => 'sometimes',
-            'cost' => 'required|numeric',
+            'discount' => 'sometimes',
+            'discount_active_till' => 'sometimes',
         ];
 
         if($this->input('catalogue_id') == 5)
         {
-            $rules['discount'] = 'required';
-            $rules['discount_valid_till'] = 'required';
+            $rules['discount'] = 'required|lte:100';
+            $rules['discount_active_till'] = 'required';
         }
 
         if($this->input('catalogue_id') == 2)
         {
-            $rules['release_date'] = 'required|after:'.date('Ymd');
+            $rules['release_date'] = 'required|after:'.date('Y-m-d');
         }
 
         return $rules;
-    }
-
-    public function messages()
-    {
-        return [
-            'discount.lte' => 'The discount percentage must not be greater than 100.'
-        ];
     }
 
     protected function failedValidation(Validator $validator)

@@ -6,6 +6,8 @@ use App\Models\Item;
 use App\Models\Volume;
 use App\Models\Category;
 use App\Models\Catalogue;
+use Illuminate\Support\Carbon;
+use App\Models\VolumeAttribute;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,11 +35,10 @@ class VolumeService
                 'isbn'                  => $request->isbn,
                 'details'               => $request->details,
                 'release_date'          => $request->release_date ?? date('Ymd'),
-                'quantity'              => $request->quantity,
-                'cost'                  => $request->cost,
+                'quantity'              => $request->quantity1 + $request->quantity2,
                 'price'                 => $request->price,
                 'discount'              => $request->discount,
-                'discount_active_till'  => $request->discount_active_till
+                'discount_active_till'  => Carbon::parse($request->discount_active_till)->format('Y-m-d')
             ]);
 
             saveFile($request->file('image'), '/uploads/volumes/', $volume, 'image_path');
@@ -54,6 +55,17 @@ class VolumeService
 
             return false;
         }
+    }
+
+    public function getMostViewed()
+    {
+        return array(
+            'data' => $this->volume->newQuery()->with(['item' => function ($q) {
+                            $q->select('id', 'title');
+                        }])->select('id', 'item_id', 'title', 'view_count')
+                        ->orderBy('view_count', 'desc')->limit(5)->get(),
+            'total'=> $this->volume->newQuery()->sum('view_count')
+        );
     }
 
     public function getVolume($id)

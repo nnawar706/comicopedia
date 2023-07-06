@@ -13,13 +13,23 @@ class Volume extends Model
 
     protected $fillable = [
         'item_id','catalogue_id','product_unique_id','title','isbn','details','release_date','quantity',
-        'price','discount','cost','image_path','status','view_count','review_count',
+        'price','discount','image_path','status','view_count','review_count',
         'sell_count'
     ];
 
     protected $hidden = [
         'created_at','updated_at'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($volume) {
+            VolumeAttribute::create(['volume_id'=>$volume->id,'name'=>'Paperback','quantity'=>request()->input('quantity1')]);
+            VolumeAttribute::create(['volume_id' => $volume->id, 'name' => 'Hardcover', 'quantity' => request()->input('quantity2')]);
+        });
+    }
 
     public function attributes()
     {

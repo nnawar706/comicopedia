@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Volume;
 use App\Services\AuthService;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ChangeInfoRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Services\VolumeService;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -32,7 +34,12 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        return view('admin.pages.dashboard');
+        $data = array(
+            'most_viewed' => (new VolumeService(new Volume()))->getMostViewed(),
+        );
+
+        // return response()->json($data);
+        return view('admin.pages.dashboard')->with('data', $data);
     }
 
     public function markRead(): void
