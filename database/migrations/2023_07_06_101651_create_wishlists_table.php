@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
+            $table->string('session_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('volume_id')->constrained('volumes')->onDelete('cascade');
+            $table->foreignId('attribute_id')->constrained('volume_attributes')->onDelete('cascade');
+            $table->tinyInteger('quantity');
+            $table->tinyInteger('is_ordered')->default(0)->comment('0:not ordered, 1:ordered');
             $table->timestamps();
         });
     }

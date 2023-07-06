@@ -24,4 +24,9 @@ class VolumeAttribute extends Model
     {
         return $this->hasMany(Cart::class, 'attribute_id');
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'attribute_id');
+    }
 }

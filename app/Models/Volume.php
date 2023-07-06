@@ -40,4 +40,14 @@ class Volume extends Model
     {
         return $this->hasMany(Review::class, 'volume_id');
     }
+
+    public function carts()
+    {
+        $this->hasMany(Cart::class, 'volume_id');
+    }
+
+    public function wishlists()
+    {
+        $this->hasMany(Wishlist::class, 'volume_id');
+    }
 }

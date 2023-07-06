@@ -6,8 +6,10 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SubscriberRequest;
 use App\Models\Review;
 use App\Models\Volume;
+use App\Models\Wishlist;
 use App\Services\ReviewService;
 use App\Services\VolumeService;
+use App\Services\WishlistService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Catalogue;
@@ -34,6 +36,10 @@ class EcommerceController extends Controller
         if(!Session::has('cart_quantity'))
         {
             auth()->check() ? Session::put('cart_quantity', (new CartService(new Cart()))->getItemValue()) : Session::put('cart_quantity', 0);
+        }
+        if(!Session::has('wish_quantity'))
+        {
+            auth()->check() ? Session::put('wish_quantity', (new WishlistService(new Wishlist()))->getItemValue()) : Session::put('wish_quantity', 0);
         }
         if(!Session::has('cart_price'))
         {

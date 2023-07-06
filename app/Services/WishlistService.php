@@ -79,4 +79,10 @@ class WishlistService
 
         return $wish;
     }
+
+    public function getItemValue(): int
+    {
+        return $this->wish->newQuery()->where('user_id', auth()->user()->id)
+            ->where('is_ordered','=',0)->count();
+    }
 }
