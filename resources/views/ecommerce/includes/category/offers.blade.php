@@ -1,9 +1,11 @@
 <div class="product__discount">
     <div class="section-title product__discount__title">
         <h2>Offers</h2>
+        @if(count($data['offers']) == 0)<p style="text-align:center;margin-top:20px;color:dimgray;font-size:14px">No offers available.</p>@endif
     </div>
     <div class="row">
         <div class="product__discount__slider owl-carousel">
+            @if(count($data['offers']) != 0)
             @foreach($data['offers'] as $value)
                 @php
                 $discount = ($value['discount'] * $value['price'])/100;
@@ -28,6 +30,7 @@
                 </div>
             </div>
             @endforeach
+            @endif
         </div>
     </div>
 </div>
