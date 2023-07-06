@@ -1,4 +1,5 @@
 <div class="row">
+    @if(count($data['catalogue']->items()) != 0)
     @foreach($data['catalogue']->items() as $value)
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="product__item">
@@ -16,6 +17,7 @@
         </div>
     </div>
     @endforeach
+    @endif
     <div class="product__pagination">
         {{$data['catalogue']->links('pagination::bootstrap-5')}}
     </div>
