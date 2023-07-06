@@ -29,9 +29,9 @@ class CartService
 
             $cart = $this->createUpdateCart($request, $cart);
 
-            updateSession('cart_price', calculatePrice($cart));
-
             DB::commit();
+
+            putSession('cart_price', calculatePrice());
 
             return true;
         }
@@ -49,18 +49,9 @@ class CartService
         DB::beginTransaction();
 
         try {
-            if(auth()->check())
-            {
-                $cart = $this->cart->newQuery()->where('user_id',auth()->user()->id)
-                    ->where('volume_id',$volume_id)
-                    ->where('attribute_id',$attribute_id)->first();
-            }
-            else
-            {
-                $cart = $this->cart->newQuery()->where('session_id',Session::get('customer_unique_id'))
-                    ->where('volume_id',$volume_id)
-                    ->where('attribute_id',$attribute_id)->first();
-            }
+            $cart = $this->cart->newQuery()->where('session_id', Session::get('customer_unique_id'))
+            ->where('volume_id', $volume_id)
+            ->where('attribute_id', $attribute_id)->first();
 
             $request = array(
                 'volume_id' => $volume_id,
@@ -68,11 +59,11 @@ class CartService
                 'quantity' => 1
             );
 
-            $cart = $this->createUpdateCart($request, $cart);
-
-            updateSession('cart_price', calculatePrice($cart));
+            $this->createUpdateCart($request, $cart);
 
             DB::commit();
+
+            putSession('cart_price', calculatePrice());
 
             return true;
         }
@@ -101,53 +92,46 @@ class CartService
             $cart->quantity += $request['quantity'];
             $cart->save();
         }
-
-        return $cart;
     }
 
 
 
-    public function getItemValue(): int
-    {
-        return $this->cart->newQuery()->where('user_id', auth()->user()->id)->where('is_ordered','=',0)->count();
-    }
+    // public function getItemValue(): int
+    // {
+    //     return $this->cart->newQuery()->where('user_id', auth()->user()->id)->where('is_ordered','=',0)->count();
+    // }
 
-    public function getAuthCartAmount()
-    {
-        $data = $this->cart->newQuery()->leftJoin('volumes','carts.volume_id','=','volumes.id')
-            ->leftJoin('volume_attributes','carts.attribute_id','=','volume_attributes.id')
-            ->where('user_id', auth()->user()->id)
-            ->where('is_ordered','=',0)
-            ->select('carts.quantity','volumes.price','volumes.discount','volume_attributes.name')
-            ->get();
+    // public function getAuthCartAmount()
+    // {
+    //     $data = $this->cart->newQuery()->leftJoin('volumes','carts.volume_id','=','volumes.id')
+    //         ->leftJoin('volume_attributes','carts.attribute_id','=','volume_attributes.id')
+    //         ->where('user_id', auth()->user()->id)
+    //         ->where('is_ordered','=',0)
+    //         ->select('carts.quantity','volumes.price','volumes.discount','volume_attributes.name')
+    //         ->get();
 
-        if(is_null($data))
-        {
-            return 0;
-        }
+    //     if(is_null($data))
+    //     {
+    //         return 0;
+    //     }
 
-        $amount = 0;
+    //     $amount = 0;
 
-        foreach ($data as $value)
-        {
-            $amount = $value['discount'] ? ($amount + ($value['price'] - (($value['price']*$value['discount'])/100))*$value['quantity']) : ($amount + $value['price'] * $value['quantity']);
-            if($value['name'] == 'Hardcover')
-            {
-                $amount += (150*$value['quantity']);
-            }
-        }
-        return $amount;
-    }
+    //     foreach ($data as $value)
+    //     {
+    //         $amount = $value['discount'] ? ($amount + ($value['price'] - (($value['price']*$value['discount'])/100))*$value['quantity']) : ($amount + $value['price'] * $value['quantity']);
+    //         if($value['name'] == 'Hardcover')
+    //         {
+    //             $amount += (150*$value['quantity']);
+    //         }
+    //     }
+    //     return $amount;
+    // }
 
     public function getCart()
     {
         return $this->cart->newQuery()
-            ->when(auth()->check()==true, function($query) {
-                return $query->where('user_id', auth()->user()->id);
-            })
-            ->when(auth()->check()==false, function($query) {
-                return $query->where('session_id', Session::get('customer_unique_id'));
-            })
+            ->where('session_id', Session::get('customer_unique_id'))
             ->leftJoin('volumes','carts.volume_id','=','volumes.id')
             ->leftJoin('items','volumes.item_id','=','items.id')
             ->leftJoin('volume_attributes','carts.attribute_id','=','volume_attributes.id')

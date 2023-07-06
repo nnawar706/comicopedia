@@ -32,6 +32,7 @@ class UpdateSessionVariables
             Cart::where('session_id', Session::get('customer_unique_id'))->update([
                 'user_id' => $user->id,
             ]);
+            
             $wish_ids = Wishlist::where('session_id', Session::get('customer_unique_id'))->select('id')->get();
 
             foreach ($wish_ids as $id) {

@@ -17,8 +17,8 @@
                         <div class="product__item__pic set-bg" data-setbg="{{ asset($volume['image_path']) }}">
                             <ul class="product__item__pic__hover">
                                 <li><a href="{{ route('volume-info', ['id' => $volume['id']]) }}"><i class="fa fa-info"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="{{ route('add-to-wishlist',['volume_id' => $volume['id']]) }}"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="{{ route('add-to-cart', ['volume_id' => $volume['id']]) }}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <a href="{{ route('volume-info', ['id' => $volume['id']]) }}"><div class="product__item__text">

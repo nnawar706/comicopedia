@@ -44,15 +44,27 @@ function updateSession($key, $value): void
     Session::put($key, $new_value);
 }
 
-function calculatePrice(Cart $cart)
+function putSession($key, $value): void
 {
-    $attribute_name = $cart->attribute->name;
+    Session::put($key, $value);
+}
 
-    $price = $cart->volume->discount ? (($cart->volume->price - (($cart->volume->price * $cart->volume->discount) / 100)) * $cart->quantity) : ($cart->volume->price * $cart->quantity);
+function calculatePrice()
+{
+    $cart_ids = Cart::where('session_id',Session::get('customer_unique_id'))->select('id')->get();
 
-    if($attribute_name == 'Hardcover')
+    $price = 0;
+
+    foreach($cart_ids as $id)
     {
-        $price += (150 * $cart->quantity);
+        $cart = Cart::find($id['id']);
+        $attribute_name = $cart->attribute->name;
+
+        $price += $cart->volume->discount ? (($cart->volume->price - (($cart->volume->price * $cart->volume->discount) / 100)) * $cart->quantity) : ($cart->volume->price * $cart->quantity);
+
+        if ($attribute_name == 'Hardcover') {
+            $price += (150 * $cart->quantity);
+        }
     }
 
     return $price;
