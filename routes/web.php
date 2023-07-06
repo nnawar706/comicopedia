@@ -35,6 +35,7 @@ Route::middleware([
 
 Route::controller(EcommerceController::class)->group(function () {
     Route::get('/', 'getMainPage')->name('welcome');
+    Route::get('checkout', 'checkoutView')->name('checkout');
     Route::get('genres/{id}', 'getGenre')->name('genre-info');
     Route::get('items/{id}', 'getItem')->name('item-info');
     Route::get('volumes/{id}', 'getVolume')->name('volume-info');
@@ -55,6 +56,7 @@ Route::controller(CartController::class)->group(function() {
 Route::controller(WishlistController::class)->group(function () {
     Route::get('wish', 'wishView')->name('wish-view');
     Route::get('add-to-wishlist/{volume_id}', 'addToWish')->name('add-to-wishlist');
+    Route::get('convert-to-order')->name('convert-wishlist');
 });
 
 Route::group(['prefix' => 'admin'], function () {

@@ -83,7 +83,7 @@
                             <li>Subtotal <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></li>
                             <li>Total <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
                 @endif
