@@ -53,6 +53,7 @@ Route::controller(CartController::class)->group(function() {
 });
 
 Route::controller(WishlistController::class)->group(function () {
+    Route::get('wish', 'wishView')->name('wish-view');
     Route::get('add-to-wishlist/{volume_id}', 'addToWish')->name('add-to-wishlist');
 });
 

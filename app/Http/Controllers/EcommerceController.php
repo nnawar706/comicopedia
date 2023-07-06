@@ -113,11 +113,6 @@ class EcommerceController extends Controller
         // return response()->json($data);
     }
 
-    public function addToWish($volume_id)
-    {
-
-    }
-
     public function rateVolume(ReviewRequest $request, $id)
     {
         (new VolumeService(new Volume()))->incrementReview($id);

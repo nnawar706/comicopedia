@@ -14,6 +14,13 @@ class WishlistController extends Controller
         $this->service = $service;
     }
 
+    public function wishView()
+    {
+        $data = $this->service->getWishList();
+
+        return view('ecommerce.pages.wishlist')->with('data',$data);
+    }
+
     public function addToWish($volume_id)
     {
         if($this->service->addWish($volume_id))
