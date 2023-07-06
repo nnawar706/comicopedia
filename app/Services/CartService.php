@@ -97,9 +97,9 @@ class CartService
         if(is_null($cart))
         {
             $cart = $this->cart->newQuery()->create([
-                'volume_id'    => $request->volume_id ?? $request['volume_id'],
-                'attribute_id' => $request->attribute_id ?? $request['attribute_id'],
-                'quantity'     => $request->quantity ?? $request['quantity'],
+                'volume_id'    => $request['volume_id'],
+                'attribute_id' => $request['attribute_id'],
+                'quantity'     => $request['quantity'],
                 'session_id'   => Session::get('customer_unique_id'),
                 'user_id'      => auth()->check() ? auth()->user()->id : null,
             ]);
@@ -107,7 +107,7 @@ class CartService
             updateSession('cart_quantity', 1);
 
         } else {
-            $cart->quantity += $request->quantity;
+            $cart->quantity += $request['quantity'];
             $cart->save();
         }
 
