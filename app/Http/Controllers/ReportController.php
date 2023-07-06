@@ -30,8 +30,6 @@ class ReportController extends Controller
 
     public function cartPDF()
     {
-        set_time_limit(300);
-
         $data = array(
             'cart' => (new CartService(new Cart()))->getCart(),
             'general' => SiteInformation::find(1),
