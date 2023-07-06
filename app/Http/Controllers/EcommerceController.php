@@ -69,7 +69,7 @@ class EcommerceController extends Controller
 
         return view('ecommerce.pages.category')->with('data', $data);
 
-        // return response()->json(['data' => $data]);
+//         return response()->json(['data' => $data]);
     }
 
     public function getItem($id)

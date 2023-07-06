@@ -5,6 +5,9 @@
     <div class="row">
         <div class="product__discount__slider owl-carousel">
             @foreach($data['offers'] as $value)
+                @php
+                $discount = ($value['discount'] * $value['price'])/100;
+                @endphp
             <div class="col-lg-4">
                 <div class="product__discount__item">
                     <div class="product__discount__item__pic set-bg"
@@ -19,7 +22,7 @@
                     <div class="product__discount__item__text">
                         <span>{{ $value['item']['title'] }}</span>
                         <h5><a href="#">{{ $value['title'] }}</a></h5>
-                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                        <div class="product__item__price">&#2547; {{ $value['price'] - $discount }} <span>&#2547; {{ $value['price'] }}</span></div>
                     </div>
                 </div>
             </div>
