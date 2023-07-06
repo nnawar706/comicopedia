@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\VolumeAttribute;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Cart;
@@ -50,14 +51,55 @@ class CartService
         }
     }
 
+    public function storeToCart($volume_id): bool
+    {
+        $attribute_id = VolumeAttribute::where('volume_id',$volume_id)->where('name','Paperback')->first()->id;
+
+        DB::beginTransaction();
+
+        try {
+            if(auth()->check())
+            {
+                $cart = $this->cart->newQuery()->where('user_id',auth()->user()->id)
+                    ->where('volume_id',$volume_id)
+                    ->where('attribute_id',$attribute_id)->first();
+            }
+            else
+            {
+                $cart = $this->cart->newQuery()->where('session_id',Session::get('customer_unique_id'))
+                    ->where('volume_id',$volume_id)
+                    ->where('attribute_id',$attribute_id)->first();
+            }
+
+            $request = array(
+                'volume_id' => $volume_id,
+                'attribute_id' => $attribute_id,
+                'quantity' => 1
+            );
+
+            $cart = $this->createUpdateCart($request, $cart);
+
+            updateSession('cart_price', calculatePrice($cart));
+
+            DB::commit();
+
+            return true;
+        }
+        catch (QueryException $ex)
+        {
+            DB::rollback();
+            return false;
+        }
+    }
+
     private function createUpdateCart($request, $cart = null)
     {
         if(is_null($cart))
         {
             $cart = $this->cart->newQuery()->create([
-                'volume_id'    => $request->volume_id,
-                'attribute_id' => $request->attribute_id,
-                'quantity'     => $request->quantity,
+                'volume_id'    => $request->volume_id ?? $request['volume_id'],
+                'attribute_id' => $request->attribute_id ?? $request['attribute_id'],
+                'quantity'     => $request->quantity ?? $request['quantity'],
                 'session_id'   => Session::get('customer_unique_id'),
                 'user_id'      => auth()->check() ? auth()->user()->id : null,
             ]);

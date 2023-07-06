@@ -6,7 +6,7 @@
                 <ul class="product__item__pic__hover">
                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                     <li><a href="{{ route('volume-info', ['id'=>$value['id']]) }}"><i class="fa fa-info"></i></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="{{ route('add-to-cart', ['volume_id' => $value['id']]) }}"><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
             <div class="product__item__text">

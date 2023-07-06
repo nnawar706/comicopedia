@@ -67,7 +67,6 @@ class EcommerceController extends Controller
     {
         $data = (new VolumeService(new Volume()))->getAllData($request, $id);
 
-//        dd($data);
         return view('ecommerce.pages.category')->with('data', $data);
 
 //         return response()->json(['data' => $data]);
@@ -119,6 +118,19 @@ class EcommerceController extends Controller
         }
 
         return redirect()->route('volume-info', ['id' => $request->volume_id])->with('message', $msg);
+    }
+
+    public function addToCart($volume_id)
+    {
+        if((new CartService(new Cart()))->storeToCart($volume_id))
+        {
+            $msg = 'New volume has been added to cart.';
+        }
+        else {
+            $msg = 'Something went wrong. Please try again.';
+        }
+
+        return redirect()->back()->with('message', $msg);
     }
 
     public function cartView()
