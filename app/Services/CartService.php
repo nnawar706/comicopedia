@@ -23,18 +23,9 @@ class CartService
         DB::beginTransaction();
 
         try {
-            if(auth()->check())
-            {
-                $cart = $this->cart->newQuery()->where('user_id',auth()->user()->id)
-                    ->where('volume_id',$request->volume_id)
-                    ->where('attribute_id',$request->attribute_id)->first();
-            }
-            else
-            {
-                $cart = $this->cart->newQuery()->where('session_id',Session::get('customer_unique_id'))
-                    ->where('volume_id',$request->volume_id)
-                    ->where('attribute_id',$request->attribute_id)->first();
-            }
+            $cart = $this->cart->newQuery()->where('session_id', Session::get('customer_unique_id'))
+            ->where('volume_id', $request->volume_id)
+                ->where('attribute_id', $request->attribute_id)->first();
 
             $cart = $this->createUpdateCart($request, $cart);
 
