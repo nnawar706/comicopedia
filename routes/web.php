@@ -59,6 +59,10 @@ Route::controller(WishlistController::class)->group(function () {
     Route::get('convert-to-order')->name('convert-wishlist');
 });
 
+Route::controller(ReportController::class)->group(function () {
+    Route::get('cart-detail', 'cartPDF')->name('cart-detail-pdf');
+});
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('login', [AuthController::class, 'loginForm'])->name('login-form');

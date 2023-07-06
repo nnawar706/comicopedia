@@ -26,6 +26,7 @@ class GeneralSettingService
     {
         return $this->setting;
     }
+    
     public function updateInfo(Request $request)
     {
         $this->info->name = $request->name ?? $this->info->name;
