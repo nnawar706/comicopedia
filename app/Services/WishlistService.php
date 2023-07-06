@@ -43,9 +43,7 @@ class WishlistService
                 'quantity' => 1
             );
 
-            $wish = $this->createUpdateWish($request, $wish);
-
-            updateSession('wish_price', calculatePrice($wish));
+            $this->createUpdateWish($request, $wish);
 
             DB::commit();
 
@@ -58,7 +56,7 @@ class WishlistService
         }
     }
 
-    private function createUpdateWish(array $request, $wish)
+    private function createUpdateWish($request, $wish)
     {
         if(is_null($wish))
         {
@@ -76,8 +74,6 @@ class WishlistService
             $wish->quantity += $request['quantity'];
             $wish->save();
         }
-
-        return $wish;
     }
 
     public function getItemValue(): int

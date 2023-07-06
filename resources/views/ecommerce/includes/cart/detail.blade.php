@@ -62,8 +62,7 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="{{ route('welcome') }}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="{{ route('delete-cart-all') }}" class="primary-btn cart-btn cart-btn-right">
-                            Refresh Cart</a>
+                        <a href="{{ route('delete-cart-all') }}" class="primary-btn cart-btn cart-btn-right">Download</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
