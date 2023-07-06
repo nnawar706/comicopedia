@@ -67,9 +67,9 @@ class EcommerceController extends Controller
     {
         $data = (new VolumeService(new Volume()))->getAllData($request, $id);
 
-        return view('ecommerce.pages.category')->with('data', $data);
+//        return view('ecommerce.pages.category')->with('data', $data);
 
-//         return response()->json(['data' => $data]);
+         return response()->json(['data' => $data]);
     }
 
     public function getItem($id)

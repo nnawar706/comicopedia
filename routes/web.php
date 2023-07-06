@@ -16,6 +16,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ReviewController;
 
+// conversion rate,avg. order value,order quantity,visitor graph,genre pie chart,revenue graph,
+// transaction history,most liked item,top volumes,top customers who buy
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -37,6 +42,7 @@ Route::controller(EcommerceController::class)->group(function () {
 
     Route::get('cart', 'cartView')->name('cart-view');
     Route::post('add-to-cart', 'addCart')->name('add-cart');
+    Route::get('add-to-cart/{volume_id}', 'addCart')->name('add-to-cart');
     Route::put('cart/update/{id}', 'updateCart')->name('update-cart');
     Route::get('cart/delete/all', 'deleteCartData')->name('delete-cart-all');
     Route::get('cart-delete/{id}', 'deleteCart')->name('delete-cart');

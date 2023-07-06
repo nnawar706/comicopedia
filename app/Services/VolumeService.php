@@ -74,8 +74,6 @@ class VolumeService
         $data = array(
             'genre'      => (new CategoryService(new Category()))->get($id),
 
-            'catalogues' => (new CatalogueService(new Catalogue()))->getCatalogues(),
-
             'items'      => (new ItemService(new Item))->getItemsByGenre($id),
 
             'latest'     => $this->volume->newQuery()->whereHas('item', function($q) use($id) {

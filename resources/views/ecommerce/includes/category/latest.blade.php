@@ -13,7 +13,7 @@
                     </div>
                     <div class="latest-product__item__text">
                         <h6>{{ $value['item']['title'] }}, {{ $value['title']}}</h6>
-                        <span>&#2547; {{ $value['price'] }}</span>
+                        <span>&#2547; {{ $value['price'] }} </span>
                     </div>
                 </a>
                 @endforeach
