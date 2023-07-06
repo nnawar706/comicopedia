@@ -91,6 +91,17 @@ class VolumeService
                                 $q->select('id', 'title');
                             }])->where('catalogue_id', 5)->where('status', 1)
                             ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
+
+            'catalogue'  => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
+                                $q->where('genre_id', $id);
+                            })
+                            ->when(!is_null($request->catalogue), function($q) use($request) {
+                                return $q->where('catalogue_id', $request->input('catalogue'));
+                            })->whereNot('catalogue_id',5)
+                            ->where('status','=',1)->with(['item' => function($q) {
+                                $q->select('id','title');
+                            }])->select('id','item_id','title','price','image_path')
+                            ->latest()->paginate(3)->appends($request->except('page','per_page')),
         );
 
         return $data;

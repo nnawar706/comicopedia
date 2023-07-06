@@ -18,6 +18,7 @@
             <div class="col-lg-9 col-md-7">
                 @include('ecommerce.includes.category.offers')
                 @include('ecommerce.includes.category.filters')
+                @include('ecommerce.includes.category.shop-list')
             </div>
         </div>
     </div>
