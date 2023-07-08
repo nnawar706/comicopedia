@@ -23,7 +23,7 @@ class CatalogueService
     {
         return $this->catalogue->newQuery()
         ->with(['volumes' => function($q) {
-            $q->select('id','title','catalogue_id','item_id','price','discount','discount_active_till','image_path')
+            $q->select('id','title','catalogue_id','item_id','release_date','price','discount','discount_active_till','image_path')
                 ->whereNot('status', 0)->orderBy('sell_count', 'desc')->limit(12)
                 ->with(['item' => function($q) {
                     $q->select('id','genre_id','title')->with('genre');
