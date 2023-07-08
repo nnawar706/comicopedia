@@ -64,8 +64,8 @@ class EcommerceController extends Controller
             'items'         => $items
         );
 
-         return response()->json(['data' => $data]);
-//        return view('ecommerce.pages.welcome')->with('data', $data);
+//         return response()->json(['data' => $data]);
+        return view('ecommerce.pages.welcome')->with('data', $data);
     }
 
     public function getGenre(Request $request, $id)
