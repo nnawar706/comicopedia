@@ -19,7 +19,7 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" placeholder="Search for items...">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
