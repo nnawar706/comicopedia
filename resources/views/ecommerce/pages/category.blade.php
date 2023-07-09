@@ -44,7 +44,10 @@
                 let minRange = $('#minamount').val();
                 let maxRange = $('#maxamount').val();
 
-                window.location.href =
+                let currentUrl = window.location.href
+                if(currentUrl.includes('?')) {
+                    window.location.href = currentUrl + '&min_price=' + minRange + '&max_price=' + maxRange;
+                }
             })
         });
     </script>

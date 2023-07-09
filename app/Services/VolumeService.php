@@ -110,6 +110,9 @@ class VolumeService
                             ->when(!is_null($request->catalogue), function($q) use($request) {
                                 return $q->where('catalogue_id', $request->input('catalogue'));
                             })->whereNot('catalogue_id',5)
+                            ->when(!is_null($request->min_price) && !is_null($request->max_price), function ($q) use($request) {
+                                return $q->whereBetween('price', [$request->min_price, $request->max_price]);
+                            })
                             ->where('status','=',1)->with(['item' => function($q) {
                                 $q->select('id','title');
                             }])->select('id','item_id','title','price','image_path')
