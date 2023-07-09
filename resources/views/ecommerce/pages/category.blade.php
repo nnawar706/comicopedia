@@ -25,4 +25,29 @@
     </div>
 </section>
 
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#catalogueSelect').on('change', function () {
+                let value = $(this).val();
+                value = value.split('_');
+                let selected = value[0];
+                let genre_id = value[1];
+
+                let selectedOption = $(this).find(':selected');
+                let selectedText = selectedOption.text();
+
+                window.location.href = (selected === '0') ? '/genres/' + genre_id : '/genres/' + genre_id + '?catalogue=' + selected + '&search=' + selectedText;
+            });
+
+            $('#priceRange').on('click', function () {
+                let minRange = $('#minamount').val();
+                let maxRange = $('#maxamount').val();
+
+                window.location.href =
+            })
+        });
+    </script>
+@endpush
+
 @stop

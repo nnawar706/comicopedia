@@ -11,6 +11,8 @@
             <div class="price-input">
                 <input type="text" id="minamount">
                 <input type="text" id="maxamount">
+                <br><br>
+                <button type="submit" id="priceRange" style="padding:2px 18px;background-color: #1c294e; color: #fff;border: none;border-radius: 20px">Go</button>
             </div>
         </div>
     </div>
