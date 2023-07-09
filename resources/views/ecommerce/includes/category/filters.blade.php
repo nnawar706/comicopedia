@@ -4,11 +4,24 @@
             <div class="filter__sort">
                 <span>Sort By</span>
                 <select id="catalogueSelect">
-                    <option value="0_{{$data['genre']['id']}}">Default</option>
-                    <option value="4_{{$data['genre']['id']}}">Featured</option>
-                    <option value="3_{{$data['genre']['id']}}">Bestsellers</option>
-                    <option value="2_{{$data['genre']['id']}}">Upcoming Releases</option>
-                    <option value="6_{{$data['genre']['id']}}">Others</option>
+                    <option value="0_{{$data['genre']['id']}}" {{ request()->input('search') == null  }}>Default
+                    </option>
+                    <option
+                        value="4_{{$data['genre']['id']}}" {{ request()->input('search')=='Featured' ? 'selected' : '' }}>
+                        Featured
+                    </option>
+                    <option
+                        value="3_{{$data['genre']['id']}}" {{ request()->input('search')=='Bestsellers' ? 'selected' : '' }}>
+                        Bestsellers
+                    </option>
+                    <option
+                        value="2_{{$data['genre']['id']}}" {{ request()->input('search')=='Upcoming Releases' ? 'selected' : '' }}>
+                        Upcoming Releases
+                    </option>
+                    <option
+                        value="6_{{$data['genre']['id']}}" {{ request()->input('search')=='Others' ? 'selected' : '' }}>
+                        Others
+                    </option>
                 </select>
             </div>
         </div>
@@ -25,14 +38,17 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function(){
-            $('#catalogueSelect').on('change', function() {
+        $(document).ready(function () {
+            $('#catalogueSelect').on('change', function () {
                 let value = $(this).val();
                 value = value.split('_');
                 let selected = value[0];
                 let genre_id = value[1];
 
-                window.location.href = (selected == '0') ? '/genres/' + genre_id : '/genres/' + genre_id + '?catalogue=' + selected;
+                let selectedOption = $(this).find(':selected');
+                let selectedText = selectedOption.text();
+
+                window.location.href = (selected === '0') ? '/genres/' + genre_id : '/genres/' + genre_id + '?catalogue=' + selected + '&search=' + selectedText;
             })
         });
     </script>
