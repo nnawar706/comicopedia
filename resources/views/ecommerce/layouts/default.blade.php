@@ -69,8 +69,6 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-    @stack('scripts')
-
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -95,6 +93,8 @@
             }, 5000);
         };
     </script>
+
+    @stack('scripts')
 </body>
 
 </html>

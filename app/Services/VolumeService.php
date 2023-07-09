@@ -101,7 +101,7 @@ class VolumeService
                             })
                             ->with(['item' => function ($q) {
                                 $q->select('id', 'title');
-                            }])->where('catalogue_id', 5)->where('status', 1)
+                            }])->where('catalogue_id','=',5)->where('status','=',1)
                             ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
 
             'catalogue'  => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
