@@ -8,7 +8,10 @@
             </div>
         </div>
         <div class="row">
-            @foreach($data['catalogues'][1]['volumes'] as $item)
+            @foreach($data['catalogues'][2]['volumes'] as $key=>$item)
+                @if($key==3)
+                break
+                @endif
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
@@ -18,10 +21,9 @@
                             <ul>
                                 <li><i class="fa fa-calendar-o"></i>
                                     {{ \Carbon\Carbon::parse($item['release_data'])->format('F d, Y') }}</li>
-{{--                                <li><i class="fa fa-comment-o"></i> 5</li>--}}
                             </ul>
                             <h5><a href="{{ route('item-info', ['id' => $item['id']]) }}">{{ $item['item']['title'] }}, {{ $item['title'] }}</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                            <p>{{ Str::limit($item['details'], 83) }}....</p>
                         </div>
                     </div>
                 </div>

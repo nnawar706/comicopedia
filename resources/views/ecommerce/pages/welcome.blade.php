@@ -6,7 +6,7 @@
 @include('ecommerce.includes.mainpage.items')
 @include('ecommerce.includes.mainpage.featured')
 @include('ecommerce.includes.mainpage.catalogue')
-@if(count($data['catalogues'][1]['volumes']) != 0)
+@if(count($data['catalogues'][2]['volumes']) != 0)
     @include('ecommerce.includes.mainpage.upcoming')
 @endif
 
