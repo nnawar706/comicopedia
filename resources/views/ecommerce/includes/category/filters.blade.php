@@ -32,19 +32,7 @@
                 let selected = value[0];
                 let genre_id = value[1];
 
-                if(selected !== '0') {
-                    let url = '/genres/'+genre_id+'?catalogue='+selected;
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        success: function(response) {
-                            $('#result').html(response);
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(error);
-                        }
-                    });
-                }
+                window.location.href = (selected == '0') ? '/genres/' + genre_id : '/genres/' + genre_id + '?catalogue=' + selected;
             })
         });
     </script>
