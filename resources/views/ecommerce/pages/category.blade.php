@@ -12,6 +12,7 @@
                 <div class="sidebar">
                     @include('ecommerce.includes.category.items')
                     @include('ecommerce.includes.category.types')
+                    @include('ecommerce.includes.category.price')
                     @include('ecommerce.includes.category.latest')
                 </div>
             </div>
