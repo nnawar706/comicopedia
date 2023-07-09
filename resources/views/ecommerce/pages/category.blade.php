@@ -47,8 +47,10 @@
                 let currentUrl = window.location.href
                 if(currentUrl.includes('?')) {
                     window.location.href = currentUrl + '&min_price=' + minRange + '&max_price=' + maxRange;
+                } else {
+                    window.location.href = currentUrl + '?min_price=' + minRange + '&max_price=' + maxRange;
                 }
-            })
+            });
         });
     </script>
 @endpush
