@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserCouponController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +57,11 @@ Route::controller(CartController::class)->group(function() {
 Route::controller(WishlistController::class)->group(function () {
     Route::get('wish', 'wishView')->name('wish-view');
     Route::get('add-to-wishlist/{volume_id}', 'addToWish')->name('add-to-wishlist');
-    Route::get('convert-to-order')->name('convert-wishlist');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('convert-to-order', [WishlistController::class, 'convertWish'])->name('convert-wishlist');
+    Route::get('available-coupons', [UserCouponController::class, 'availableCoupons'])->name('available-coupons');
 });
 
 Route::controller(ReportController::class)->group(function () {
