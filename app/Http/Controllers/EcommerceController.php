@@ -68,6 +68,12 @@ class EcommerceController extends Controller
         return view('ecommerce.pages.welcome')->with('data', $data);
     }
 
+    public function checkoutView()
+    {
+        $data = (new CartService(new Cart()))->getCart();
+        return view('ecommerce.pages.checkout')->with('data',$data);
+    }
+
     public function getGenre(Request $request, $id)
     {
         $data = (new VolumeService(new Volume()))->getAllData($request, $id);
