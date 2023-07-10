@@ -16,5 +16,9 @@
         </div>
     </section>
 
+    @push('scripts')
+        <script src="{{ asset('assets/js/address-search.js') }}"></script>
+    @endpush
+
 
 @stop

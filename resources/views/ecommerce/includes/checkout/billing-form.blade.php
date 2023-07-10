@@ -1,12 +1,14 @@
 <div class="checkout__form">
     <h4>Billing Details</h4>
     <form method="POST" action="{{ route('place-order') }}">
+        @csrf
         <div class="row">
             <div class="col-lg-7 col-md-6">
                 <div class="checkout__input">
                     <p>Address<span>*</span></p>
-                    <input type="text" name="address1" placeholder="Street Address" class="checkout__input__add" required>
-                    <input type="text" name="address2" placeholder="Building, Flat, etc (optional)" class="checkout__input__add">
+                    <div id="autocomplete-container" class="autocomplete-container"></div>
+                    <input type="text" name="latitude" id="latValue" hidden>
+                    <input type="text" name="longitude" id="lngValue" hidden>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
@@ -66,8 +68,7 @@
                         <p style="font-size: 11px;color:#f30000">* &#2547;{{ \Illuminate\Support\Facades\Session::get('promo_discount') }} Discount Applied</span>
                         @endif
                     </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                        ut labore et dolore magna aliqua.</p>
+                    <p>You may charge upto &#2547; 300 for shipment based on your address.</p>
                     <div class="checkout__input__checkbox">
                         <label for="payment">
                             Cash On Delivery
