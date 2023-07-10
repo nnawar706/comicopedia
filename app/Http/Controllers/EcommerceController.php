@@ -70,8 +70,13 @@ class EcommerceController extends Controller
 
     public function checkoutView()
     {
-        $data = (new CartService(new Cart()))->getCart();
-        return view('ecommerce.pages.checkout')->with('data',$data);
+        if(auth()->check())
+        {
+            $data = (new CartService(new Cart()))->getCart();
+            return view('ecommerce.pages.checkout')->with('data',$data);
+        } else {
+            return redirect()->back()->with('message', 'You need to login first.');
+        }
     }
 
     public function getGenre(Request $request, $id)
