@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ApplyCouponRequest;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SubscriberRequest;
 use App\Models\Review;
+use App\Models\UserCoupon;
 use App\Models\Volume;
 use App\Models\Wishlist;
+use App\Services\CouponService;
 use App\Services\ReviewService;
 use App\Services\VolumeService;
 use App\Services\WishlistService;
@@ -137,5 +140,10 @@ class EcommerceController extends Controller
         (new SubscriberService(new Subscriber()))->store($request);
 
         return redirect()->route('welcome')->with('message', 'You have been subscribed successfully.');
+    }
+
+    public function addCoupon(ApplyCouponRequest $request)
+    {
+        (new CouponService(new UserCoupon()))->applyCoupon($request);
     }
 }

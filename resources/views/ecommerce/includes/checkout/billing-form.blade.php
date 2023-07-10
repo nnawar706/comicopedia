@@ -65,7 +65,7 @@
                     <div class="checkout__order__subtotal">Subtotal <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price') }}</span></div>
                     <div class="checkout__order__total">Total <span>&#2547; {{ \Illuminate\Support\Facades\Session::get('cart_price')-\Illuminate\Support\Facades\Session::get('promo_discount') }}</span>
                         @if(\Illuminate\Support\Facades\Session::get('promo_discount')!==null)
-                        <p style="font-size: 11px;color:#f30000">* &#2547;{{ \Illuminate\Support\Facades\Session::get('promo_discount') }} Discount Applied</span>
+                        <p style="font-size: 11px;color:#f30000">* &#2547;{{ \Illuminate\Support\Facades\Session::get('promo_discount') }} Discount Applied. Used promo co</span>
                         @endif
                     </p>
                     <p>You may charge upto &#2547; 300 for shipment based on your address.</p>
