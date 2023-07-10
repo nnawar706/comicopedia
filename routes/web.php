@@ -62,6 +62,7 @@ Route::controller(WishlistController::class)->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('convert-to-order', [WishlistController::class, 'convertWish'])->name('convert-wishlist');
     Route::get('available-coupons', [UserCouponController::class, 'availableCoupons'])->name('available-coupons');
+    Route::post('place-order', [])->name('place-order');
 });
 
 Route::controller(ReportController::class)->group(function () {

@@ -1,6 +1,6 @@
 <div class="checkout__form">
     <h4>Billing Details</h4>
-    <form action="#">
+    <form method="POST" action="{{ route('place-order') }}">
         <div class="row">
             <div class="col-lg-7 col-md-6">
                 <div class="checkout__input">

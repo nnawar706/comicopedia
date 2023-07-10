@@ -16,10 +16,10 @@ class OrderStatusSeeder extends Seeder
     public function run()
     {
         DB::table('order_statuses')->insert([
-            ['id' => 2, 'name' =>'Pending', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'name' =>'Pending', 'created_at' => now(), 'updated_at' => now()],
             ['id' => 2, 'name' =>'Confirmed', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 1, 'name' => 'Delivered', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'name' =>'Cancelled', 'created_at' => now(), 'updated_at' => now()]
+            ['id' => 3, 'name' =>'Cancelled', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 4, 'name' => 'Delivered', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
