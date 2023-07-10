@@ -2,6 +2,7 @@
 
 use App\Models\Admin;
 use App\Models\Cart;
+use App\Models\SiteInformation;
 use App\Notifications\AdminNotification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -49,7 +50,31 @@ function putSession($key, $value): void
     Session::put($key, $value);
 }
 
-function calculatePrice()
+function calculateDistance($lat1, $lon1): float|int
+{
+    $earthRadius = 6371;
+
+    $site = SiteInformation::find(1);
+
+    $lat2 = $site->latitude;
+    $lon2 = $site->longitude;
+
+    $radLat1 = deg2rad($lat1);
+    $radLon1 = deg2rad($lon1);
+    $radLat2 = deg2rad($lat2);
+    $radLon2 = deg2rad($lon2);
+
+    // Calculate the differences between the latitudes and longitudes
+    $latDiff = $radLat2 - $radLat1;
+    $lonDiff = $radLon2 - $radLon1;
+
+    // Calculate the distance using the Haversine formula
+    $a = sin($latDiff / 2) ** 2 + cos($radLat1) * cos($radLat2) * sin($lonDiff / 2) ** 2;
+    $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+    return $earthRadius * $c;
+}
+
+function calculatePrice(): float|int
 {
     $cart_ids = Cart::where('session_id',Session::get('customer_unique_id'))->select('id')->get();
 

@@ -28,6 +28,7 @@ class OrderService
                 'order_no'                  => 'ORD-'.date('smd').rand(100,999),
                 'delivery_tracking_no'      => 'ORD-'.date('smd').rand(100,999),
                 'contact'                   => $request['contact'],
+                'shipping_cost'             => calculateDistance($address->latitude, $address->longitude) * 50,
             ]);
 
             DB::commit();

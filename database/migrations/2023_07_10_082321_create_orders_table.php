@@ -23,7 +23,7 @@ return new class extends Migration
             $table->tinyInteger('is_promo')->default(0);
             $table->float('promo_discount')->default(0.00);
             $table->float('shipping_cost')->default(0.00);
-            $table->float('total');
+            $table->float('total')->default(0.00);
             $table->string('user_comment',300)->default('N/A');
             $table->string('user_comment',300)->default('N/A');
             $table->foreignId('status_id')->constrained('order_statuses')->onDelete('restrict');
