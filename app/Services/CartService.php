@@ -27,7 +27,7 @@ class CartService
             ->where('volume_id', $request->volume_id)
                 ->where('attribute_id', $request->attribute_id)->first();
 
-            $cart = $this->createUpdateCart($request, $cart);
+            $this->createUpdateCart($request, $cart);
 
             DB::commit();
 
@@ -78,7 +78,7 @@ class CartService
     {
         if(is_null($cart))
         {
-            $cart = $this->cart->newQuery()->create([
+            $this->cart->newQuery()->create([
                 'volume_id'    => $request['volume_id'],
                 'attribute_id' => $request['attribute_id'],
                 'quantity'     => $request['quantity'],
@@ -166,5 +166,10 @@ class CartService
 
         Session::put('cart_quantity',0);
         Session::put('cart_price', 0);
+    }
+
+    public function checkoutValidation(): string
+    {
+        return 'done';
     }
 }

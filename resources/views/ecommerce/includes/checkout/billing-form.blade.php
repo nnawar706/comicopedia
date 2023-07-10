@@ -4,12 +4,12 @@
         @csrf
         <div class="row">
             <div class="col-lg-7 col-md-6">
-                <div class="checkout__input">
-                    <p>Address<span>*</span></p>
-                    <div id="autocomplete-container" class="autocomplete-container"></div>
-                    <input type="text" name="latitude" id="latValue" hidden>
-                    <input type="text" name="longitude" id="lngValue" hidden>
-                </div>
+{{--                <div class="checkout__input">--}}
+{{--                    <p>Address<span>*</span></p>--}}
+{{--                    <div id="autocomplete-container" class="autocomplete-container"></div>--}}
+{{--                    <input type="text" name="latitude" id="latValue" hidden>--}}
+{{--                    <input type="text" name="longitude" id="lngValue" hidden>--}}
+{{--                </div>--}}
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout__input">
@@ -32,13 +32,13 @@
                 <div class="checkout__input__checkbox">
                     <label for="diff-acc">
                         I agree to the terms and conditions
-                        <input type="checkbox" id="diff-acc">
+                        <input type="checkbox" id="diff-acc" name="terms_check" value="1">
                         <span class="checkmark"></span>
                     </label>
                 </div>
                 <div class="checkout__input">
                     <p>Order notes</p>
-                    <input type="text"
+                    <input name="comment" type="text"
                            placeholder="Notes about your order, e.g. special notes for delivery.">
                 </div>
             </div>

@@ -2,9 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlaceOrderRequest;
+use App\Models\Cart;
+use App\Services\CartService;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    //
+    private $service;
+
+    public function __construct(OrderService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function store(PlaceOrderRequest $request)
+    {
+        $msg = (new CartService(new Cart()))->checkoutValidation();
+
+        if($msg != 'done')
+        {
+            return redirect()->route('place_order')->with('message',$msg);
+        } else {
+            if($this->service->placeOrder($request))
+            {
+                return redirect()->route('place_order')->with('message','Your order has been placed successfully.');
+            }
+        }
+    }
 }

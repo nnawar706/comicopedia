@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserCouponController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,7 @@ Route::controller(WishlistController::class)->group(function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('convert-to-order', [WishlistController::class, 'convertWish'])->name('convert-wishlist');
     Route::get('available-coupons', [UserCouponController::class, 'availableCoupons'])->name('available-coupons');
-    Route::post('place-order', [])->name('place-order');
+    Route::post('place-order', [OrderController::class, 'store'])->name('place-order');
 });
 
 Route::controller(ReportController::class)->group(function () {
