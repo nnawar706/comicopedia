@@ -170,6 +170,16 @@ class CartService
 
     public function checkoutValidation(): string
     {
+        $cart = $this->getCart();
+
+        foreach($cart as $item) {
+            $attribute = VolumeAttribute::with('volume.item')->findOrFail($item->attribute_id);
+
+            if(($attribute->quantity - $item->quantity) < 0)
+            {
+                return $attribute->volume->item->title . ', ' . $attribute->volume->title . ' is currently not available.';
+            }
+        }
         return 'done';
     }
 }

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->float('shipping_cost')->default(0.00);
             $table->float('total')->default(0.00);
             $table->string('user_comment',300)->default('N/A');
-            $table->string('user_comment',300)->default('N/A');
+            $table->string('admin_comment',300)->default('N/A');
             $table->foreignId('status_id')->constrained('order_statuses')->onDelete('restrict');
             $table->timestamps();
         });

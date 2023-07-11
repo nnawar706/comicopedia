@@ -186,6 +186,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::controller(OrderController::class)->group(function () {
             Route::get('oder-addresses', 'getAddresses');
+            Route::get('order-statuses', 'getOrderStatuses');
         });
 
     });

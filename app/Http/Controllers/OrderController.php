@@ -22,6 +22,11 @@ class OrderController extends Controller
         return response()->json($this->service->getCoordinates());
     }
 
+    public function getOrderStatuses()
+    {
+        return response()->json($this->service->getData());
+    }
+
     public function store(PlaceOrderRequest $request)
     {
         $msg = (new CartService(new Cart()))->checkoutValidation();

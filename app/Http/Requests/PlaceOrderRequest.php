@@ -27,32 +27,32 @@ class PlaceOrderRequest extends FormRequest
     public function rules()
     {
         return [
-//            'address'     => 'required|string',
-//            'contact'     => ['required','regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
-//            'password'    => ['required','string','min:8',
-//                                function($attr,$val,$fail) {
-//                                    if(!Hash::check($val,auth()->user()->password))
-//                                    {
-//                                        $fail('Verification failed.');
-//                                    }
-//                                }],
-//            'email'       => ['required','email',
-//                                function($attr,$val,$fail) {
-//                                    if($val != auth()->user()->email)
-//                                    {
-//                                        $fail('Verification failed.');
-//                                    }
-//                                }],
-//            'comment'     => 'sometimes|string|max:300',
-//            'terms_check' => 'required|in:1'
+            'address'     => 'required|string',
+            'contact'     => ['required','regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
+            'password'    => ['required','string','min:8',
+                                function($attr,$val,$fail) {
+                                    if(!Hash::check($val,auth()->user()->password))
+                                    {
+                                        $fail('Verification failed.');
+                                    }
+                                }],
+            'email'       => ['required','email',
+                                function($attr,$val,$fail) {
+                                    if($val != auth()->user()->email)
+                                    {
+                                        $fail('Verification failed.');
+                                    }
+                                }],
+            'comment'     => 'sometimes|nullable|max:300',
+            'terms_check' => 'required|in:1'
         ];
     }
 
     public function messages()
     {
         return [
-//            'contact.regex'         => 'The contact field is invalid.',
-//            'terms_check.required'  => 'You must agree to our terms and conditions.'
+            'contact.regex'         => 'The contact field is invalid.',
+            'terms_check.required'  => 'You must agree to our terms and conditions.'
         ];
     }
 

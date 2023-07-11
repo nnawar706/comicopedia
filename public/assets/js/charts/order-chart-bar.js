@@ -1,65 +1,70 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
+// // // Set new default font family and font color to mimic Bootstrap's default styling
+// (Chart.defaults.global.defaultFontFamily = "Nunito"),
+//     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+// Chart.defaults.global.defaultFontColor = "#858796";
 
-function number_format(number, decimals, dec_point, thousands_sep) {
-    // *     example: number_format(1234.56, 2, ',', ' ');
-    // *     return: '1 234,56'
-    number = (number + '').replace(',', '').replace(' ', '');
-    var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function(n, prec) {
-            var k = Math.pow(10, prec);
-            return '' + Math.round(n * k) / k;
-        };
-    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-    if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-    }
-    if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-    }
-    return s.join(dec);
-}
+// function number_format(number, decimals, dec_point, thousands_sep) {
+//     // *     example: number_format(1234.56, 2, ',', ' ');
+//     // *     return: '1 234,56'
+//     number = (number + "").replace(",", "").replace(" ", "");
+//     var n = !isFinite(+number) ? 0 : +number,
+//         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+//         sep = typeof thousands_sep === "undefined" ? "," : thousands_sep,
+//         dec = typeof dec_point === "undefined" ? "." : dec_point,
+//         s = "",
+//         toFixedFix = function (n, prec) {
+//             var k = Math.pow(10, prec);
+//             return "" + Math.round(n * k) / k;
+//         };
+//     // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+//     s = (prec ? toFixedFix(n, prec) : "" + Math.round(n)).split(".");
+//     if (s[0].length > 3) {
+//         s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+//     }
+//     if ((s[1] || "").length < prec) {
+//         s[1] = s[1] || "";
+//         s[1] += new Array(prec - s[1].length + 1).join("0");
+//     }
+//     return s.join(dec);
+// }
 
-
+// Bar Chart Example
 document.addEventListener('DOMContentLoaded', function() {
 
-    let item_id = document
-        .getElementById("myOrderChart");
-
-    fetch(`/admin/series/volumes/6`)
+    fetch(`/admin/order-statuses`)
         .then((response) => response.json())
-        .then(data => {
+        .then((data) => {
+            const labels = data.map((item) => item.name);
+            const count = data.map((item) => item.orders_count);
 
-            const labels = data.map(item => item.title);
-
-            const count = data.map(item => item.quantity);
-
-            const max_count = Math.max(...count);
-
-            var ctx = document.getElementById("myBarChart");
-
+            var ctx = document.getElementById("myOrderChart");
             var myBarChart = new Chart(ctx, {
-                type: "bar",
+                type: "horizontalBar",
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            label: "Quantity",
-                            backgroundColor: "#4e73df",
-                            hoverBackgroundColor: "#2e59d9",
+                            axis: "x",
+                            label: "Order Statuses",
+                            backgroundColor: [
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(255, 159, 64, 0.2)",
+                                "rgba(255, 205, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                            ],
+                            hoverBackgroundColor: [
+                                "rgba(255, 99, 132, 0.5)",
+                                "rgba(255, 159, 64, 0.5)",
+                                "rgba(255, 205, 86, 0.5)",
+                                "rgba(75, 192, 192, 0.5)",
+                            ],
                             borderColor: "#4e73df",
                             data: count,
                         },
                     ],
                 },
                 options: {
+                    indexAxis: "y",
                     maintainAspectRatio: false,
                     layout: {
                         padding: {
@@ -72,31 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     scales: {
                         xAxes: [
                             {
-                                time: {
-                                    unit: "month",
-                                },
-                                gridLines: {
-                                    display: false,
-                                    drawBorder: false,
-                                },
-                                ticks: {
-                                    maxTicksLimit: 6,
-                                },
-                                maxBarThickness: 25,
-                            },
-                        ],
-                        yAxes: [
-                            {
-                                ticks: {
-                                    min: 0,
-                                    max: max_count + 10,
-                                    maxTicksLimit: 5,
-                                    padding: 10,
-                                    // Include a dollar sign in the ticks
-                                    callback: function (value, index, values) {
-                                        return number_format(value);
-                                    },
-                                },
                                 gridLines: {
                                     color: "rgb(234, 236, 244)",
                                     zeroLineColor: "rgb(234, 236, 244)",
@@ -104,6 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                     borderDash: [2],
                                     zeroLineBorderDash: [2],
                                 },
+                            },
+                        ],
+                        yAxes: [
+                            {
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false,
+                                },
+                                maxBarThickness: 25,
                             },
                         ],
                     },
@@ -130,13 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 return (
                                     datasetLabel +
                                     ": " +
-                                    number_format(tooltipItem.yLabel)
+                                    number_format(tooltipItem.xLabel)
                                 );
                             },
                         },
                     },
                 },
-            });
-        })
-        .catch(error => console.log(error));
-});
+            }).catch((error) => console.log(error));
+        });});
