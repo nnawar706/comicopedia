@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     datasets: [
                         {
                             axis: "x",
-                            label: "Order Statuses",
+                            label: "Order Status",
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(255, 159, 64, 0.2)",
@@ -113,12 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         caretPadding: 10,
                         callbacks: {
                             label: function (tooltipItem, chart) {
-                                var datasetLabel =
-                                    chart.datasets[tooltipItem.datasetIndex]
-                                        .label || "";
                                 return (
-                                    datasetLabel +
-                                    ": " +
                                     number_format(tooltipItem.xLabel)
                                 );
                             },

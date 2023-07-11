@@ -58,6 +58,10 @@
 <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/order-chart-bar.js') }}"></script>
+<!-- Page level plugins -->
+<script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/js/charts/datatables-demo.js') }}"></script>
 {{-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="{{ asset('assets/js/order-map.js') }}"></script> --}}
 
