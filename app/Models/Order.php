@@ -28,6 +28,11 @@ class Order extends Model
                 ->where('code',Session::get('promo'))
                 ->where('status',1)
                 ->update(['status' => 0]);
+
+            if(GeneralSetting::find(1)->notify_admins_on_new_order == 1)
+            {
+                notifyAdmins(1, 'A new order has been placed', 'order', $order->id, 'warning');
+            }
         });
     }
 
