@@ -46,6 +46,8 @@
                 </div>
             </div>
         </div>
+
+        @include('admin.includes.dashboard.orders')
     </div>
 
 @stop

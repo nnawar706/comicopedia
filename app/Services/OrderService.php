@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderAddress;
 use App\Models\OrderItems;
+use App\Models\OrderStatus;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,5 +75,10 @@ class OrderService
     public function getCoordinates()
     {
         return OrderAddress::all();
+    }
+
+    public function getData()
+    {
+        return OrderStatus::withCount('orders')->get();
     }
 }
