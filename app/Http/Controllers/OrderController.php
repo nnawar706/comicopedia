@@ -17,6 +17,11 @@ class OrderController extends Controller
         $this->service = $service;
     }
 
+    public function getAll()
+    {
+        return view('admin/pages/orders');
+    }
+
     public function getAddresses()
     {
         return response()->json($this->service->getCoordinates());

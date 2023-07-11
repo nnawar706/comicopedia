@@ -143,7 +143,7 @@
                                     <a class="collapse-item" href="">Promo Codes</a>
                                 @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('order list'))
-                                    <a class="collapse-item" href="">Orders</a>
+                                    <a class="collapse-item" href="{{ route('order-list') }}">Orders</a>
                                 @endif
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('pending order list'))
                                     <a class="collapse-item" href="">Pending Orders</a>
