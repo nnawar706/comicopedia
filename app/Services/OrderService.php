@@ -57,6 +57,11 @@ class OrderService
                 }
             }
             DB::commit();
+
+            Session::remove('promo');
+            Session::remove('promo_discount');
+            Session::remove('cart_price');
+            Session::remove('cart_quantity');
             return true;
         } catch (QueryException $ex)
         {

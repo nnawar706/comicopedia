@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class Order extends Model
 {
@@ -17,6 +18,18 @@ class Order extends Model
     ];
 
     protected $hidden = ['updated_at'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($order) {
+            UserCoupon::where('user_id',auth()->user()->id)
+                ->where('code',Session::get('promo'))
+                ->where('status',1)
+                ->update(['status' => 0]);
+        });
+    }
 
     public function user()
     {

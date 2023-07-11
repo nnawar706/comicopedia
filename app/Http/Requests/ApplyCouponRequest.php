@@ -34,7 +34,7 @@ class ApplyCouponRequest extends FormRequest
                         ->where('user_id', auth()->user()->id)
                         ->first();
 
-                    if(is_null($code->user_id))
+                    if(is_null($code))
                     {
                         $fail('The coupon code is invalid.');
                     }

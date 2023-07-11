@@ -30,6 +30,14 @@ class OrderItems extends Model
             ->update([
                 'is_ordered' => 1
             ]);
+
+            $attribute = VolumeAttribute::find($item->attribute_id);
+            $attribute->quantity -= $item->quantity;
+            $volume = Volume::find($item->volume_id);
+            $volume->quantity -= $item->quantity;
+
+            $attribute->save();
+            $volume->save();
         });
     }
 
