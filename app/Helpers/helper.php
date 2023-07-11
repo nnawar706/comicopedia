@@ -64,11 +64,9 @@ function calculateDistance($lat1, $lon1): float|int
     $radLat2 = deg2rad($lat2);
     $radLon2 = deg2rad($lon2);
 
-    // Calculate the differences between the latitudes and longitudes
     $latDiff = $radLat2 - $radLat1;
     $lonDiff = $radLon2 - $radLon1;
 
-    // Calculate the distance using the Haversine formula
     $a = sin($latDiff / 2) ** 2 + cos($radLat1) * cos($radLat2) * sin($lonDiff / 2) ** 2;
     $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
     return $earthRadius * $c;

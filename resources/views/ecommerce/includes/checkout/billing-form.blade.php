@@ -4,12 +4,12 @@
         @csrf
         <div class="row">
             <div class="col-lg-7 col-md-6">
-{{--                <div class="checkout__input">--}}
-{{--                    <p>Address<span>*</span></p>--}}
-{{--                    <div id="autocomplete-container" class="autocomplete-container"></div>--}}
-{{--                    <input type="text" name="latitude" id="latValue" hidden>--}}
-{{--                    <input type="text" name="longitude" id="lngValue" hidden>--}}
-{{--                </div>--}}
+                <div class="checkout__input">
+                    <p>Address<span>*</span></p>
+                    <div id="autocomplete-container" class="autocomplete-container"></div>
+                    <input type="text" name="latitude" id="latValue" hidden>
+                    <input type="text" name="longitude" id="lngValue" hidden>
+                </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout__input">

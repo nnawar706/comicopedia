@@ -23,12 +23,13 @@ class OrderController extends Controller
 
         if($msg != 'done')
         {
-            return redirect()->route('place_order')->with('message',$msg);
+            return redirect()->route('checkout')->with('message',$msg);
         } else {
             if($this->service->placeOrder($request))
             {
-                return redirect()->route('place_order')->with('message','Your order has been placed successfully.');
+                return redirect()->route('checkout')->with('message','Your order has been placed successfully.');
             }
+            return redirect()->route('checkout')->with('message','Something went wrong.');
         }
     }
 }
