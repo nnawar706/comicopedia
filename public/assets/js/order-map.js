@@ -1,4 +1,4 @@
-const map = L.map('order-map').setView([48.1500327, 11.5753989], 10);
+const map = L.map('order-map').setView([23.6850, 90.3563], 10);
 
 const myAPIKey = "02b784fd8c9b4ab9a32db499e5e5d234";
 
@@ -24,10 +24,16 @@ const markerIcon = L.icon({
     popupAnchor: [0, -45] // point from which the popup should open relative to the iconAnchor
 });
 
-const zooMarkerPopup = L.popup().setContent("This is Munich Zoo");
-L.marker([48.096980, 11.555466], {
-    icon: markerIcon
-}).bindPopup(zooMarkerPopup).addTo(map);
-L.marker([47.096980, 10.555466], {
-    icon: markerIcon
-}).bindPopup(zooMarkerPopup).addTo(map);
+fetch('/admin/oder-addresses')
+    .then(response => response.json())
+    .then(data => {
+        data.map((address) => {
+            let zooMarkerPopup = L.popup().setContent(address.address);
+            L.marker([parseFloat(address.latitude), parseFloat(address.longitude)], {
+                icon: markerIcon
+            }).bindPopup(zooMarkerPopup).addTo(map);
+        });
+    })
+    .catch(error => {
+        console.log('Error: ', error);
+    })

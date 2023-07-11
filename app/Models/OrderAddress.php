@@ -13,6 +13,8 @@ class OrderAddress extends Model
 
     protected $fillable = ['address','latitude','longitude'];
 
+    protected $hidden = ['created_at','updated_at'];
+
     public function orders()
     {
         return $this->hasMany(Order::class, 'address_id');

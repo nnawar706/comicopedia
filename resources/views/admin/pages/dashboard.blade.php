@@ -40,7 +40,7 @@
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Order Locations</h6>
                     </div>
-                    <div class="card-body" style="height: 350px !important;">
+                    <div class="card-body" style="height: 354px !important;">
                         <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div>
                     </div>
                 </div>

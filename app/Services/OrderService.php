@@ -70,4 +70,9 @@ class OrderService
             return false;
         }
     }
+
+    public function getCoordinates()
+    {
+        return OrderAddress::all();
+    }
 }

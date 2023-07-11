@@ -184,6 +184,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('volumes/export-data/all', 'exportVolumes')->name('export-volumes');
         });
 
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('oder-addresses', 'getAddresses');
+        });
+
     });
 
 });
