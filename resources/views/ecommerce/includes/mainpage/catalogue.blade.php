@@ -13,7 +13,7 @@
                                 @if($key%3 == 0 && $key!=0)
                                 </div><div class="latest-prdouct__slider__item">
                                 @endif
-                                <a href="{{ route('item-info',['id'=>$item['id']]) }}" class="latest-product__item">
+                                <a href="{{ route('volume-info',['id'=>$item['id']]) }}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="{{ asset($item['image_path']) }}" alt="item-image">
                                     </div>
@@ -40,7 +40,7 @@
                             @if($key%3 == 0 && $key!=0)
                             </div><div class="latest-prdouct__slider__item">
                             @endif
-                            <a href="{{ route('item-info',['id'=>$item['id']]) }}" class="latest-product__item">
+                            <a href="{{ route('volume-info',['id'=>$item['id']]) }}" class="latest-product__item">
                                 <div class="latest-product__item__pic">
                                     <img src="{{ asset($item['image_path']) }}" alt="item-image">
                                 </div>
@@ -67,7 +67,7 @@
                             @if($key%3 == 0 && $key!=0)
                             </div><div class="latest-prdouct__slider__item">
                             @endif
-                            <a href="{{ route('item-info',['id'=>$item['id']]) }}" class="latest-product__item">
+                            <a href="{{ route('volume-info',['id'=>$item['id']]) }}" class="latest-product__item">
                                 <div class="latest-product__item__pic">
                                     <img src="{{ asset($item['image_path']) }}" alt="item-image">
                                 </div>

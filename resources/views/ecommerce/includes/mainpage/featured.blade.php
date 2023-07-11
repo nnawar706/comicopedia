@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Items</h2>
+                        <h2>Browse Items</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
