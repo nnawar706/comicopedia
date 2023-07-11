@@ -36,10 +36,12 @@ class CreateUserCoupon
         {
 
             UserCoupon::create([
-                'user_id' => $user->id,
-                'code'    => 'WELCOME10',
-                'status'  => 1,
-                'validity'=> Carbon::now('Asia/Dhaka')->addDays(30)->format('Y-m-d H:i:s'),
+                'user_id'       => $user->id,
+                'code'          => 'WELCOME10',
+                'discount'      => 10,
+                'is_percentage' => 1,
+                'status'        => 1,
+                'validity'      => Carbon::now('Asia/Dhaka')->addDays(30)->format('Y-m-d H:i:s'),
             ]);
 
             Session::put('coupon_code', 'WELCOME10');

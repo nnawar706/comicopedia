@@ -145,5 +145,7 @@ class EcommerceController extends Controller
     public function addCoupon(ApplyCouponRequest $request)
     {
         (new CouponService(new UserCoupon()))->applyCoupon($request);
+
+        return redirect()->back()->with('message', 'You have added a promo code successfully.');
     }
 }
