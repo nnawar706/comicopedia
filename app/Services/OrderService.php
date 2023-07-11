@@ -81,4 +81,9 @@ class OrderService
     {
         return OrderStatus::withCount('orders')->get();
     }
+
+    public function getRecentOrders()
+    {
+        return Order::with(['user' => function ($q) { return $q->select('id','name','email');}])->latest()->take(5)->get();
+    }
 }

@@ -7,38 +7,30 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    @if(count($data['orders']) == 0)
+                    <p class="text-center">No Orders Available</p>
+                    @else
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Order Number</th>
+                                <th>Customer</th>
+                                <th>Total Payable</th>
+                                <th>Ordered On</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
+                            @foreach ($data['orders'] as $order)
                             <tr>
-                                <td>Hermione Butler</td>
-                                <td>Regional Director</td>
-                                <td>London</td>
-                                <td>47</td>
-                                <td>2011/03/21</td>
-                                <td>$356,250</td>
+                                <td><a href="" style="text-decoration:underline">{{ $order['order_no'] }}</a></td>
+                                <td>{{ $order['user']['name'] }}</td>
+                                <td>{{ $order['total'] + $order['shipping_cost'] }}</td>
+                                <td>{{ \Carbon\Carbon::parse($order['created_at'])->format('F d, Y') }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
             </div>
         </div>

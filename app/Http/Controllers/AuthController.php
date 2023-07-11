@@ -39,9 +39,10 @@ class AuthController extends Controller
         $data = array(
             'most_viewed'       => (new VolumeService(new Volume()))->getMostViewed(),
             'order_data'        => (new OrderService())->getData(),
+            'orders'            => (new OrderService())->getRecentOrders(),
         );
 
-//         return response()->json($data);
+        // return response()->json($data);
         return view('admin.pages.dashboard')->with('data', $data);
     }
 
