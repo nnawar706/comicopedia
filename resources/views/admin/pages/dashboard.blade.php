@@ -57,6 +57,7 @@
 <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
+<script src="{{ asset('assets/js/charts/order-chart-bar.js') }}"></script>
 {{--<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>--}}
 {{--<script src="{{ asset('assets/js/order-map.js') }}"></script>--}}
 
