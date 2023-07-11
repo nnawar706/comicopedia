@@ -39,19 +39,10 @@
                 <!-- Not Decided Yet -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Order Locations</h6>
                     </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                 src="" alt="...">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
+                    <div class="card-body" style="height: 350px !important;">
+                        <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div>
                     </div>
                 </div>
             </div>
@@ -65,6 +56,8 @@
 <script src="{{ asset('assets/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chart-pie-demo.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="{{ asset('assets/js/order-map.js') }}"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
