@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\User;
+use App\Services\OrderService;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -47,9 +48,7 @@ final class OrderTable extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Order::query()->leftJoin('users','orders.user_id','=','users.id')
-        ->leftJoin('order_statuses','orders.status_id','=','order_statuses.id')->select('orders.*','users.id as user_id','users.name as user_name',
-        'order_statuses.id as status_id','order_statuses.name as order_status')->latest();
+        return (new OrderService())->getAll();
     }
 
     /*

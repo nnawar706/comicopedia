@@ -181,6 +181,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('admins/export-data/all', 'exportAdmins')->name('export-admins');
             Route::get('series/export-data/all', 'exportSeries')->name('export-series');
             Route::get('volumes/export-data/all', 'exportVolumes')->name('export-volumes');
+            Route::get('orders/export-data/all', 'exportOrders')->name('export-orders');
         });
 
         Route::controller(OrderController::class)->group(function () {

@@ -90,7 +90,7 @@
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 @if(auth()->guard('admin')->user()->hasPermissionTo('customer list'))
-                                    <a class="collapse-item" href="route('user-list')">Customer List</a>
+                                    <a class="collapse-item" href="{{ route('user-list') }}">Customer List</a>
                                 @endif
                                 <a class="collapse-item" href="cards.html">Activity Log</a>
                             </div>

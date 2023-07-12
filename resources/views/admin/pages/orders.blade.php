@@ -15,7 +15,7 @@
 
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 @if(auth()->guard('admin')->user()->hasPermissionTo('export order'))
-                    <a href="{{ route('export-series') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-right"><i
+                    <a href="{{ route('export-orders') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-right"><i
                         class="fas fa-download fa-sm text-white-50"></i> Export Orders
                     </a>
                 @endif

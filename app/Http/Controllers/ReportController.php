@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrderExport;
 use App\Models\Cart;
 use App\Exports\ItemExport;
 use App\Exports\VolumeExport;
@@ -26,6 +27,13 @@ class ReportController extends Controller
         $file = 'volumes-list-' . date('dis') . '.xlsx';
 
         return Excel::download(new VolumeExport, $file);
+    }
+
+    public function exportOrders()
+    {
+        $file = 'order-list-' . date('dis') . '.xlsx';
+
+        return Excel::download(new OrderExport, $file);
     }
 
     public function cartPDF()

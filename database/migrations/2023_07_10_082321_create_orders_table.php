@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('order_no')->unique();
             $table->string('delivery_tracking_no')->unique();
             $table->string('contact');
-            $table->tinyInteger('is_promo')->default(0);
+            $table->string('is_promo')->nullable();
             $table->float('promo_discount')->default(0.00);
             $table->float('shipping_cost')->default(0.00);
             $table->float('total')->default(0.00);

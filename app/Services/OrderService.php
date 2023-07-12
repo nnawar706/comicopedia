@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Session;
 class OrderService
 {
 
+    public function getAll()
+    {
+        return Order::query()->leftJoin('users','orders.user_id','=','users.id')
+            ->leftJoin('order_statuses','orders.status_id','=','order_statuses.id')->select('orders.*','users.id as user_id','users.name as user_name',
+                'order_statuses.id as status_id','order_statuses.name as order_status')->latest();
+    }
+
     public function placeOrder(Request $request)
     {
         DB::beginTransaction();
