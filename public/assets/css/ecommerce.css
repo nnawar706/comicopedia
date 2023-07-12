@@ -3468,6 +3468,29 @@ ol {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.autocomplete-item-search {
+    position: absolute;
+
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    width: 610px;
+}
+
+.autocomplete-item-search div {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-item-search div:hover {
+    /*when hovering an item:*/
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .clear-button {
     color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
