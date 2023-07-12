@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Services\OrderService;
+use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -13,24 +14,25 @@ class OrderExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        $data = (new OrderService())->getAll();
+        $data = (new OrderService())->getAll()->get();
 
         $result = array();
 
         foreach($data as $key => $value)
         {
             $result[] = array(
-                '#'         => $key + 1,
-                'order_no'    => $value->item_unique_id,
-                'tracking_no'     => $value->genre->name,
-                'customer'     => $value->title,
-                'subtotal'    => $value->author,
-                'promo'         => '',
-                'discount'    => $value->author,
-                'shipping'  => $value->magazine,
-                'total'   => $value->volumes==0 ? 'N/A' : $value->volumes,
-                'status' => 1,
-                'ordered_on' => 1,
+                '#'             => $key + 1,
+                'order_no'      => $value->order_no,
+                'tracking_no'   => $value->delivery_tracking_no,
+                'customer'      => $value->user_name,
+                'contact'       => strval($value->contact),
+                'promo'         => $value->is_promo,
+                'discount'      => $value->promo_discount,
+                'shipping'      => $value->shipping_cost,
+                'subtotal'      => $value->total,
+                'total'         => $value->total + $value->shipping_cost - $value->promo_discount,
+                'ordered_on'    => Carbon::parse($value->created_at)->format('d-m-Y'),
+                'status'        => $value->order_status,
             );
         }
 
@@ -40,7 +42,8 @@ class OrderExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            '#','Serial No','Genre','Title','Author','Magazine','Volumes'
+            '#','Order No','Tracking No','Customer','Contact','Used Promo','Promo Discount','Shipping Charge',
+            'Subtotal','Total','Ordered On','Status'
         ];
     }
 }

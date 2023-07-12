@@ -39,10 +39,10 @@ class OrderService
                 'order_no'                  => 'ORD-'.date('smd').rand(100,999),
                 'delivery_tracking_no'      => 'TRC-'.date('smd').rand(100,999),
                 'contact'                   => $request['contact'],
-                'is_promo'                  => Session::has('promo_discount') ? 1 : 0,
+                'is_promo'                  => Session::get('promo') ?? null,
                 'promo_discount'            => Session::get('promo_discount') ?? 0,
                 'shipping_cost'             => calculateDistance($address->latitude, $address->longitude) * 50,
-                'total'                     => Session::get('cart_price')-Session::get('promo_discount'),
+                'total'                     => Session::get('cart_price'),
                 'user_comment'              => $request['comment'],
                 'status_id'                 => 1
             ]);
