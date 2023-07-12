@@ -190,7 +190,7 @@ class VolumeService
         return $this->volume->newQuery()->leftJoin('items','volumes.item_id','=','items.id')
             ->where('items.title', 'like', '%'.request()->name.'%')
             ->orWhere('volumes.title', 'like', '%'.request()->name.'%')
-            ->select('items.title as item','volumes.title as volume')
+            ->select('items.title as item','volumes.title as volume','volumes.id as volume_id')
             ->orWhere('items.author', 'like', '%'.request()->name.'%')
             ->orWhere('items.magazine', 'like', '%'.request()->name.'%')
             ->take(request()->input('limit'))->get();

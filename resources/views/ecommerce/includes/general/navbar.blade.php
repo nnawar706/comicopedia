@@ -16,7 +16,11 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <div id="autocomplete-container-product" class="autocomplete-container"></div>
+                        <form action="#">
+                            <input type="text" name="search" id="search" placeholder="Search for items...">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                        <ul class="list-group" id="searchResult"></ul>
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
