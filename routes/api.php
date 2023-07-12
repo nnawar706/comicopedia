@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VolumeController;
 use Illuminate\Http\Request;
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('genres', [CategoryController::class, 'index']);
 Route::get('series/volumes/{id}', [VolumeController::class, 'volumeList']);
 Route::get('order-statuses', [OrderController::class, 'getOrderStatuses']);
+Route::get('search/autocomplete', [EcommerceController::class, 'searchOptions']);

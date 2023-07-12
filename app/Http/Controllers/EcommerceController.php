@@ -147,4 +147,14 @@ class EcommerceController extends Controller
 
         return redirect()->back()->with('message', 'You have added a promo code successfully.');
     }
+
+    public function searchOptions()
+    {
+        if(\request()->input('apiKey') == 'c704212b54af40b3af542df235f28ac3')
+        {
+            return response()->json((new VolumeService(new Volume()))->getSearchResults());
+        } else {
+            return response()->json(['error' => 'error']);
+        }
+    }
 }

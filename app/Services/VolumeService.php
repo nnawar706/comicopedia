@@ -184,4 +184,15 @@ class VolumeService
             ->orderBy('volumes.sell_count','desc')
             ->limit(8)->get();
     }
+
+    public function getSearchResults()
+    {
+        return $this->volume->newQuery()->leftJoin('items','volumes.item_id','=','items.id')
+            ->where('items.title', 'like', '%'.request()->name.'%')
+            ->orWhere('volumes.title', 'like', '%'.request()->name.'%')
+            ->select('items.title as item','volumes.title as volume')
+            ->orWhere('items.author', 'like', '%'.request()->name.'%')
+            ->orWhere('items.magazine', 'like', '%'.request()->name.'%')
+            ->take(request()->input('limit'))->get();
+    }
 }
