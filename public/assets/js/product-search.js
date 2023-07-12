@@ -15,3 +15,13 @@ $(document).ready(function() {
             });
     })
 })
+
+document.addEventListener("click", function(event) {
+    let targetDiv = document.getElementById("searchResult");
+
+    if (!targetDiv.contains(event.target) && targetDiv.childElementCount > 0) {
+        while(targetDiv.firstChild){
+            targetDiv.removeChild(targetDiv.firstChild);
+        }
+    }
+});
