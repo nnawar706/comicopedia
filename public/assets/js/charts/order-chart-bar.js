@@ -31,7 +31,7 @@
 // Bar Chart Example
 document.addEventListener('DOMContentLoaded', function() {
 
-    fetch(`/admin/order-statuses`)
+    fetch(`/api/order-statuses`)
         .then((response) => response.json())
         .then((data) => {
             const labels = data.map((item) => item.name);
