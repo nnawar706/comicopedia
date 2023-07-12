@@ -9,7 +9,9 @@ $(document).ready(function() {
         fetch(`/api/search/autocomplete?text=${encodeURIComponent(searchField)}&limit=5&apiKey=${apiKey}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data.map(value => value.volume));
+                $.each(data, function (key, value) {
+                    $('#searchResult').append('<li><a href="/volumes/' + value.volume_id + '">'+ value.item + ', ' + value.volume +'</a></li>');
+                })
             });
     })
 })

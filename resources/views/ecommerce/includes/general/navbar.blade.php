@@ -20,7 +20,9 @@
                             <input type="text" name="search" id="search" placeholder="Search for items...">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
-                        <ul class="list-group" id="searchResult"></ul>
+                        <ul class="list-group" style="z-index: 111" id="searchResult">
+                            <li> hi</li>
+                        </ul>
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
