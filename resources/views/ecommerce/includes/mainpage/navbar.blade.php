@@ -8,10 +8,8 @@
                             <i class="fa fa-bars"></i>
                             <span>Genres</span>
                         </div>
-                        <ul>
-                            @foreach($data['genres'] as $value)
-                            <li><a href="{{ route('genre-info', ['id' => $value->id]) }}">{{ $value->name }}</a></li>
-                            @endforeach
+                        <ul id="genreList">
+
                         </ul>
                     </div>
                 </div>
@@ -45,3 +43,28 @@
         </div>
     </section>
     <!-- Hero Section End -->
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/genres",
+                method: "GET",
+                success: function (data) {
+                    let list = $("#genreList");
+                    $.each(data, function(index,genre) {
+                        let item = $("<li></li>");
+                        let link = $("<a></a>")
+                            .attr("href", "/genres/"+genre.id)
+                            .text(genre.name);
+                        item.append(link);
+                        list.append(item);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error: ", error);
+                }
+            })
+        });
+    </script>
+@endpush

@@ -22,7 +22,7 @@
                                 <li><i class="fa fa-calendar-o"></i>
                                     {{ \Carbon\Carbon::parse($item['release_data'])->format('F d, Y') }}</li>
                             </ul>
-                            <h5><a href="{{ route('item-info', ['id' => $item['id']]) }}">{{ $item['item']['title'] }}, {{ $item['title'] }}</a></h5>
+                            <h5><a href="{{ route('volume-info', ['id' => $item['id']]) }}">{{ $item['item']['title'] }}, {{ $item['title'] }}</a></h5>
                             <p>{{ Str::limit($item['details'], 83) }}....</p>
                         </div>
                     </div>

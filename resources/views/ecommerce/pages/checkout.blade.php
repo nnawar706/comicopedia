@@ -1,7 +1,7 @@
 @extends('ecommerce.layouts.default')
 
 @section('content')
-
+    @include('ecommerce.includes.general.navbar')
     @include('ecommerce.includes.checkout.breadcrumb')
 
     <section class="checkout spad">

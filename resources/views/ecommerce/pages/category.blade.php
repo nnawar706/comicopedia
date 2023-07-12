@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('ecommerce.includes.general.navbar')
 @include('ecommerce.includes.category.breadcrumb')
 
 <!-- Product Section Begin -->

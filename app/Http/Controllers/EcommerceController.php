@@ -63,7 +63,6 @@ class EcommerceController extends Controller
         $data = array(
             'banners'       => $banners,
             'catalogues'    => $catalogues,
-            'genres'        => $genre,
             'items'         => $items
         );
 

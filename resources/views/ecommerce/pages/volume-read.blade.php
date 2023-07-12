@@ -21,10 +21,9 @@
     }
     @endphp
 
+@include('ecommerce.includes.general.navbar')
 @include('ecommerce.includes.volume.breadcrumb')
-
 @include('ecommerce.includes.volume.info')
-
 @include('ecommerce.includes.volume.related')
 
 @stop
