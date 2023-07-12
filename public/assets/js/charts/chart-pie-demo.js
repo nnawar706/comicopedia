@@ -2,7 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-fetch('/admin/category-list')
+fetch('/api/genres')
     .then(response => response.json())
     .then(data => {
         const labels = data.map(category => category.name);

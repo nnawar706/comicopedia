@@ -168,8 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('volumes/create', 'createView')->name('create-volume-view')->middleware(['auth:admin', 'permission:add volume,admin']);
             Route::post('volumes', 'create')->name('create-volume')->middleware(['auth:admin', 'permission:add volume,admin']);
             Route::put('volumes/update/{id}', 'update')->name('update-volume')->middleware(['auth:admin', 'permission:update volume,admin']);
-            Route::get('series/volumes/{id}', 'volumeList')->middleware(['auth:admin', 'permission:delete volume,admin']);
-
+            Route::get('series/volumes/{id}', 'volumeList');
         });
 
         Route::controller(ReviewController::class)->group(function () {

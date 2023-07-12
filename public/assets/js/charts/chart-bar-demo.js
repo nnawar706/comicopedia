@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .getElementById("myBarChart")
         .getAttribute("data-item-id");
 
-    fetch(`/admin/series/volumes/${item_id}`)
+    fetch(`/api/series/volumes/${item_id}`)
     .then((response) => response.json())
     .then(data => {
 
