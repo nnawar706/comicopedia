@@ -132,10 +132,12 @@
                         <li><a href="./shop-grid.html">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a href="{{ route('wish-view') }}">Wishlist</a></li>
+                                <li><a href="{{ route('cart-view') }}">Cart</a></li>
+                                @if(auth()->check())
+                                <li><a href="{{ route('checkout') }}">Check Out</a></li>
+                                <li><a href="{{ route('auth-order') }}">Orders</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li><a href="./blog.html">Blog</a></li>
