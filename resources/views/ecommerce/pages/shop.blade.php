@@ -21,7 +21,7 @@
                 <div class="col-lg-9 col-md-7">
                     @include('ecommerce.includes.shop.offers')
                     @include('ecommerce.includes.shop.filters')
-{{--                    @include('ecommerce.includes.category.shop-list')--}}
+                    @include('ecommerce.includes.shop.list')
                 </div>
             </div>
         </div>

@@ -143,22 +143,20 @@ class VolumeService
                 })
                 ->with(['item' => function ($q) {
                     $q->select('id', 'title');
-                }])->where('catalogue_id','=',5)->where('status','=',1)
-                ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
+                }])->where('catalogue_id','=',5)
+                ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path', 'status')->orderBy('sell_count', 'desc')->get(),
 
-//            'catalogue'  => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
-//                $q->where('genre_id', $id);
-//            })
-//                ->when(!is_null($request->catalogue), function($q) use($request) {
-//                    return $q->where('catalogue_id', $request->input('catalogue'));
-//                })->whereNot('catalogue_id',5)
-//                ->when(!is_null($request->min_price) && !is_null($request->max_price), function ($q) use($request) {
-//                    return $q->whereBetween('price', [$request->min_price, $request->max_price]);
-//                })
-//                ->where('status','=',1)->with(['item' => function($q) {
-//                    $q->select('id','title');
-//                }])->select('id','item_id','title','price','image_path')
-//                ->latest()->paginate(3)->appends($request->except('page','per_page')),
+            'catalogue'  => $this->volume->newQuery()
+                ->when(!is_null($request->catalogue), function($q) use($request) {
+                    return $q->where('catalogue_id', $request->input('catalogue'));
+                })->whereNot('catalogue_id',5)
+                ->when(!is_null($request->min_price) && !is_null($request->max_price), function ($q) use($request) {
+                    return $q->whereBetween('price', [$request->min_price, $request->max_price]);
+                })
+                ->with(['item' => function($q) {
+                    $q->select('id','title');
+                }])->select('id','item_id','title','price','image_path', 'status')
+                ->latest()->paginate(6)->appends($request->except('page','per_page')),
         );
     }
 
