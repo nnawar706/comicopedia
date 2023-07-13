@@ -13,6 +13,8 @@
                     <div class="sidebar">
                         @include('ecommerce.includes.shop.items')
                         @include('ecommerce.includes.shop.genre')
+                        @include('ecommerce.includes.shop.types')
+                        @include('ecommerce.includes.shop.price')
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
