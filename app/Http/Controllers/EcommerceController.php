@@ -161,7 +161,7 @@ class EcommerceController extends Controller
     public function getShopItems(Request $request)
     {
         $data = (new VolumeService(new Volume()))->getShopData($request);
-        return response()->json($data);
-//        return view('ecommerce.pages.shop')->with('data',$data);
+//        return response()->json($data);
+        return view('ecommerce.pages.shop')->with('data',$data);
     }
 }
