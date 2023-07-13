@@ -15,6 +15,7 @@
                         @include('ecommerce.includes.shop.genre')
                         @include('ecommerce.includes.shop.types')
                         @include('ecommerce.includes.shop.price')
+                        @include('ecommerce.includes.shop.rating')
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
