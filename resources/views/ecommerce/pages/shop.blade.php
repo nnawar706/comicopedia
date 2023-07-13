@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
-{{--                        @include('ecommerce.includes.shop.items')--}}
+                        @include('ecommerce.includes.shop.items')
                         @include('ecommerce.includes.shop.genre')
                     </div>
                 </div>

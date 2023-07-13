@@ -125,7 +125,7 @@ class VolumeService
         return array(
             'genre'      => (new CategoryService(new Category()))->getCategories(),
 
-//            'items'      => (new ItemService(new Item))->getTopItems(),
+            'items'      => (new ItemService(new Item))->getTopItems(),
 //
 //            'latest'     => $this->volume->newQuery()->whereHas('item', function($q) use($id) {
 //                $q->where('genre_id', $id);
