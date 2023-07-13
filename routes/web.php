@@ -38,6 +38,7 @@ Route::middleware([
 Route::controller(EcommerceController::class)->group(function () {
     Route::get('/', 'getMainPage')->name('welcome');
     Route::get('checkout', 'checkoutView')->name('checkout');
+    Route::get('shop', 'getShopItems')->name('shop');
     Route::get('genres/{id}', 'getGenre')->name('genre-info');
     Route::get('items/{id}', 'getItem')->name('item-info');
     Route::get('volumes/{id}', 'getVolume')->name('volume-info');

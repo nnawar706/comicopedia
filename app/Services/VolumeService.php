@@ -83,7 +83,7 @@ class VolumeService
 
     public function getAllData(Request $request, $id)
     {
-        $data = array(
+        return array(
             'genre'      => (new CategoryService(new Category()))->get($id),
 
             'items'      => (new ItemService(new Item))->getItemsByGenre($id),
@@ -118,8 +118,10 @@ class VolumeService
                             }])->select('id','item_id','title','price','image_path')
                             ->latest()->paginate(3)->appends($request->except('page','per_page')),
         );
+    }
 
-        return $data;
+    public function getShopData(Request $request)
+    {
     }
 
     public function volumeList($item_id)

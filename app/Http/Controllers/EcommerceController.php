@@ -157,4 +157,11 @@ class EcommerceController extends Controller
             return response()->json(['error' => 'error']);
         }
     }
+
+    public function getShopItems(Request $request)
+    {
+        $data = (new VolumeService(new Volume()))->getShopData($request);
+        return response()->json($data);
+//        return view('ecommerce.pages.shop')->with('data',$data);
+    }
 }
