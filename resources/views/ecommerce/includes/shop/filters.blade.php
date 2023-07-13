@@ -7,8 +7,8 @@
                     <option value="0" {{ request()->input('search') == null ? 'selected' : ''  }}>Default
                     </option>
                     <option
-                        value="5" {{ request()->input('search')=='Offers' ? 'selected' : '' }}>
-                        Offers
+                        value="4" {{ request()->input('search')=='Offers' ? 'selected' : '' }}>
+                        Featured
                     </option>
                     <option
                         value="3" {{ request()->input('search')=='Bestsellers' ? 'selected' : '' }}>

@@ -135,14 +135,17 @@ class VolumeService
 //                }])->where('catalogue_id', 1)->where('status',1)
 //                ->select('id','item_id','title','price','image_path')->orderBy('sell_count','desc')->get(),
 //
-//            'offers'     => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
-//                $q->where('genre_id', $id);
-//            })
-//                ->with(['item' => function ($q) {
-//                    $q->select('id', 'title');
-//                }])->where('catalogue_id','=',5)->where('status','=',1)
-//                ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
-//
+            'offers'     => $this->volume->newQuery()
+                ->when(!is_null(request()->input('genre_id')), function ($query) use($request) {
+                    return $query->whereHas('item', function ($q) use ($request) {
+                        $q->where('genre_id', $request->genre_id);
+                    });
+                })
+                ->with(['item' => function ($q) {
+                    $q->select('id', 'title');
+                }])->where('catalogue_id','=',5)->where('status','=',1)
+                ->select('id', 'item_id', 'title', 'price', 'discount', 'discount_active_till', 'image_path')->orderBy('sell_count', 'desc')->get(),
+
 //            'catalogue'  => $this->volume->newQuery()->whereHas('item', function ($q) use ($id) {
 //                $q->where('genre_id', $id);
 //            })
