@@ -83,6 +83,7 @@
                     </div>
                 </div>
             </div>
+            {{-- nothing, just to keep the streak alive :3 --}}
         </div>
     </div>
 </section>
