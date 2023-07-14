@@ -55,6 +55,7 @@
                     </div>
                 </div>
             </div>
+            {{-- nothing, just to keep the streak alive :3 --}}
             <div class="col-lg-4 col-md-6">
                 <div class="latest-product__text">
                     <h4>Bestsellers</h4>
