@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('restock_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('volume_id')->constrained('volumes')->onDelete('cascade');
+            $table->foreignId('attribute_id')->constrained('volume_attributes')->onDelete('cascade');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
