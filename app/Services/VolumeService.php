@@ -43,8 +43,6 @@ class VolumeService
 
             saveFile($request->file('image'), '/uploads/volumes/', $volume, 'image_path');
 
-            (new ItemService(new Item()))->incrementVolumes($request->item_id);
-
             DB::commit();
 
             return true;

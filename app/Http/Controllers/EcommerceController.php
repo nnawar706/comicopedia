@@ -57,7 +57,6 @@ class EcommerceController extends Controller
 
         $banners = (new BannerSettingService)->getAll();
         $catalogues = (new CatalogueService(new Catalogue()))->getAllWithItems();
-        $genre = (new CategoryService(new Category()))->getCategories();
         $items = (new ItemService(new Item()))->getTopItems();
 
         $data = array(

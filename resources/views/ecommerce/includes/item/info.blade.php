@@ -71,7 +71,7 @@
                             <li><b>Author</b> <span>{{ $data['author'] }}</span></li>
                             <li><b>Magazine</b> <span>{{ $data['magazine'] }}</span></li>
                             <li><b>Genre</b> <span>{{ $data['genre']['name'] }}</span></li>
-                            <li><b>Total Volumes</b> <span>{{ $data['volumes'] }}</span></li>
+                            <li><b>Total Volumes</b> <span>{{ $data['volume_list_count'] }}</span></li>
                             @if($availability == count($data['volume_list']))
                                 <li><b>Availability</b> <span>All the volumes are available</span></li>
                             @else

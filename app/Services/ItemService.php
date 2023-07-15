@@ -25,7 +25,7 @@ class ItemService
     public function getTopItems()
     {
         return $this->item->newQuery()
-        ->select('id','item_unique_id','title','image_path','volumes')
+        ->select('id','item_unique_id','title','image_path')->withCount('volume_list')
         ->orderBy('like_count', 'desc')->limit(15)->get();
     }
 
@@ -37,7 +37,7 @@ class ItemService
 
     public function getItem($id)
     {
-        return $this->item->newQuery()->with('genre', 'volume_list')->findOrFail($id);
+        return $this->item->newQuery()->with('genre', 'volume_list')->withCount('volume_list')->findOrFail($id);
     }
 
     public function storeItem(Request $request1, Request $request2)
@@ -103,12 +103,5 @@ class ItemService
         {
             return false;
         }
-    }
-
-    public function incrementVolumes($id): void
-    {
-        $item = $this->item->newQuery()->find($id);
-        $item->volumes += 1;
-        $item->save();
     }
 }
