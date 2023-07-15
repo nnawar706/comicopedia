@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RestockRequest;
 use App\Http\Requests\VolumeCreateRequest;
 use App\Services\CatalogueService;
 use App\Services\ItemService;
@@ -68,6 +69,9 @@ class VolumeController extends Controller
 
         return redirect()->back();
     }
+
+    public function requestStock(RestockRequest $request)
+    {}
 
     public function update()
     {}

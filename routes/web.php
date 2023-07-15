@@ -36,6 +36,7 @@ Route::middleware([
 });
 
 Route::controller(EcommerceController::class)->group(function () {
+
     Route::get('/', 'getMainPage')->name('welcome');
     Route::get('checkout', 'checkoutView')->name('checkout');
     Route::get('shop', 'getShopItems')->name('shop');
@@ -70,6 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('auth/user/orders', 'getAuthUserOrders')->name('auth-order');
         Route::post('place-order', 'store')->name('place-order');
     });
+
+    Route::post('request/restock-volume', [VolumeController::class, 'requestStock']);
 });
 
 Route::controller(ReportController::class)->group(function () {
