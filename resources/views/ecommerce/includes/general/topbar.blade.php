@@ -28,7 +28,9 @@
         <ul>
             <li class="active"><a href="{{ route('welcome') }}">Home</a></li>
             <li><a href="{{ route('shop') }}">Shop</a></li>
-            <li><a href="./blog.html">Blog</a></li>
+            @if(auth()->check())
+            <li><a href="{{ route('auth-order') }}">Orders</a></li>
+            @endif
             <li><a href="./contact.html">Contact</a></li>
         </ul>
     </nav>
