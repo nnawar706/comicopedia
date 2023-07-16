@@ -96,6 +96,6 @@ class OrderService
 
     public function getCustomerOrders($user_id)
     {
-        return Order::with('address','items','status')->where('user_id', $user_id)->latest()->get();
+        return Order::with('address','status')->withCount('items')->where('user_id', $user_id)->latest()->get();
     }
 }

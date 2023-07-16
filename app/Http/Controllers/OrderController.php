@@ -26,9 +26,9 @@ class OrderController extends Controller
     {
         $data = $this->service->getCustomerOrders(auth()->user()->id);
 
-        return response()->json($data);
+//        return response()->json($data);
 
-//        return view('ecommerce.pages.orders');
+        return view('ecommerce.pages.orders')->with('data',$data);
     }
 
     public function getAddresses()
