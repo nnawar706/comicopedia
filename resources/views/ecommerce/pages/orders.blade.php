@@ -28,6 +28,7 @@
                             <td>{{ $item['delivery_tracking_no'] }}</td>
                             <td>{{ $item['items_count'] }}</td>
                             <td>{{ $item['total']+$item['shipping_cost']-$item['promo_discount'] }}</td>
+                            <td>{{ $item['status']['name'] }}</td>
                         </tr>
                         @endforeach
                         </tbody>
