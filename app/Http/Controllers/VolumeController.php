@@ -71,7 +71,11 @@ class VolumeController extends Controller
     }
 
     public function requestStock(RestockRequest $request)
-    {}
+    {
+        $this->service1->stockRequest($request);
+
+        return redirect()->back()->with('message', 'Your request has been posted successfully.');
+    }
 
     public function update()
     {}

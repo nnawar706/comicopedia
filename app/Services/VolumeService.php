@@ -231,4 +231,8 @@ class VolumeService
             ->orWhere('items.magazine', 'like', '%'.request()->name.'%')
             ->take(request()->input('limit'))->get();
     }
+
+    public function stockRequest(Request $request)
+    {
+    }
 }
