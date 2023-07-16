@@ -233,7 +233,7 @@ class VolumeService
             ->take(request()->input('limit'))->get();
     }
 
-    public function stockRequest(Request $request)
+    public function stockRequest(Request $request): void
     {
         RestockRequest::create([
             'user_id'       => auth()->user()->id,
