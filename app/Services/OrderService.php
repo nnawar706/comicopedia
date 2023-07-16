@@ -93,4 +93,9 @@ class OrderService
     {
         return Order::with(['user' => function ($q) { return $q->select('id','name','email');}])->latest()->take(5)->get();
     }
+
+    public function getCustomerOrders($user_id)
+    {
+        return Order::with('address','items','status')->where('user_id', $user_id)->latest()->get();
+    }
 }

@@ -24,7 +24,11 @@ class OrderController extends Controller
 
     public function getAuthUserOrders()
     {
-        return view('ecommerce.pages.orders');
+        $data = $this->service->getCustomerOrders(auth()->user()->id);
+
+        return response()->json($data);
+
+//        return view('ecommerce.pages.orders');
     }
 
     public function getAddresses()
