@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Item;
+use App\Models\RestockRequest;
 use App\Models\Volume;
 use App\Models\Category;
 use App\Models\Catalogue;
@@ -234,5 +235,11 @@ class VolumeService
 
     public function stockRequest(Request $request)
     {
+        RestockRequest::create([
+            'user_id'       => auth()->user()->id,
+            'volume_id'     => $request->volume_id,
+            'attribute_id'  => $request->attribute_id ?? null,
+            'comment'       => $request->comment
+        ]);
     }
 }
