@@ -22,6 +22,11 @@ class OrderController extends Controller
         return view('admin/pages/orders');
     }
 
+    public function getAuthUserOrders()
+    {
+        return view('ecommerce.pages.orders');
+    }
+
     public function getAddresses()
     {
         return response()->json($this->service->getCoordinates());
