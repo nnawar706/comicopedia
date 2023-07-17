@@ -18,7 +18,7 @@
                                 <th scope="col">Total Items</th>
                                 <th scope="col">Total Payable</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,7 +30,7 @@
                             <td>{{ $item['items_count'] }}</td>
                             <td>&#2547; {{ $item['total']+$item['shipping_cost']-$item['promo_discount'] }}</td>
                             <td>{{ $item['status']['name'] }}</td>
-                            <td><a href="{{ route('order-detail-pdf', ['id' => $item['id']]) }}"><i class="fa fa-info"></i>Download Invoice</a></td>
+                            <td><a href="{{ route('order-detail-pdf', ['id' => $item['id']]) }}"><i class="fa fa-file-pdf" style="color:#1c1c1c;"></i></a></td>
                         </tr>
                         @endforeach
                         </tbody>
