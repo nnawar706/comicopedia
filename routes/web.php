@@ -72,12 +72,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('place-order', 'store')->name('place-order');
     });
 
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('order/invoice/{id}', 'invoicePDF')->name('order-detail-pdf');
+    });
+
     Route::post('request/restock-volume', [VolumeController::class, 'requestStock']);
 });
 
-Route::controller(ReportController::class)->group(function () {
-    Route::get('cart-detail', 'cartPDF')->name('cart-detail-pdf');
-});
+Route::get('cart-detail', [ReportController::class, 'cartPDF'])->name('cart-detail-pdf');
 
 Route::group(['prefix' => 'admin'], function () {
 
