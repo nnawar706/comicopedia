@@ -149,12 +149,7 @@ class EcommerceController extends Controller
 
     public function searchOptions()
     {
-        if(request()->input('apiKey') == 'c704212b54af40b3af542df235f28ac3')
-        {
-            return response()->json((new VolumeService(new Volume()))->getSearchResults());
-        } else {
-            return response()->json(['error' => 'API authentication is missing.']);
-        }
+        return response()->json((new VolumeService(new Volume()))->getSearchResults());
     }
 
     public function getShopItems(Request $request)
