@@ -10,6 +10,7 @@ use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ChangeInfoRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Services\OrderService;
+use App\Services\ReportService;
 use App\Services\VolumeService;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,6 +41,8 @@ class AuthController extends Controller
             'most_viewed'       => (new VolumeService(new Volume()))->getMostViewed(),
             'order_data'        => (new OrderService())->getData(),
             'orders'            => (new OrderService())->getRecentOrders(),
+            'earning'           => (new ReportService())->getTotalEarning(),
+            'customers'         => (new ReportService())->getTotalCustomers(),
         );
 
         // return response()->json($data);
