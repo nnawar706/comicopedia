@@ -11,6 +11,7 @@
         <div class="row">
             <div class="categories__slider owl-carousel">
                 @foreach ($data['related'] as $value)
+                @if($data['info']['id'] != $value['id'])
                 <div class="col-lg-3">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{ asset($value->image_path) }}">
@@ -39,6 +40,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>
