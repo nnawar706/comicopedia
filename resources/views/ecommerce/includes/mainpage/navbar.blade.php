@@ -47,9 +47,12 @@
 
 @push('scripts')
     <script type="text/javascript">
+
+    let apiKey = "c704212b54af40b3af542df235f28ac3";
+
         $(document).ready(function () {
             $.ajax({
-                url: "/api/genres",
+                url: `/api/genres?apiKey=${apiKey}`,
                 method: "GET",
                 success: function (data) {
                     let list = $("#genreList");

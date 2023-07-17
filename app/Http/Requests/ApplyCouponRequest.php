@@ -30,8 +30,9 @@ class ApplyCouponRequest extends FormRequest
         return [
             'code' => ['required','exists:user_coupons,code',
                 function($attr,$val,$fail) {
-                    $code = UserCoupon::where('status',1)->whereDate('validity','<=',Carbon::today())
+                    $code = UserCoupon::where('status',1)->whereDate('validity','>=',Carbon::today())
                         ->where('user_id', auth()->user()->id)
+                        ->where('code', $val)
                         ->first();
 
                     if(is_null($code))

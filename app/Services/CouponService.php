@@ -31,8 +31,8 @@ class CouponService
     public function applyCoupon(Request $request)
     {
         $coupon = $this->coupon->newQuery()
-            ->where('status',1)->whereDate('validity','<=',Carbon::today())
             ->where('user_id', auth()->user()->id)
+            ->where('code',$request->code)
             ->first();
 
         if(!is_null($coupon))

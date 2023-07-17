@@ -11,7 +11,7 @@ class UserCoupon extends Model
 
     protected $table = 'user_coupons';
 
-    protected $fillable = ['user_id','code','status','validity'];
+    protected $fillable = ['user_id','code', 'discount', 'status', 'validity'];
 
     public function user()
     {
