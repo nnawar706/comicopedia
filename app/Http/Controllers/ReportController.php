@@ -7,11 +7,13 @@ use App\Models\Cart;
 use App\Exports\ItemExport;
 use App\Exports\VolumeExport;
 use App\Models\GeneralSetting;
+use App\Models\Order;
 use App\Models\SiteInformation;
 use App\Services\CartService;
+use App\Services\OrderService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
-use PDF;
 
 class ReportController extends Controller
 {
@@ -53,5 +55,25 @@ class ReportController extends Controller
         $pdf = PDF::loadView('ecommerce.pdf.cart-detail', $data);
 
         return $pdf->stream('cart-details-'.uniqid().'.pdf');
+    }
+
+    public function invoicePDF($id)
+    {
+        $order = Order::find($id);
+
+        if(is_null($order) || $order->user_id != auth()->user()->id) {
+            return redirect()->back()->with('message', 'Selected order is invalid.');
+        }
+
+        $data = array(
+            'order' => (new OrderService())->getOrderData($id),
+            'general' => SiteInformation::find(1),
+        );
+
+        $pdf = PDF::loadView('ecommerce.pdf.invoice', $data);
+
+        return $pdf->stream('invoice-'.uniqid().'.pdf');
+
+//        return response()->json($data);
     }
 }

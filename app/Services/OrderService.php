@@ -22,6 +22,19 @@ class OrderService
                 'order_statuses.id as status_id','order_statuses.name as order_status')->latest();
     }
 
+    public function getOrderData($id)
+    {
+        return Order::with('address','items.attribute','status')
+            ->with(['items.volume' => function($q) {
+                return $q->select('id','item_id','product_unique_id','title')->with(['item' => function($q1) {
+                    return $q1->select('id','title');
+                }]);
+            }])
+            ->with(['user'=>function($q) {
+                return $q->select('id','name','email');
+            }])->find($id);
+    }
+
     public function placeOrder(Request $request)
     {
         DB::beginTransaction();

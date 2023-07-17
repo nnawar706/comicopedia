@@ -14,7 +14,7 @@ class OrderItems extends Model
 
     protected $fillable = ['order_id','volume_id','attribute_id','quantity','price','discount','total'];
 
-    protected $hidden = ['updated_at'];
+    protected $hidden = ['created_at','updated_at'];
 
     public static function boot()
     {
