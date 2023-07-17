@@ -73,7 +73,5 @@ class ReportController extends Controller
         $pdf = PDF::loadView('ecommerce.pdf.invoice', $data);
 
         return $pdf->stream('invoice-'.uniqid().'.pdf');
-
-//        return response()->json($data);
     }
 }
