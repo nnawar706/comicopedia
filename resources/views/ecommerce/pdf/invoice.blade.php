@@ -18,7 +18,7 @@
 </head>
 <body>
 <section>
-    <div style="float: left; margin-top: 20px">
+    <div style="float: left; margin-top: 20px;width: 370px;">
         <b style="font-size: 20px">Issued To:</b>
         <p style="font-size: 17px">Customer: {{ $order['user']['name'] }}</p>
         <p style="font-size: 17px">Email: {{ $order['user']['email'] }}</p>
@@ -35,7 +35,7 @@
     </div>
 </section>
 
-<div style="background-color: brown; height: 1px; width: 100%; margin-top: 170px"></div>
+<div style="background-color: brown; height: 1px; width: 100%; margin-top: 260px"></div>
 
 <section style="margin-top: 30px">
     <table>
