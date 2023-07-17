@@ -31,7 +31,9 @@
 // Bar Chart Example
 document.addEventListener('DOMContentLoaded', function() {
 
-    fetch(`/api/order-statuses`)
+    let apiKey = "c704212b54af40b3af542df235f28ac3";
+
+    fetch(`/api/order-statuses?apiKey=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
             const labels = data.map((item) => item.name);

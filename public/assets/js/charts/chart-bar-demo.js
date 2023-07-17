@@ -34,7 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .getElementById("myBarChart")
         .getAttribute("data-item-id");
 
-    fetch(`/api/series/volumes/${item_id}`)
+    let apiKey = "c704212b54af40b3af542df235f28ac3";
+
+    fetch(`/api/series/volumes/${item_id}?apiKey=${apiKey}`)
     .then((response) => response.json())
     .then(data => {
 
