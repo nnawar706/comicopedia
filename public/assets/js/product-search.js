@@ -11,6 +11,7 @@ $(document).ready(function() {
             .then(data => {
                 $.each(data, function (key, value) {
                     $('#searchResult').append('<div><a style="color: #1a202c" href="/volumes/' + value.volume_id + '">'+ value.item + ', ' + value.volume +'</a></div>');
+                    console.log(data)
                 })
             });
     })
