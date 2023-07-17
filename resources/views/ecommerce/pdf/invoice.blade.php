@@ -20,10 +20,11 @@
 <section>
     <div style="float: left; margin-top: 20px;width: 370px;">
         <b style="font-size: 20px">Issued To:</b>
-        <p style="font-size: 17px">Customer: {{ $order['user']['name'] }}</p>
-        <p style="font-size: 17px">Email: {{ $order['user']['email'] }}</p>
-        <p style="font-size: 17px">Contact: {{ $order['contact'] }}</p>
-        <p style="font-size: 17px">Shipping Address: {{ $order['address']['address'] }}</p>
+        <p style="font-size: 15px">Customer: {{ $order['user']['name'] }}</p>
+        <p style="font-size: 15px">Email: {{ $order['user']['email'] }}</p>
+        <p style="font-size: 15px">Contact: {{ $order['contact'] }}</p>
+        <p style="font-size: 15px">Shipping Address: {{ $order['address']['address'] }}</p>
+        <p style="font-size: 15px">Ordered On: {{ \Carbon\Carbon::parse($order['created_at'])->format('F d, Y') }}</p>
     </div>
     <div style="float: right">
         <img style="height: 80px" src="{{ public_path($general['logo_path']) }}">
@@ -37,7 +38,7 @@
 
 <div style="background-color: brown; height: 1px; width: 100%; margin-top: 260px"></div>
 
-<section style="margin-top: 30px">
+<section style="margin-top: 50px">
     <table>
         <tr style="background-color: #374151;color: #fff;">
             <td>#ID</td>
