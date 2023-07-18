@@ -76,6 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('order/invoice/{id}', 'invoicePDF')->name('order-detail-pdf');
     });
 
+    Route::get('rate-items/{id}', [ItemController::class, 'rateItem']);
+
     Route::post('request/restock-volume', [VolumeController::class, 'requestStock']);
 });
 

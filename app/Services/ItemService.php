@@ -104,4 +104,9 @@ class ItemService
             return false;
         }
     }
+
+    public function storeRating($id, $param)
+    {
+//        $this->item->findOrFail()
+    }
 }

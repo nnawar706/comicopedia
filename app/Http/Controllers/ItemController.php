@@ -59,6 +59,13 @@ class ItemController extends Controller
         return view('admin.pages.items')->with('message', 'A series has been updated successfully.');
     }
 
+    public function rateItem($id)
+    {
+        $this->service->storeRating($id, request()->input('status') == 0 ? 'dislike' : 'like');
+
+        return redirect()->back()->with('message', 'Your response has been saved.');
+    }
+
     public function delete($id)
     {
         if($this->service->deleteItem($id))

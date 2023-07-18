@@ -58,12 +58,12 @@
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                             @endif
                         </div>
-                        <p>
-                            <b>
-                                <span><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-up"></i></a> {{ $data['like_count'] }}</span>
-                                <span style="margin-left: 30px"><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-down"></i></a> {{ $data['dislike_count'] }}</span>
-                            </b>
-                        </p>
+                        @if(auth()->check())
+                        <b>
+                            <span><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-up"></i></a> {{ $data['like_count'] }}</span>
+                            <span style="margin-left: 30px"><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-down"></i></a> {{ $data['dislike_count'] }}</span>
+                        </b>
+                        @endif
                         <ul>
                             <li><b>Item ID</b> <span>{{ $data['item_unique_id'] }}</span></li>
                             <li><b>Author</b> <span>{{ $data['author'] }}</span></li>
