@@ -60,8 +60,8 @@
                         </div>
                         @if(auth()->check())
                         <b>
-                            <span><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-up"></i></a> {{ $data['like_count'] }}</span>
-                            <span style="margin-left: 30px"><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-down"></i></a> {{ $data['dislike_count'] }}</span>
+                            <span><a href="/rate-items/{{ $data['id'] }}?status=1" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-up"></i></a> {{ $data['like_count'] }}</span>
+                            <span style="margin-left: 30px"><a href="/rate-items/{{ $data['id'] }}?status=0" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-down"></i></a> {{ $data['dislike_count'] }}</span>
                         </b>
                         @endif
                         <ul>

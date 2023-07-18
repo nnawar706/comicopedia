@@ -61,9 +61,11 @@ class ItemController extends Controller
 
     public function rateItem($id)
     {
-        $this->service->storeRating($id, request()->input('status') == 0 ? 'dislike' : 'like');
+        if($this->service->storeRating($id, request()->input('status') == 0 ? 'dislike' : 'like')) {
+            return redirect()->back()->with('message', 'Your response has been saved.');
+        }
 
-        return redirect()->back()->with('message', 'Your response has been saved.');
+        return redirect()->back()->with('message', 'Your response has been savedddd.');
     }
 
     public function delete($id)

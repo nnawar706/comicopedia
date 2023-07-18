@@ -108,20 +108,33 @@ class ItemService
 
     public function storeRating($id, $param)
     {
-        $rate = ItemRating::firstOrCreate([
-            'item_id'       => $id,
-            'user_id'       => auth()->user()->id,
-            'like_status'   => $param=='like' ? 1 : 0,
-        ]);
+        DB::beginTransaction();
 
-        if($rate->wasRecentlyCreated) {
-            $item = $this->item->findOrFail($id);
+        try {
+            $rate = ItemRating::firstOrCreate([
+                'item_id'       => $id,
+                'user_id'       => auth()->user()->id,
+                'like_status'   => $param=='like' ? 1 : 0,
+            ]);
 
-            if($param == 'like') {
-                $item->like_count += 1;
-            } else {
-                $item->dislike_count += 1;
+            if($rate->wasRecentlyCreated) {
+                $item = $this->item->findOrFail($id);
+
+                if($param == 'like') {
+                    $item->like_count += 1;
+                } else {
+                    $item->dislike_count += 1;
+                }
+
+                $item->save();
+
+                DB::commit();
+
+                return true;
             }
+        } catch (QueryException $ex) {
+            DB::rollback();
+            return false;
         }
     }
 }
