@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('item_ratings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
+            $table->tinyInteger('like_status');
             $table->timestamps();
         });
     }

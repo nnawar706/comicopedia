@@ -30,4 +30,9 @@ class Item extends Model
         return $this->belongsTo(Category::class, 'genre_id');
     }
 
+    public function ratings()
+    {
+        return $this->hasMany(ItemRating::class, 'item_id');
+    }
+
 }
