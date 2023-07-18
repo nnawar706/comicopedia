@@ -245,6 +245,7 @@ class VolumeService
 
     public function getOrderData($volume_id)
     {
-//        return
+        $data = DB::table('order_items')->leftJoin('orders','order_items.order_id','=','orders.id')
+            ->leftJoin('volumes','order_items.volume_id','=','volumes.id');
     }
 }
