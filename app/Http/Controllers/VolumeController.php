@@ -79,4 +79,11 @@ class VolumeController extends Controller
 
     public function update()
     {}
+
+    public function volumeOrderReport($volume_id)
+    {
+        $data = $this->service1->getOrderData($volume_id);
+
+        return response()->json(['data' => $data]);
+    }
 }
