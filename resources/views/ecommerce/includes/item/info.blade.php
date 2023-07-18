@@ -6,7 +6,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset($data['image_path']) }}" alt="manga-image" height="750">
+                                src="{{ asset($data['image_path']) }}" alt="manga-image" height="650">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             @foreach($data['volume_list'] as $key => $volume)
@@ -57,13 +57,11 @@
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                             @endif
-
-                            <button class="primary-btn sm" style="float: right">like</button>
                         </div>
-                        <p>{{ $data['detail'] }}<br>
+                        <p>
                             <b>
-                                <span><i class="fa fa-thumbs-up"></i> {{ $data['like_count'] }}</span>
-                                <span style="margin-left: 30px"><i class="fa fa-thumbs-down"></i> {{ $data['dislike_count'] }}</span>
+                                <span><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-up"></i></a> {{ $data['like_count'] }}</span>
+                                <span style="margin-left: 30px"><a href="" style="text-decoration: none;color: #1c294e"><i class="fa fa-thumbs-down"></i></a> {{ $data['dislike_count'] }}</span>
                             </b>
                         </p>
                         <ul>
@@ -88,6 +86,24 @@
                                 </div>
                             </li>
                         </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                   aria-selected="true">Information</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>Summary</h6>
+                                    <p>{{ $data['detail'] }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
