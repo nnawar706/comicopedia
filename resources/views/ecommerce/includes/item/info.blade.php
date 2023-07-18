@@ -20,31 +20,31 @@
                     <div class="product__details__text">
                         <h3>{{ $data['title'] }}</h3>
                         <div class="product__details__rating">
-                            @if($rate === 1)
+                            @if($rate == 1)
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
-                            @elseif($rate === 2)
+                            @elseif($rate == 2)
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
-                            @elseif($rate === 3)
+                            @elseif($rate == 3)
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
-                            @elseif($rate === 4)
+                            @elseif($rate == 4)
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#D9D9D9"></i>
-                            @elseif($rate === 5)
+                            @elseif($rate == 5)
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
                                 <i class="fas fa-star" style="color:#FFC300"></i>
