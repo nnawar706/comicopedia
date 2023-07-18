@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\ItemRating;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -107,6 +108,20 @@ class ItemService
 
     public function storeRating($id, $param)
     {
-//        $this->item->findOrFail()
+        $rate = ItemRating::firstOrCreate([
+            'item_id'       => $id,
+            'user_id'       => auth()->user()->id,
+            'like_status'   => $param=='like' ? 1 : 0,
+        ]);
+
+        if($rate->wasRecentlyCreated) {
+            $item = $this->item->findOrFail($id);
+
+            if($param == 'like') {
+                $item->like_count += 1;
+            } else {
+                $item->dislike_count += 1;
+            }
+        }
     }
 }
