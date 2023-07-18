@@ -245,7 +245,7 @@ class VolumeService
 
     public function getOrderData($volume_id)
     {
-        $data = DB::table('order_items')->leftJoin('orders','order_items.order_id','=','orders.id')
-            ->leftJoin('volumes','order_items.volume_id','=','volumes.id');
+        return DB::table('order_items')
+            ->where('volume_id',$volume_id)->selectRaw('count(*)')->orderByRaw("month('created_at')")->get();
     }
 }

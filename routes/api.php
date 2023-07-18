@@ -27,7 +27,7 @@ Route::middleware('auth.api')->group(function () {
     Route::get('genres', [CategoryController::class, 'index']);
     Route::controller(VolumeController::class)->group(function () {
         Route::get('series/volumes/{id}', 'volumeList');
-        Route::get('volumes/order-report/{volume_id}', 'volumeOrderReport');
+        Route::get('volumes/order-earning-report/{volume_id}', 'volumeOrderReport');
     });
 
     Route::get('order-statuses', [OrderController::class, 'getOrderStatuses']);
