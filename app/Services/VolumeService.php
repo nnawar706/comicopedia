@@ -245,9 +245,13 @@ class VolumeService
 
     public function getOrderData($volume_id)
     {
+        $end = Carbon::now();
+        $start = $end->copy()->subMonths(11)->startOfMonth();
+
         return DB::table('order_items')
             ->where('volume_id',$volume_id)
+            ->whereBetween('created_at', [$start, $end])
             ->selectRaw("count(*) as total, monthname(created_at) as month_name")
-            ->groupByRaw("month(created_at), created_at")->get();
+            ->groupByRaw("month_name")->get();
     }
 }
