@@ -254,29 +254,6 @@ class VolumeService
             ->selectRaw("count(*) as total, monthname(created_at) as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
-        $ordered_data = collect();
 
-        if(count($data) != 12) {
-            foreach($data as $item) {
-//                if()
-            }
-            for($i=1;$i<=12;$i++) {
-                if($data[$i-1]->month != $i) {
-                    $ordered_data->push([
-                        'total'         => 0,
-                        'month_name'    => Carbon::createFromDate(null, $i)->format('F'),
-                        'month'         => $i,
-                    ]);
-                } else {
-                    $ordered_data->push([
-                        'total'         => $data[$i]['total'],
-                        'month_name'    => $data[$i]['month_name'],
-                        'month'         => $i,
-                    ]);
-                }
-            }
-        }
-
-        return $data;
     }
 }
