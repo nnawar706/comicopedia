@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth.api')->group(function () {
     Route::get('search/autocomplete', [EcommerceController::class, 'searchOptions']);
     Route::get('genres', [CategoryController::class, 'index']);
+
     Route::controller(VolumeController::class)->group(function () {
         Route::get('series/volumes/{id}', 'volumeList');
         Route::get('volumes/order-earning-report/{volume_id}', 'volumeOrderReport');

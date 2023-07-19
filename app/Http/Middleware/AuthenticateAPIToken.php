@@ -18,7 +18,7 @@ class AuthenticateAPIToken
     {
         if($request->input('apiKey') !== 'c704212b54af40b3af542df235f28ac3')
         {
-            return response()->json(['error' => 'API authentication is missing.'], 401);
+            return response()->json(['error' => 'API authentication key is missing.'], 401);
         }
         return $next($request);
     }
