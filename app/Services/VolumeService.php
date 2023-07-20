@@ -242,7 +242,7 @@ class VolumeService
             'comment'       => $request->comment
         ]);
     }
-// nothing
+
     public function getOrderData($volume_id)
     {
         $end = Carbon::now();
@@ -254,6 +254,6 @@ class VolumeService
             ->selectRaw("count(*) as total, monthname(created_at) as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
-
+        return $data;
     }
 }
