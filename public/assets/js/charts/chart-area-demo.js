@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then((response) => response.json())
         .then(data => {
 
-            console.log(data)
             const labels = data.map(item => item.month_name);
 
             const count = data.map(item => item.total_sold);

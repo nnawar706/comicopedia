@@ -251,7 +251,7 @@ class VolumeService
         $data = DB::table('order_items')
             ->where('volume_id',$volume_id)
             ->whereBetween('created_at', [$start, $end])
-            ->selectRaw("count(*) as total, monthname(created_at) as month_name, month(created_at) as month")
+            ->selectRaw("count(*) as total_sold, monthname(created_at) as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
         $data = json_decode($data, true);
