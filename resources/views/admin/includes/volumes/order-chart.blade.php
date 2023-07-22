@@ -18,7 +18,7 @@
             <!-- Card Body -->
             <div class="card-body">
                 <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                    <canvas id="myAreaChart" data-volume-id="{{ $data['id'] }}"></canvas>
                 </div>
             </div>
         </div>

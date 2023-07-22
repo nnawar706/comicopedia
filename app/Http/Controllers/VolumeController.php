@@ -84,6 +84,6 @@ class VolumeController extends Controller
     {
         $data = $this->service1->getOrderData($volume_id);
 
-        return response()->json(['data' => $data]);
+        return response()->json($data);
     }
 }

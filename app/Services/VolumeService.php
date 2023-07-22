@@ -268,7 +268,7 @@ class VolumeService
 
             if(!$exist) {
                 $data[] = array(
-                    'total'      => 0,
+                    'total_sold'      => 0,
                     'month_name' => date('F', mktime(0, 0, 0, $month, 1)),
                     'month'      => $month
                 );
