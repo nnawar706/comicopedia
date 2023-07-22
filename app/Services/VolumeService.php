@@ -245,7 +245,7 @@ class VolumeService
 
     public function getOrderData($volume_id)
     {
-        $end = Carbon::now()->addMonth();
+        $end = Carbon::now();
         $start = $end->copy()->subMonths(11)->startOfMonth();
 
         $data = DB::table('order_items')
@@ -258,7 +258,7 @@ class VolumeService
 
         $curMonth = date('n');
 
-        for($i=0;$i<6;$i++) {
+        for($i=0;$i<12;$i++) {
             $month = ($curMonth - $i + 12) % 12;
             $month = $month === 0 ? 12 : $month;
 
