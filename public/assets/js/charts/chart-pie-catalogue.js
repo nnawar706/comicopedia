@@ -4,43 +4,44 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 let apiKey = "c704212b54af40b3af542df235f28ac3";
 
+console.log(apiKey);
+
 fetch(`/api/catalogues?apiKey=${apiKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        // const labels = data.map(catalogue => catalogue.name);
-        // const count = data.map(catalogue => catalogue.volumes_count);
-        //
-        // var ctx = document.getElementById("cataloguePieChart");
-        // var myPieChart = new Chart(ctx, {
-        //     type: 'doughnut',
-        //     data: {
-        //         labels: labels,
-        //         datasets: [{
-        //             data: count,
-        //             backgroundColor: ['#f23000', '#4e73df', '#1cc88a', '#36b9cc', '#B2BEB5', '#242424'],
-        //             hoverBackgroundColor: ['#d30000', '#17a673', '#2c9faf', '#292929', '#171717'],
-        //             hoverBorderColor: "rgba(234, 236, 244, 1)",
-        //         }],
-        //     },
-        //     options: {
-        //         maintainAspectRatio: false,
-        //         tooltips: {
-        //             backgroundColor: "rgb(255,255,255)",
-        //             bodyFontColor: "#858796",
-        //             borderColor: '#dddfeb',
-        //             borderWidth: 1,
-        //             xPadding: 15,
-        //             yPadding: 15,
-        //             displayColors: false,
-        //             caretPadding: 10,
-        //         },
-        //         legend: {
-        //             display: false
-        //         },
-        //         cutoutPercentage: 80,
-        //     },
-        // });
+        const labels = data.map(catalogue => catalogue.name);
+        const count = data.map(catalogue => catalogue.volumes_count);
+
+        var ctx = document.getElementById("cataloguePieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: count,
+                    backgroundColor: ['#f23000', '#4e73df', '#1cc88a', '#36b9cc', '#B2BEB5', '#242424'],
+                    hoverBackgroundColor: ['#d30000', '#17a673', '#2c9faf', '#292929', '#171717'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+            },
+        });
     })
     .catch(error => {
         console.log('Error: ', error);
