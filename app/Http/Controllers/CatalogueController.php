@@ -9,7 +9,7 @@ class CatalogueController extends Controller
 {
     public function catalogueData()
     {
-        $data = Catalogue::count();
+        $data = Catalogue::withCount('volumes')->get();
 
         return response()->json($data);
     }

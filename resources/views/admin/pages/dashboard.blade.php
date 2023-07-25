@@ -47,20 +47,23 @@
                         <canvas id="cataloguePieChart"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> New Arrivals
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-danger"></i> New Arrivals
                         </span>
-                                <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Upcoming Releases
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-primary"></i> Upcoming
                         </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Bestsellers
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-success"></i> Bestsellers
                         </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-danger"></i> Featured
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-info"></i> Featured
                         </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-dark"></i> Offers
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-blue"></i> Offers
+                        </span>
+                        <span class="mr-1">
+                            <i class="fas fa-circle text-dark"></i> General
                         </span>
                     </div>
                 </div>
