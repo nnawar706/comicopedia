@@ -28,7 +28,7 @@
                 <!-- Comic Card -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Genres</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Catalogues</h6>
                         <div class="dropdown no-arrow"></div>
                         <a href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,18 +44,24 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
+                        <canvas id="cataloguePieChart"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
-                <span class="mr-2">
-                    <i class="fas fa-circle text-primary"></i> Shonen
-                </span>
                         <span class="mr-2">
-                    <i class="fas fa-circle text-success"></i> Shojo
-                </span>
+                            <i class="fas fa-circle text-primary"></i> New Arrivals
+                        </span>
+                                <span class="mr-2">
+                            <i class="fas fa-circle text-success"></i> Upcoming Releases
+                        </span>
                         <span class="mr-2">
-                    <i class="fas fa-circle text-info"></i> Seinen
-                </span>
+                            <i class="fas fa-circle text-info"></i> Bestsellers
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-danger"></i> Featured
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-dark"></i> Offers
+                        </span>
                     </div>
                 </div>
             </div>
