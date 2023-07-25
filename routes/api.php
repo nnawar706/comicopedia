@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\OrderController;
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth.api')->group(function () {
     Route::get('search/autocomplete', [EcommerceController::class, 'searchOptions']);
     Route::get('genres', [CategoryController::class, 'index']);
+    Route::get('catalogues', [CatalogueController::class, 'catalogueData']);
 
     Route::controller(VolumeController::class)->group(function () {
         Route::get('series/volumes/{id}', 'volumeList');
