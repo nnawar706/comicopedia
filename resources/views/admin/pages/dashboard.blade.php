@@ -14,7 +14,17 @@
 
         <!-- Content row -->
         <div class="row">
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Order Locations</h6>
+                    </div>
+                    <div class="card-body" style="height: 354px !important;">
+                        {{-- <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
                 <!-- Comic Card -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -32,16 +42,6 @@
                                 aria-valuenow="{{ round(($item['view_count']/$data['most_viewed']['total'])*100,2) }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Order Locations</h6>
-                    </div>
-                    <div class="card-body" style="height: 354px !important;">
-                        {{-- <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div> --}}
                     </div>
                 </div>
             </div>
