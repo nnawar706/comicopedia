@@ -79,7 +79,6 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['order_data'][0]['orders_count'] }}</div>
                     </div>
                     <div class="col-auto">
-                        {{-- nothing --}}
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
                     </div>
                 </div>

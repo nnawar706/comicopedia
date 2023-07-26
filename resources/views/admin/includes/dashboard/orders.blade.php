@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach ($data['orders'] as $order)
                             <tr>
-                                <td><a href="" style="text-decoration:underline">{{ $order['order_no'] }}</a></td>
+                                <td><a href="{{ route('read-order-view',['id' => $order->id]) }}" style="text-decoration:underline">{{ $order['order_no'] }}</a></td>
                                 <td>{{ $order['user']['name'] }}</td>
                                 <td>{{ $order['total'] + $order['shipping_cost'] }}</td>
                                 <td>{{ \Carbon\Carbon::parse($order['created_at'])->format('F d, Y') }}</td>

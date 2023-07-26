@@ -31,7 +31,7 @@ class OrderService
                 }]);
             }])
             ->with(['user'=>function($q) {
-                return $q->select('id','name','email');
+                return $q->select('id','name','email','profile_photo_path');
             }])->find($id);
     }
 

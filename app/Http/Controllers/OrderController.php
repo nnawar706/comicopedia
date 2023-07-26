@@ -56,4 +56,11 @@ class OrderController extends Controller
             return redirect()->route('checkout')->with('message','Something went wrong.');
         }
     }
+
+    public function read($id)
+    {
+        $data = $this->service->getOrderData($id);
+
+        return view('admin.pages.order-read')->with('data', $data);
+    }
 }
