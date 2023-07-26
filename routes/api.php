@@ -4,6 +4,7 @@ use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VolumeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,10 @@ Route::middleware('auth.api')->group(function () {
     Route::controller(VolumeController::class)->group(function () {
         Route::get('series/volumes/{id}', 'volumeList');
         Route::get('volumes/order-report/{volume_id}', 'volumeOrderReport');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users/ratio-over-time', 'userRatio');
     });
 
     Route::get('order-statuses', [OrderController::class, 'getOrderStatuses']);
