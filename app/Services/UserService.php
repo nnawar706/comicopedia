@@ -13,7 +13,7 @@ class UserService{
 
         $data = DB::table('users')
             ->whereBetween('created_at', [$start, $end])
-            ->selectRaw("count(*) as total_user, monthname(created_at) as month_name, month(created_at) as month")
+            ->selectRaw("count(*) as total_user, DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
         $data = json_decode($data, true);
