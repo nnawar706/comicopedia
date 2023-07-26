@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class UserService{
+class UserService {
     public function getRatio()
     {
         $end = Carbon::now();
