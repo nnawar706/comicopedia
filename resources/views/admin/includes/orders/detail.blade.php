@@ -49,5 +49,4 @@
     <hr>
     <p><span style="font-size:13px">Remarks: </span><br>
             {{ $data['user_comment'] }}</p>
-
 </div>
