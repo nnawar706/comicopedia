@@ -18,10 +18,15 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('show-items') }}">Orders</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('order-list') }}">Orders</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $data['order_no'] }}</li>
             </ol>
         </nav>
 
         @include('admin.includes.orders.top-info')
+
+        <div class="row">
+            @include('admin.includes.orders.customer')
+            @include('admin.includes.orders.detail')
+        </div>
 @stop
