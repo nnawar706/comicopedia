@@ -2,10 +2,6 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-let apiKey = "c704212b54af40b3af542df235f28ac3";
-
-console.log(apiKey);
-
 fetch(`/api/catalogues?apiKey=${apiKey}`)
     .then(response => response.json())
     .then(data => {
