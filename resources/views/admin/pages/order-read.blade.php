@@ -29,4 +29,5 @@
             @include('admin.includes.orders.customer')
             @include('admin.includes.orders.detail')
         </div>
+    </div>
 @stop
