@@ -38,5 +38,9 @@ Route::middleware('auth.api')->group(function () {
         Route::get('users/ratio-over-time', 'userRatio');
     });
 
-    Route::get('order-statuses', [OrderController::class, 'getOrderStatuses']);
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('order-statuses', 'getOrderStatuses');
+        Route::get('order-summary', 'getOrderSummary');
+    });
+
 });

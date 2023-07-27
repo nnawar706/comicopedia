@@ -251,7 +251,7 @@ class VolumeService
         $data = DB::table('order_items')
             ->where('volume_id',$volume_id)
             ->whereBetween('created_at', [$start, $end])
-            ->selectRaw("count(*) as total_sold, monthname(created_at) as month_name, month(created_at) as month")
+            ->selectRaw("count(*) as total_sold, DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
         $data = json_decode($data, true);
@@ -261,6 +261,7 @@ class VolumeService
         for($i=0;$i<12;$i++) {
             $month = ($curMonth - $i + 12) % 12;
             $month = $month === 0 ? 12 : $month;
+            $year = date('Y') - (date('n') < $month ? 1 : 0);
 
             $exist = count(array_filter($data, function ($obj) use ($month) {
                     return $obj['month'] == $month;
@@ -269,8 +270,8 @@ class VolumeService
             if(!$exist) {
                 $data[] = array(
                     'total_sold'      => 0,
-                    'month_name' => date('F', mktime(0, 0, 0, $month, 1)),
-                    'month'      => $month
+                    'month_name'      => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+                    'month'           => $month
                 );
             }
         }

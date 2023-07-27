@@ -25,9 +25,6 @@ class OrderController extends Controller
     public function getAuthUserOrders()
     {
         $data = $this->service->getCustomerOrders(auth()->user()->id);
-
-//        return response()->json($data);
-
         return view('ecommerce.pages.orders')->with('data',$data);
     }
 
@@ -62,5 +59,11 @@ class OrderController extends Controller
         $data = $this->service->getOrderData($id);
 
         return view('admin.pages.order-read')->with('data', $data);
+    }
+
+    public function getOrderSummary()
+    {
+        $data = $this->service->getOrderSummary();
+        return response()->json($data);
     }
 }

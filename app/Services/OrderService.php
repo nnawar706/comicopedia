@@ -9,6 +9,7 @@ use App\Models\OrderItems;
 use App\Models\OrderStatus;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -110,5 +111,42 @@ class OrderService
     public function getCustomerOrders($user_id)
     {
         return Order::with('address','status')->withCount('items')->where('user_id', $user_id)->latest()->get();
+    }
+
+    public function getOrderSummary()
+    {
+        $end = Carbon::now();
+        $start = $end->copy()->subMonths(11)->startOfMonth();
+
+        $orders = DB::table('orders')
+            ->whereBetween('created_at', [$start, $end])
+            ->selectRaw("count(*) as total_order, DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
+            ->groupByRaw("month_name, month")->get();
+
+        $orders = json_decode($orders, true);
+
+        $curMonth = date('n');
+
+        for($i=0;$i<12;$i++) {
+            $month = ($curMonth - $i + 12) % 12;
+            $month = $month === 0 ? 12 : $month;
+            $year = date('Y') - (date('n') < $month ? 1 : 0);
+
+            $exist = count(array_filter($orders, function ($obj) use ($month) {
+                    return $obj['month'] == $month;
+                })) > 0;
+
+            if(!$exist) {
+                $orders[] = array(
+                    'total_order'      => 0,
+                    'month_name'       => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+                    'month'            => $month
+                );
+            }
+        }
+
+        return array(
+            'order_data'    => $orders
+        );
     }
 }
