@@ -123,6 +123,15 @@ class OrderService
             ->selectRaw("count(*) as total_order, DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
+        $carts = Order::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month")
+            ->selectRaw("COUNT(*) as total_carts")
+            ->selectRaw("SUM(is_ordered = 1) as total_orders")
+            ->selectRaw("SUM(is_ordered = 1) / COUNT(*) as cart_to_order_ratio")
+            ->whereDate('created_at', '>=', now()->subMonths(12))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+            ->orderBy('created_at')
+            ->get();
+
         $orders = json_decode($orders, true);
 
         $curMonth = date('n');
@@ -146,7 +155,8 @@ class OrderService
         }
 
         return array(
-            'order_data'    => $orders
+            'order_data'    => $orders,
+            'cart_data'     => $carts
         );
     }
 }
