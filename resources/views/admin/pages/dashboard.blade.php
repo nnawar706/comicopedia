@@ -70,6 +70,7 @@
         </div>
 
         @include('admin.includes.dashboard.orders')
+        @include('admin.includes.dashboard.items')
     </div>
 
 @stop
