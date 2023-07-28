@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderAddress;
 use App\Models\OrderItems;
 use App\Models\OrderStatus;
+use App\Models\Wishlist;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -132,8 +133,18 @@ class OrderService
             ->orderBy('created_at')
             ->get();
 
+        $wishes = Wishlist::selectRaw("DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
+        ->selectRaw("COUNT(*) as total_wish")
+        ->selectRaw("SUM(is_ordered = 1) as total_cart")
+        ->selectRaw("SUM(is_ordered = 1) / COUNT(*) as wish_to_cart_ratio")
+        ->whereDate('created_at', '>=', now()->subMonths(12))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M, %Y')"), 'month')
+        ->orderBy('created_at')
+        ->get();
+
         $orders = json_decode($orders, true);
-        $carts = json_decode($carts, true);
+        $carts  = json_decode($carts, true);
+        $wishes = json_decode($wishes, true);
 
         $curMonth = date('n');
 
@@ -147,6 +158,10 @@ class OrderService
                 })) > 0;
 
             $exist_cart = count(array_filter($carts, function ($obj) use ($month) {
+                return $obj['month'] == $month;
+            })) > 0;
+
+            $exist_wish = count(array_filter($wishes, function ($obj) use ($month) {
                 return $obj['month'] == $month;
             })) > 0;
 
@@ -166,11 +181,21 @@ class OrderService
                     'cart_to_order_ratio'   => 0
                 );
             }
+            if (!$exist_wish) {
+                $wishes[] = array(
+                    'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+                    'month'                 => $month,
+                    'total_wish'            => 0,
+                    'total_cart'            => 0,
+                    'wish_to_cart_ratio'    => 0
+                );
+            }
         }
 
         return array(
             'order_data'    => $orders,
-            'cart_data'     => $carts
+            'cart_data'     => $carts,
+            'wish_data'     => $wishes,
         );
     }
 }
