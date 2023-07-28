@@ -142,42 +142,42 @@ class OrderService
 
         $curMonth = date('n');
 
-        for($i=0;$i<12;$i++) {
-            $month = ($curMonth - $i + 12) % 12;
-            $month = $month === 0 ? 12 : $month;
-            $year = date('Y') - (date('n') < $month ? 1 : 0);
+        // for($i=0;$i<12;$i++) {
+        //     $month = ($curMonth - $i + 12) % 12;
+        //     $month = $month === 0 ? 12 : $month;
+        //     $year = date('Y') - (date('n') < $month ? 1 : 0);
 
-            $exist_cart = count(array_filter($carts, function ($obj) use ($month) {
-                return $obj['month'] == $month;
-            })) > 0;
+        //     $exist_cart = count(array_filter($carts, function ($obj) use ($month) {
+        //         return $obj['month'] == $month;
+        //     })) > 0;
 
-            $exist_wish = count(array_filter($wishes, function ($obj) use ($month) {
-                return $obj['month'] == $month;
-            })) > 0;
+        //     $exist_wish = count(array_filter($wishes, function ($obj) use ($month) {
+        //         return $obj['month'] == $month;
+        //     })) > 0;
 
-            if (!$exist_cart) {
-                $carts[] = array(
-                    'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
-                    'month'                 => $month,
-                    'total_carts'           => 0,
-                    'total_orders'          => 0,
-                    'cart_to_order_ratio'   => 0
-                );
-            }
-            if (!$exist_wish) {
-                $wishes[] = array(
-                    'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
-                    'month'                 => $month,
-                    'total_wish'            => 0,
-                    'total_cart'            => 0,
-                    'wish_to_cart_ratio'    => 0
-                );
-            }
-        }
+        //     if (!$exist_cart) {
+        //         $carts[] = array(
+        //             'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+        //             'month'                 => $month,
+        //             'total_carts'           => 0,
+        //             'total_orders'          => 0,
+        //             'cart_to_order_ratio'   => 0
+        //         );
+        //     }
+        //     if (!$exist_wish) {
+        //         $wishes[] = array(
+        //             'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+        //             'month'                 => $month,
+        //             'total_wish'            => 0,
+        //             'total_cart'            => 0,
+        //             'wish_to_cart_ratio'    => 0
+        //         );
+        //     }
+        // }
 
         return array(
-            'cart_data'     => array_reverse($carts),
-            'wish_data'     => array_reverse($wishes),
+            'cart_data'     => $carts,
+            'wish_data'     => $wishes,
         );
     }
 }
