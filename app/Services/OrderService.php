@@ -123,16 +123,17 @@ class OrderService
             ->selectRaw("count(*) as total_order, DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->groupByRaw("month_name, month")->get();
 
-        $carts = Order::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month")
+        $carts = Cart::selectRaw("DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->selectRaw("COUNT(*) as total_carts")
             ->selectRaw("SUM(is_ordered = 1) as total_orders")
             ->selectRaw("SUM(is_ordered = 1) / COUNT(*) as cart_to_order_ratio")
             ->whereDate('created_at', '>=', now()->subMonths(12))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M, %Y')"), 'month')
             ->orderBy('created_at')
             ->get();
 
         $orders = json_decode($orders, true);
+        $carts = json_decode($carts, true);
 
         $curMonth = date('n');
 
@@ -141,15 +142,28 @@ class OrderService
             $month = $month === 0 ? 12 : $month;
             $year = date('Y') - (date('n') < $month ? 1 : 0);
 
-            $exist = count(array_filter($orders, function ($obj) use ($month) {
+            $exist_order = count(array_filter($orders, function ($obj) use ($month) {
                     return $obj['month'] == $month;
                 })) > 0;
 
-            if(!$exist) {
+            $exist_cart = count(array_filter($carts, function ($obj) use ($month) {
+                return $obj['month'] == $month;
+            })) > 0;
+
+            if(!$exist_order) {
                 $orders[] = array(
                     'total_order'      => 0,
                     'month_name'       => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
                     'month'            => $month
+                );
+            }
+            if (!$exist_cart) {
+                $carts[] = array(
+                    'month_name'            => date('F', mktime(0, 0, 0, $month, 1)) . ', ' . $year,
+                    'month'                 => $month,
+                    'total_carts'           => 0,
+                    'total_orders'          => 0,
+                    'cart_to_order_ratio'   => 0
                 );
             }
         }
