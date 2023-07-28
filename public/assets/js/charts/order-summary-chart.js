@@ -41,8 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const count_order_item = data["cart_data"].map((item) => item.total_orders);
             const count_cart_item = data["cart_data"].map((item) => item.total_carts);
             const count_wish_item = data["wish_data"].map((item) => item.total_wish);
-            const cart_to_order = data["cart_data"].map((item) => item.cart_to_order_ratio * 100);
-            const wish_to_cart = data["wish_data"].map((item) => item.wish_to_cart_ratio * 100);
 
             var ctx = document.getElementById("myComparisonChart");
             var myBarChart = new Chart(ctx, {
@@ -63,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             label: "Cart Items",
                             data: count_cart_item,
                             borderColor: "#dddfeb",
-                            // backgroundColor: "#dddfeb",
                             stack: "combined",
                             fill: false,
                         },
@@ -71,18 +68,18 @@ document.addEventListener("DOMContentLoaded", function () {
                             label: "Wishlist Items",
                             data: count_wish_item,
                             borderColor: "rgba(255, 159, 64, 0.2)",
-                            // backgroundColor: "rgba(255, 159, 64, 0.2)",
-                            hoverBackgroundColor: "rgba(255, 159, 64, 0.5)",
                             stack: "combined",
                             fill: false,
                         },
                     ],
                 },
                 options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: "Chart.js Stacked Line/Bar Chart",
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 40,
                         },
                     },
                     scales: {
