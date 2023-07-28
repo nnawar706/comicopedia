@@ -1,9 +1,9 @@
 // // // Set new default font family and font color to mimic Bootstrap's default styling
-// (Chart.defaults.global.defaultFontFamily = "Nunito"),
-//     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-// Chart.defaults.global.defaultFontColor = "#858796";
+(Chart.defaults.global.defaultFontFamily = "Nunito"),
+    '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = "#858796";
 
-const { toInteger } = require("lodash");
+// const { toInteger } = require("lodash");
 
 // function number_format(number, decimals, dec_point, thousands_sep) {
 //     // *     example: number_format(1234.56, 2, ',', ' ');
@@ -37,90 +37,61 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(`/api/order-summary?apiKey=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
-            const labels = data['cart_data'].map((item) => item.month);
+            const labels = data['cart_data'].map((item) => item.month_name);
             const count_order_item = data["cart_data"].map((item) => item.total_orders);
             const count_cart_item = data["cart_data"].map((item) => item.total_carts);
             const count_wish_item = data["wish_data"].map((item) => item.total_wish);
             const cart_to_order = data["cart_data"].map((item) => item.cart_to_order_ratio * 100);
-            const wish_to_cart = data["wiah_data"].map((item) => item.wish_to_cart_ratio * 100);
+            const wish_to_cart = data["wish_data"].map((item) => item.wish_to_cart_ratio * 100);
 
-            var ctx = document.getElementById("myOrderChart");
+            var ctx = document.getElementById("myComparisonChart");
             var myBarChart = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            axis: "x",
-                            label: "Order Status",
-                            backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                                "rgba(255, 205, 86, 0.2)",
-                                "rgba(75, 192, 192, 0.2)",
-                            ],
-                            hoverBackgroundColor: [
-                                "rgba(255, 99, 132, 0.5)",
-                                "rgba(255, 159, 64, 0.5)",
-                                "rgba(255, 205, 86, 0.5)",
-                                "rgba(75, 192, 192, 0.5)",
-                            ],
-                            borderColor: "#4e73df",
-                            data: count,
+                            label: "Order Items",
+                            data: count_order_item,
+                            borderColor: "#dddfeb",
+                            backgroundColor: "rgba(255, 99, 132, 0.2)",
+                            hoverBackgroundColor: "rgba(255, 99, 132, 0.5)",
+                            stack: "combined",
+                            type: "bar",
+                        },
+                        {
+                            label: "Cart Items",
+                            data: count_cart_item,
+                            borderColor: "#dddfeb",
+                            // backgroundColor: "#dddfeb",
+                            stack: "combined",
+                            fill: false,
+                        },
+                        {
+                            label: "Wishlist Items",
+                            data: count_wish_item,
+                            borderColor: "rgba(255, 159, 64, 0.2)",
+                            // backgroundColor: "rgba(255, 159, 64, 0.2)",
+                            hoverBackgroundColor: "rgba(255, 159, 64, 0.5)",
+                            stack: "combined",
+                            fill: false,
                         },
                     ],
                 },
                 options: {
-                    indexAxis: "y",
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Chart.js Stacked Line/Bar Chart",
                         },
                     },
                     scales: {
-                        xAxes: [
-                            {
-                                gridLines: {
-                                    color: "rgb(234, 236, 244)",
-                                    zeroLineColor: "rgb(234, 236, 244)",
-                                    drawBorder: false,
-                                    borderDash: [2],
-                                    zeroLineBorderDash: [2],
-                                },
-                            },
-                        ],
-                        yAxes: [
-                            {
-                                gridLines: {
-                                    display: false,
-                                    drawBorder: false,
-                                },
-                                maxBarThickness: 25,
-                            },
-                        ],
-                    },
-                    legend: {
-                        display: false,
-                    },
-                    tooltips: {
-                        titleMarginBottom: 10,
-                        titleFontColor: "#6e707e",
-                        titleFontSize: 14,
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        borderColor: "#dddfeb",
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function (tooltipItem, chart) {
-                                return number_format(tooltipItem.xLabel);
+                        y: {
+                            stacked: true,
+                        },
+                        x: {
+                            ticks: {
+                                stepSize: 2, // Set the stepSize to 2 to show data for every 2 months
                             },
                         },
                     },

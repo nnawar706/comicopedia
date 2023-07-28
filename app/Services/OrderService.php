@@ -176,8 +176,8 @@ class OrderService
         }
 
         return array(
-            'cart_data'     => $carts,
-            'wish_data'     => $wishes,
+            'cart_data'     => array_reverse($carts),
+            'wish_data'     => array_reverse($wishes),
         );
     }
 }
