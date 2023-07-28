@@ -20,23 +20,26 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+    <div class="col-xl-4 col-lg-5">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Most Sold Volumes</h6>
+                <div class="dropdown no-arrow"></div>
+                <a href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                    aria-labelledby="dropdownMenuLink">
+                    <button class="dropdown-item" onclick="downloadPieChart()">Download</button>
+                    <button class="dropdown-item" onclick="exportPieChartPDF()">Export PDF</button>
+                </div>
             </div>
-            <div class="card-body">
-                @php
-                    $bg_colors = ['bg-success','bg-warning','','bg-info','bg-danger'];
-                @endphp
-                @foreach ($data['most_viewed']['data'] as $key=>$item)
-                    <h4 class="small font-weight-bold"><a href="{{ route('read-volume-view',['id' => $item['id']]) }}" style="color:dimgray">{{ $item['item']['title'] }}, {{ $item['title'] }} </a><span
-                            class="float-right">{{ round(($item['view_count']/$data['most_viewed']['total'])*100,2) }}%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar {{ $bg_colors[$key] }}" role="progressbar" style="width: {{ round(($item['view_count']/$data['most_viewed']['total'])*100,2) }}%"
-                             aria-valuenow="{{ round(($item['view_count']/$data['most_viewed']['total'])*100,2) }}" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                @endforeach
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+                <canvas id="volumeChart"></canvas>
             </div>
         </div>
     </div>
