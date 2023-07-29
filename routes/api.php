@@ -31,6 +31,7 @@ Route::middleware('auth.api')->group(function () {
 
     Route::controller(VolumeController::class)->group(function () {
         Route::get('series/volumes/{id}', 'volumeList');
+        Route::get('volumes/most-sold', 'volumeSellReport');
         Route::get('volumes/order-report/{volume_id}', 'volumeOrderReport');
     });
 
