@@ -141,7 +141,6 @@ class OrderService
         $wishes = json_decode($wishes, true);
 
         $curMonth = date('n');
-//
 
         // for($i=0;$i<12;$i++) {
         //     $month = ($curMonth - $i + 12) % 12;
