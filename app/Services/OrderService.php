@@ -180,4 +180,15 @@ class OrderService
             'wish_data'     => $wishes,
         );
     }
+
+
+    public function wishReport($year)
+    {
+        return Wishlist::whereRaw('year(created_at)='.$year)
+            ->selectRaw('monthname(created_at) as month_name,
+        COUNT(CASE WHEN added_to_cart = 1 THEN 1 END) as converted,
+        COUNT(CASE WHEN added_to_cart = 0 THEN 1 END) as not_converted')
+            ->groupByRaw('month(created_at),monthname(created_at)')
+            ->get();
+    }
 }
