@@ -278,4 +278,8 @@ class VolumeService
 
         return $data;
     }
+
+    public function getMostSold()
+    {
+    }
 }
