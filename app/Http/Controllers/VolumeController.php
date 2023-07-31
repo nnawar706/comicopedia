@@ -86,4 +86,11 @@ class VolumeController extends Controller
 
         return response()->json($data);
     }
+
+    public function volumeSellReport()
+    {
+        $data = $this->service1->getMostSold();
+
+        return response()->json($data);
+    }
 }
