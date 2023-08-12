@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-4 mb-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Recent Orders</h6>
@@ -13,7 +13,6 @@
                         <thead>
                             <tr>
                                 <th>Order Number</th>
-                                <th>Customer</th>
                                 <th>Total Payable</th>
                                 <th>Ordered On</th>
                             </tr>
@@ -22,7 +21,6 @@
                             @foreach ($data['orders'] as $order)
                             <tr>
                                 <td><a href="{{ route('read-order-view',['id' => $order->id]) }}" style="text-decoration:underline">{{ $order['order_no'] }}</a></td>
-                                <td>{{ $order['user']['name'] }}</td>
                                 <td>{{ $order['total'] + $order['shipping_cost'] - $order['promo_discount'] }}</td>
                                 <td>{{ Illuminate\Support\Carbon::parse($order->created_at)->format('M d, Y') }}</td>
                             </tr>
@@ -34,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-4 mb-4">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -59,10 +57,7 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-4 mb-4">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
