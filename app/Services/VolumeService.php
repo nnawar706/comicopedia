@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Item;
+use App\Models\OrderItems;
 use App\Models\RestockRequest;
 use App\Models\Volume;
 use App\Models\Category;
@@ -186,13 +187,6 @@ class VolumeService
         $volume->save();
     }
 
-    public function decrementView($id)
-    {
-        $volume = $this->volume->newQuery()->find($id);
-        $volume->view_count += 1;
-        $volume->save();
-    }
-
     public function incrementSell($id)
     {
         $volume = $this->volume->newQuery()->find($id);
@@ -281,5 +275,11 @@ class VolumeService
 
     public function getMostSold()
     {
+        return OrderItems::leftJoin('volumes','order_items.volume_id','=','volumes.id')
+            ->leftJoin('orders','order_items.order_id','=','orders.id')
+            ->selectRaw('count(*) as order_count,order_items.volume_id')
+            ->groupBy('order_items.volume_id')
+            ->whereIn('orders.status_id',[2,4])
+            ->get();
     }
 }
