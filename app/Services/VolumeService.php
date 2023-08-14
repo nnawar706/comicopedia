@@ -277,9 +277,11 @@ class VolumeService
     {
         return OrderItems::leftJoin('volumes','order_items.volume_id','=','volumes.id')
             ->leftJoin('orders','order_items.order_id','=','orders.id')
-            ->selectRaw('count(*) as order_count,order_items.volume_id')
-            ->groupBy('order_items.volume_id')
+            ->leftJoin('items','volumes.item_id','=','items.id')
+            ->selectRaw('concat(items.title,", ", volumes.title) as name,count(*) as order_count')
+            ->groupBy('order_items.volume_id', 'name')
             ->whereIn('orders.status_id',[2,4])
+            ->limit(5)
             ->get();
     }
 }

@@ -34,65 +34,52 @@ Chart.defaults.global.defaultFontColor = "#858796";
 document.addEventListener("DOMContentLoaded", function () {
     // let apiKey = "c704212b54af40b3af542df235f28ac3";
 
-    fetch(`/api/order-summary?apiKey=${apiKey}`)
+    fetch(`/api/volumes/most-sold?apiKey=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
-            const labels = data["cart_data"].map((item) => item.month_name);
-            const count_order_item = data["cart_data"].map(
-                (item) => item.total_orders
-            );
-            const count_cart_item = data["cart_data"].map(
-                (item) => item.total_carts
-            );
-            const count_wish_item = data["wish_data"].map(
-                (item) => item.total_wish
-            );
+            const labels = data.map((volume) => volume.name);
+            const count = data.map((volume) => volume.order_count);
 
             var ctx = document.getElementById("volumeChart");
-            var myBarChart = new Chart(ctx, {
-                type: "line",
+            var myPieChart = new Chart(ctx, {
+                type: "pie",
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            label: "Order Items",
-                            data: count_order_item,
-                            borderColor: "#dddfeb",
+                            data: count,
                             backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                                "rgba(255, 205, 86, 0.2)",
-                                "rgba(75, 192, 192, 0.2)",
+                                // "#f23000",
+                                // "#4e73df",
+                                "#1cc88a",
+                                "#36b9cc",
+                                "#B2BEB5",
+                                // "#242424",
                             ],
                             hoverBackgroundColor: [
-                                "rgba(255, 99, 132, 0.5)",
-                                "rgba(255, 159, 64, 0.5)",
-                                "rgba(255, 205, 86, 0.5)",
-                                "rgba(75, 192, 192, 0.5)",
-                            ]
+                                // "#d30000",
+                                // "#17a673",
+                                "#2c9faf",
+                                "#292929",
+                                "#171717",
+                            ],
+                            hoverBorderColor: "rgba(234, 236, 244, 1)",
                         },
                     ],
                 },
                 options: {
-                    layout: {
-                        padding: {
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 50,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "top",
                         },
-                    },
-                    scales: {
-                        y: {
-                            stacked: true,
-                        },
-                        x: {
-                            ticks: {
-                                stepSize: 2, // Set the stepSize to 2 to show data for every 2 months
-                            },
+                        title: {
+                            display: true,
+                            text: "Chart.js Pie Chart",
                         },
                     },
                 },
-            }).catch((error) => console.log(error));
-        });
-});
+            });
+        }).catch((error) => console.log(error));
+    });
+// });

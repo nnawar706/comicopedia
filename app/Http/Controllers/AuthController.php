@@ -43,6 +43,7 @@ class AuthController extends Controller
             'orders'            => (new OrderService())->getRecentOrders(),
             'earning'           => (new ReportService())->getTotalEarning(),
             'customers'         => (new ReportService())->getTotalCustomers(),
+            'cart_to_order_rate'=> (new OrderService())->getCartToOrderRatio(),
         );
 
         // return response()->json($data);

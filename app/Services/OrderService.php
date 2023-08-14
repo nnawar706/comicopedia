@@ -140,8 +140,6 @@ class OrderService
         $carts  = json_decode($carts, true);
         $wishes = json_decode($wishes, true);
 
-        $curMonth = date('n');
-
         // for($i=0;$i<12;$i++) {
         //     $month = ($curMonth - $i + 12) % 12;
         //     $month = $month === 0 ? 12 : $month;
@@ -190,5 +188,13 @@ class OrderService
         COUNT(CASE WHEN added_to_cart = 0 THEN 1 END) as not_converted')
             ->groupByRaw('month(created_at),monthname(created_at)')
             ->get();
+    }
+
+
+    public function getCartToOrderRatio()
+    {
+        $result = Cart::selectRaw("SUM(is_ordered = 1) / COUNT(*) as cart_to_order_ratio")->get();
+
+        return $result[0];
     }
 }
