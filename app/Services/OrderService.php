@@ -116,9 +116,6 @@ class OrderService
 
     public function getOrderSummary()
     {
-        $end = Carbon::now();
-        $start = $end->copy()->subMonths(11)->startOfMonth();
-
         $carts = Cart::selectRaw("DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
             ->selectRaw("COUNT(*) as total_carts")
             ->selectRaw("SUM(is_ordered = 1) as total_orders")

@@ -45,8 +45,34 @@
     </div>
     <div class="col-lg-4 mb-4">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a href="#" class="btn btn-warning btn-circle btn-sm">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </a>
+                    Inventory Stock Alert
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Stock Amount</th>
+                                <th>Pending Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="" style="text-decoration:underline">Black Clover, Volume 15</a></td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

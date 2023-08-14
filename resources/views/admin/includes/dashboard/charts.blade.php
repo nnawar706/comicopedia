@@ -25,4 +25,65 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-4 col-lg-7">
+        <div class="mb-4">
+            <div class="row" style="margin-top:50px">
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            Revenue
+                            <div class="large">{{ $data['dashboard_data']->revenue }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            Expense
+                            <div class="large">{{ $data['dashboard_data']->cost }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                            Avg. Order Value
+                            <div class="large">{{ $data['dashboard_data']->order_value }}</div>
+                        </div>
+                    </div>
+                </div>
+                @php
+                    $total = 0;
+                    foreach ($data['order_data'] as $item)
+                    {
+                        $total += $item['orders_count'];
+                    }
+                @endphp
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-warning text-white shadow">
+                        <div class="card-body">
+                            Total Orders
+                            <div class="large">{{ $total }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            Gross Profit
+                            <div class="large">{{ $data['dashboard_data']->gross_profit }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-secondary text-white shadow">
+                        <div class="card-body">
+                            Net Profit
+                            <div class="large">{{ $data['dashboard_data']->net_profit }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
