@@ -119,6 +119,7 @@
 <script src="{{ asset('assets/js/charts/order-chart-bar.js') }}"></script>
 <script src="{{ asset('assets/js/charts/order-summary-chart.js') }}"></script>
 <script src="{{ asset('assets/js/charts/sold-volume-chart.js')}}"></script>
+<script src="{{ asset('assets/js/charts/earning-area-chart.js')}}"></script>
 <!-- Page level plugins -->
 <script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js') }}"></script>
