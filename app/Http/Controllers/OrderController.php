@@ -66,4 +66,10 @@ class OrderController extends Controller
         $data = $this->service->getOrderSummary();
         return response()->json($data);
     }
+
+    public function getEarning()
+    {
+        $data = $this->service->getEarnings();
+        return response()->json($data);
+    }
 }

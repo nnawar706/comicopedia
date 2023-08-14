@@ -42,6 +42,7 @@ Route::middleware('auth.api')->group(function () {
     Route::controller(OrderController::class)->group(function () {
         Route::get('order-statuses', 'getOrderStatuses');
         Route::get('order-summary', 'getOrderSummary');
+        Route::get('earning', 'getEarning');
     });
 
 });

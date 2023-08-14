@@ -20,7 +20,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Order Locations</h6>
                     </div>
                     <div class="card-body" style="height: 354px !important;">
-                        {{-- <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div> --}}
+                        <div style="width: 100%;height: 100%; margin: 0" id="order-map"></div>
                     </div>
                 </div>
             </div>
@@ -124,8 +124,8 @@
 <script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/js/charts/datatables-demo.js') }}"></script>
-{{-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> --}}
-{{-- <script src="{{ asset('assets/js/order-map.js') }}"></script> --}}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="{{ asset('assets/js/order-map.js') }}"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

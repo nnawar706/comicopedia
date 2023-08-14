@@ -30,13 +30,13 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 document.addEventListener('DOMContentLoaded', function() {
     // let apiKey = "c704212b54af40b3af542df235f28ac3";
 
-    fetch(`/api/volumes/order-report/12?apiKey=${apiKey}`)
+    fetch(`/api/earning?apiKey=${apiKey}`)
         .then((response) => response.json())
         .then(data => {
 
             const labels = data.map(item => item.month_name);
 
-            const count = data.map(item => item.total_sold);
+            const count = data.map((item) => item.orders_total);
 
             var ctx = document.getElementById("earningChart");
             var myLineChart = new Chart(ctx, {

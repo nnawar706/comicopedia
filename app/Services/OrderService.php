@@ -99,6 +99,16 @@ class OrderService
         return OrderAddress::all();
     }
 
+    public function getEarnings()
+    {
+        return Order::selectRaw("DATE_FORMAT(created_at, '%M, %Y') as month_name, month(created_at) as month")
+        ->selectRaw("SUM(total) as orders_total")
+        ->whereDate('created_at', '>=', now()->subMonths(12))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M, %Y')"), 'month')
+        ->orderBy('created_at')
+        ->get();
+    }
+
     public function getData()
     {
         return OrderStatus::withCount('orders')->get();
