@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(OrderController::class)->group(function () {
         Route::get('auth/user/orders', 'getAuthUserOrders')->name('auth-order');
         Route::post('place-order', 'store')->name('place-order');
+        Route::post('track-order', 'trackOrder')->name('auth-track-order');
     });
 
     Route::controller(ReportController::class)->group(function () {

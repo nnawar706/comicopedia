@@ -139,6 +139,7 @@
                                 @if(auth()->check())
                                 <li><a href="{{ route('checkout') }}">Check Out</a></li>
                                 <li><a href="{{ route('auth-order') }}">Orders</a></li>
+                                    <li><a href="{{ route('auth-track-order') }}">Track Order</a></li>
                                 @endif
                             </ul>
                         </li>

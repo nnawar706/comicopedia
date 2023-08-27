@@ -56,11 +56,11 @@ class WishlistService
         }
     }
 
-    private function createUpdateWish($request, $wish)
+    private function createUpdateWish($request, $wish): void
     {
         if(is_null($wish))
         {
-            $wish = $this->wish->newQuery()->create([
+            $this->wish->newQuery()->create([
                 'volume_id'    => $request['volume_id'],
                 'attribute_id' => $request['attribute_id'],
                 'quantity'     => $request['quantity'],
